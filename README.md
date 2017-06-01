@@ -1,12 +1,17 @@
-#Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+#Introdução 
+Projeto CMS para gerenciamento de conteúdo de sites institucionais, corporativos e pessoais. 
 
 #Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Os passos abaixo devem ser corretamente seguidos
+1.	Novo projeto / Cliente
+    Ao adicionar um novo projeto/cliente, deve ser criado uma nova branch com os itens do CMS necessário para o projeto.
+2.	Visual Studio
+    Ao abrir o projeto no visual studio, da nova branch, em primeiro lugar deve ser realizado a restauração das dependências do nuget, em seguida um rebuild para garantir que o cms está funcional.
+3.	Desenvolvimento
+4.	Testes
+5.  Publicação
+6.  Merge para Master
+    Após a finalização do trabalho, deve ser realizado o merge para a master, SOMENTE DO CONTEÚDO REFERENTE AO CMS. Conteúdo referênte ao site/projeto/cliente, deve ser mantido somente na branch.
 
 #Build and Test
 TODO: Describe and show how to build your code and run the tests. 
