@@ -1,0 +1,88 @@
+﻿@model Model.ClienteParceiro
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="space-10"></div>
+    <div class="space-10"></div>
+    <div class="form-group">
+        <label class="control-label col-md-1">Logotipo ou Imagem</label>
+        <div class="col-md-10">
+            <span class="profile-picture">
+                @if (Model == null)
+                {   
+                    <img id="avatar" class="editable img-responsive" alt="" src="~/Content/images/upload.jpg" style="max-height: 200px;" />
+                }
+                else
+                {
+                    <img id="avatar" class="editable img-responsive" alt="" src="@Url.Action("Cliente","Img", new { id = Model.Id})" style="max-height: 200px;" />
+                }
+                @Html.HiddenFor(model => model.Pessoa.Imagem)
+            </span>
+            @Html.ValidationMessageFor(model => model.Pessoa.Imagem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pessoa.Nome, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-user bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Pessoa.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Pessoa.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pessoa.Bio, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-user bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Pessoa.Bio, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Pessoa.Bio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-globe bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pessoa.StatusId, "Status", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Pessoa.StatusId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pessoa.Observacao, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-user bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Pessoa.Observacao, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Pessoa.Observacao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-success" />
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+

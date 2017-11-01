@@ -1,0 +1,3252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="cmsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="DataFim" Type="datetime" Precision="0" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="Status_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ajuda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Descricao" Type="text" Nullable="false" />
+          <Property Name="AjudaTopicoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AjudaTopico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="AjudaTopicoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+          <Property Name="PostarNoFacebook" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bairro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" />
+        </EntityType>
+        <EntityType Name="Cardapio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="10" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Ingredientes" Type="text" />
+          <Property Name="Preco" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" />
+          <Property Name="CardapioCategoriaId" Type="int" Nullable="false" />
+          <Property Name="Status_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CardapioCategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="65" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="Imagem" Type="varchar" MaxLength="65" />
+          <Property Name="Bebida" Type="bool" Nullable="false" />
+          <Property Name="Status_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="300" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriaPublicacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+          <Property Name="PublicacaoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClienteParceiro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="145" />
+          <Property Name="Tipo" Type="varchar" MaxLength="45" />
+          <Property Name="PessoaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClienteParceiroCupomDesconto">
+          <Key>
+            <PropertyRef Name="ClienteParceiroId" />
+            <PropertyRef Name="CupomDescontoId" />
+          </Key>
+          <Property Name="ClienteParceiroId" Type="int" Nullable="false" />
+          <Property Name="CupomDescontoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="65" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="145" />
+          <Property Name="Icone" Type="varchar" MaxLength="45" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PessoaId" Type="int" Nullable="false" />
+          <Property Name="TipoContatoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CupomDesconto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="DataValidade" Type="datetime" Precision="0" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="TermosCondicoes" Type="text" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Depoimento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Autor" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Texto" Type="text" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="100" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Download">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="MimeType" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="Arquivo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Status_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PessoaId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Resumo" Type="text" />
+          <Property Name="Endereco" Type="text" />
+          <Property Name="Logo" Type="varchar" MaxLength="45" />
+          <Property Name="Email" Type="varchar" MaxLength="145" />
+          <Property Name="PessoaId" Type="int" Nullable="false" />
+          <Property Name="TemaPainel" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Latitute" Type="varchar" MaxLength="45" />
+          <Property Name="Longitude" Type="varchar" MaxLength="45" />
+          <Property Name="Telefone" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Equipe">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PessoaId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="45" />
+          <Property Name="DocumentoProfissional" Type="varchar" MaxLength="45" />
+          <Property Name="Cargo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="PessoaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoUf" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Uf" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Regiao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemAlbum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Legenda" Type="varchar" MaxLength="145" />
+          <Property Name="Ordem" Type="int" Nullable="false" />
+          <Property Name="AlbumId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemImovel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Ordem" Type="int" />
+          <Property Name="ImovelId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemPortifolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Legenda" Type="varchar" MaxLength="145" />
+          <Property Name="Ordem" Type="int" Nullable="false" />
+          <Property Name="PortifolioId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemProduto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Legenda" Type="varchar" MaxLength="145" />
+          <Property Name="Ordem" Type="int" Nullable="false" />
+          <Property Name="ProdutoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemPublicacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Legenda" Type="varchar" MaxLength="145" />
+          <Property Name="Ordem" Type="int" Nullable="false" />
+          <Property Name="PublicacaoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imovel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="45" />
+          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="CentralNegocio" Type="text" />
+          <Property Name="Imagem" Type="varchar" MaxLength="200" />
+          <Property Name="Valor" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ValorCondominio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="AreaTotal" Type="double" />
+          <Property Name="AreaConstruida" Type="double" />
+          <Property Name="Dormitorio" Type="int" />
+          <Property Name="Suite" Type="int" />
+          <Property Name="Banheiro" Type="int" />
+          <Property Name="Garagem" Type="int" />
+          <Property Name="Endereco" Type="text" />
+          <Property Name="Cidade" Type="varchar" MaxLength="145" />
+          <Property Name="Uf" Type="varchar" MaxLength="2" />
+          <Property Name="Bairro" Type="varchar" MaxLength="145" />
+          <Property Name="Cep" Type="varchar" MaxLength="12" />
+          <Property Name="Latitude" Type="varchar" MaxLength="45" />
+          <Property Name="Longitude" Type="varchar" MaxLength="45" />
+          <Property Name="BairroUrl" Type="varchar" MaxLength="145" />
+          <Property Name="CidadeUrl" Type="varchar" MaxLength="145" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="200" />
+          <Property Name="TipoContratoId" Type="int" Nullable="false" />
+          <Property Name="TipoImovelId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="DataCadastro" Type="datetime" Precision="0" />
+          <Property Name="DataExclusao" Type="datetime" Precision="0" />
+          <Property Name="UsuarioExclusao" Type="varchar" MaxLength="245" />
+        </EntityType>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Target" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Datetime" Type="timestamp" Precision="0" />
+          <Property Name="Thread" Type="text" />
+          <Property Name="Level" Type="text" />
+          <Property Name="Logger" Type="text" />
+          <Property Name="Message" Type="text" />
+          <Property Name="Exception" Type="text" />
+        </EntityType>
+        <EntityType Name="Mensagem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Remetente" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Assunto" Type="varchar" MaxLength="60" />
+          <Property Name="Telefone" Type="varchar" MaxLength="45" />
+          <Property Name="Conteudo" Type="text" Nullable="false" />
+          <Property Name="Data" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Lida" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Uf" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Bio" Type="text" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" />
+          <Property Name="Observacao" Type="text" />
+          <Property Name="CpfCnpj" Type="varchar" MaxLength="20" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" />
+          <Property Name="DataCadastro" Type="date" Nullable="false" />
+          <Property Name="DataNascimento" Type="date" />
+          <Property Name="Telefone" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Whatsapp" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="245" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Portifolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="DadosTecnico" Type="text" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" />
+          <Property Name="Url" Type="varchar" MaxLength="145" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="DadosTecnico" Type="text" />
+          <Property Name="Imagem" Type="varchar" MaxLength="45" />
+          <Property Name="Video" Type="varchar" MaxLength="45" />
+          <Property Name="Preco" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+          <Property Name="PostarNoFacebook" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promocao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="Resumo" Type="text" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" />
+          <Property Name="Url" Type="varchar" MaxLength="145" />
+          <Property Name="DataInicio" Type="datetime" Precision="0" />
+          <Property Name="DataFim" Type="datetime" Precision="0" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publicacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="Resumo" Type="varchar" MaxLength="200" />
+          <Property Name="Texto" Type="text" Nullable="false" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" />
+          <Property Name="DataPublicacao" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="DataAtualizacao" Type="datetime" Precision="0" />
+          <Property Name="ExibirComoPopup" Type="bool" Nullable="false" />
+          <Property Name="ExibirImagem" Type="bool" Nullable="false" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="PostarNoFacebook" Type="bool" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="Autor" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Rede">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UrlBase" Type="varchar" MaxLength="145" />
+          <Property Name="Icone" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RedeSocial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="245" Nullable="false" />
+          <Property Name="RedeId" Type="int" Nullable="false" />
+          <Property Name="PessoaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regiao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Resumo" Type="varchar" MaxLength="120" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="Icone" Type="varchar" MaxLength="45" />
+          <Property Name="Imagem" Type="varchar" MaxLength="145" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" />
+          <Property Name="TipoId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slide">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imagem" Type="text" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="60" />
+          <Property Name="Subtitulo" Type="varchar" MaxLength="145" />
+          <Property Name="Url" Type="text" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoContato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Icone" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="TipoContrato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoImovel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoServico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PessoaId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Senha" Type="text" Nullable="false" />
+          <Property Name="PessoaId" Type="int" Nullable="false" />
+          <Property Name="PerfilId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YoutubeId" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="145" Nullable="false" />
+          <Property Name="Descricao" Type="text" />
+          <Property Name="UrlAmigavel" Type="varchar" MaxLength="145" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.snweb09.VwBairro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwBairro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="NomeBairro" Type="varchar" MaxLength="145" />
+          <Property Name="BairroUrl" Type="varchar" MaxLength="145" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.snweb09.VwCidade' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwCidade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="NomeCidade" Type="varchar" MaxLength="145" />
+          <Property Name="CidadeUrl" Type="varchar" MaxLength="145" />
+        </EntityType>
+        <Association Name="fk_Agenda_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Agenda" Type="Self.Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agenda">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Ajuda_AjudaTopico1">
+          <End Role="AjudaTopico" Type="Self.AjudaTopico" Multiplicity="1" />
+          <End Role="Ajuda" Type="Self.Ajuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AjudaTopico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ajuda">
+              <PropertyRef Name="AjudaTopicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AjudaTopico_AjudaTopico1">
+          <End Role="AjudaTopico" Type="Self.AjudaTopico" Multiplicity="1" />
+          <End Role="AjudaTopico1" Type="Self.AjudaTopico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AjudaTopico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AjudaTopico1">
+              <PropertyRef Name="AjudaTopicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Album_Categoria1">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_album_status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cardapio_CardapioCategoria1">
+          <End Role="CardapioCategoria" Type="Self.CardapioCategoria" Multiplicity="1" />
+          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CardapioCategoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="CardapioCategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cardapio_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CardapioCategoria_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="CardapioCategoria" Type="Self.CardapioCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CardapioCategoria">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_categoria_has_publicacao_categoria1">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="CategoriaPublicacao" Type="Self.CategoriaPublicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriaPublicacao">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_categoria_has_publicacao_publicacao1">
+          <End Role="Publicacao" Type="Self.Publicacao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoriaPublicacao" Type="Self.CategoriaPublicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriaPublicacao">
+              <PropertyRef Name="PublicacaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Categoria_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categoria">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_pessoa1">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="ClienteParceiro" Type="Self.ClienteParceiro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClienteParceiro">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClienteParceiro_has_CupomDesconto_ClienteParceiro1">
+          <End Role="ClienteParceiro" Type="Self.ClienteParceiro" Multiplicity="1" />
+          <End Role="ClienteParceiroCupomDesconto" Type="Self.ClienteParceiroCupomDesconto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClienteParceiro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClienteParceiroCupomDesconto">
+              <PropertyRef Name="ClienteParceiroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClienteParceiro_has_CupomDesconto_CupomDesconto1">
+          <End Role="CupomDesconto" Type="Self.CupomDesconto" Multiplicity="1" />
+          <End Role="ClienteParceiroCupomDesconto" Type="Self.ClienteParceiroCupomDesconto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CupomDesconto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClienteParceiroCupomDesconto">
+              <PropertyRef Name="CupomDescontoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CupomDesconto_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="CupomDesconto" Type="Self.CupomDesconto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CupomDesconto">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_depoimento_status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Depoimento" Type="Self.Depoimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Depoimento">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Download_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Download" Type="Self.Download" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Download">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_empresa_pessoa1">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipe_pessoa1">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemAlbum_Album1">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="ImagemAlbum" Type="Self.ImagemAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemAlbum">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemPortifolio_Portifolio1">
+          <End Role="Portifolio" Type="Self.Portifolio" Multiplicity="1" />
+          <End Role="ImagemPortifolio" Type="Self.ImagemPortifolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portifolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemPortifolio">
+              <PropertyRef Name="PortifolioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemProduto_Produto1">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="ImagemProduto" Type="Self.ImagemProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemProduto">
+              <PropertyRef Name="ProdutoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemPropriedade_Propriedade">
+          <End Role="Imovel" Type="Self.Imovel" Multiplicity="1" />
+          <End Role="ImagemImovel" Type="Self.ImagemImovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imovel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemImovel">
+              <PropertyRef Name="ImovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemPublicacao_Publicacao1">
+          <End Role="Publicacao" Type="Self.Publicacao" Multiplicity="1" />
+          <End Role="ImagemPublicacao" Type="Self.ImagemPublicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemPublicacao">
+              <PropertyRef Name="PublicacaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Imovel_TipoContrato1">
+          <End Role="TipoContrato" Type="Self.TipoContrato" Multiplicity="1" />
+          <End Role="Imovel" Type="Self.Imovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContrato">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imovel">
+              <PropertyRef Name="TipoContratoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Imovel_TipoImovel1">
+          <End Role="TipoImovel" Type="Self.TipoImovel" Multiplicity="1" />
+          <End Role="Imovel" Type="Self.Imovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoImovel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imovel">
+              <PropertyRef Name="TipoImovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_link_status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Link" Type="Self.Link" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Link">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pessoa_status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Portifolio_Categoria1">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Portifolio" Type="Self.Portifolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portifolio">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Portifolio_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Portifolio" Type="Self.Portifolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portifolio">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Produto_Categoria1">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Produto" Type="Self.Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Produto">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Produto_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Produto" Type="Self.Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Produto">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Promocao_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Promocao" Type="Self.Promocao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promocao">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Propriedade_Status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Imovel" Type="Self.Imovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imovel">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_publicacao_status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Publicacao" Type="Self.Publicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacao">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rede_social_pessoa1">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="RedeSocial" Type="Self.RedeSocial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RedeSocial">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rede_social_rede1">
+          <End Role="Rede" Type="Self.Rede" Multiplicity="1" />
+          <End Role="RedeSocial" Type="Self.RedeSocial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rede">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RedeSocial">
+              <PropertyRef Name="RedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_servico_status1">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_servico_tipo1">
+          <End Role="TipoServico" Type="Self.TipoServico" Multiplicity="1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoServico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="TipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Telefone_Pessoa1">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Contato" Type="Self.Contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contato">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Telefone_TipoTelefone1">
+          <End Role="TipoContato" Type="Self.TipoContato" Multiplicity="1" />
+          <End Role="Contato" Type="Self.Contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContato">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contato">
+              <PropertyRef Name="TipoContatoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Perfil1">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="PerfilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_pessoa1">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cmsModelStoreContainer">
+          <EntitySet Name="Agenda" EntityType="Self.Agenda" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Ajuda" EntityType="Self.Ajuda" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="AjudaTopico" EntityType="Self.AjudaTopico" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Album" EntityType="Self.Album" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Bairro" EntityType="Self.Bairro" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Cardapio" EntityType="Self.Cardapio" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="CardapioCategoria" EntityType="Self.CardapioCategoria" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="CategoriaPublicacao" EntityType="Self.CategoriaPublicacao" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ClienteParceiro" EntityType="Self.ClienteParceiro" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ClienteParceiroCupomDesconto" EntityType="Self.ClienteParceiroCupomDesconto" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Contador" EntityType="Self.Contador" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Contato" EntityType="Self.Contato" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="CupomDesconto" EntityType="Self.CupomDesconto" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Depoimento" EntityType="Self.Depoimento" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Download" EntityType="Self.Download" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Equipe" EntityType="Self.Equipe" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ImagemAlbum" EntityType="Self.ImagemAlbum" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ImagemImovel" EntityType="Self.ImagemImovel" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ImagemPortifolio" EntityType="Self.ImagemPortifolio" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ImagemProduto" EntityType="Self.ImagemProduto" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="ImagemPublicacao" EntityType="Self.ImagemPublicacao" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Imovel" EntityType="Self.Imovel" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Link" EntityType="Self.Link" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Mensagem" EntityType="Self.Mensagem" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Municipio" EntityType="Self.Municipio" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Portifolio" EntityType="Self.Portifolio" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Promocao" EntityType="Self.Promocao" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Publicacao" EntityType="Self.Publicacao" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Rede" EntityType="Self.Rede" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="RedeSocial" EntityType="Self.RedeSocial" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Regiao" EntityType="Self.Regiao" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Slide" EntityType="Self.Slide" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="TipoContato" EntityType="Self.TipoContato" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="TipoContrato" EntityType="Self.TipoContrato" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="TipoImovel" EntityType="Self.TipoImovel" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="TipoServico" EntityType="Self.TipoServico" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="Video" EntityType="Self.Video" Schema="snweb09" store:Type="Tables" />
+          <EntitySet Name="VwBairro" EntityType="Self.VwBairro" store:Type="Views" store:Schema="snweb09">
+            <DefiningQuery>SELECT
+`VwBairro`.`Id`, 
+`VwBairro`.`NomeBairro`, 
+`VwBairro`.`BairroUrl`
+FROM `VwBairro` AS `VwBairro`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwCidade" EntityType="Self.VwCidade" store:Type="Views" store:Schema="snweb09">
+            <DefiningQuery>SELECT
+`VwCidade`.`Id`, 
+`VwCidade`.`NomeCidade`, 
+`VwCidade`.`CidadeUrl`
+FROM `VwCidade` AS `VwCidade`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_Agenda_Status1" Association="Self.fk_Agenda_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Agenda" EntitySet="Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Ajuda_AjudaTopico1" Association="Self.fk_Ajuda_AjudaTopico1">
+            <End Role="AjudaTopico" EntitySet="AjudaTopico" />
+            <End Role="Ajuda" EntitySet="Ajuda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AjudaTopico_AjudaTopico1" Association="Self.fk_AjudaTopico_AjudaTopico1">
+            <End Role="AjudaTopico" EntitySet="AjudaTopico" />
+            <End Role="AjudaTopico1" EntitySet="AjudaTopico" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Album_Categoria1" Association="Self.fk_Album_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_album_status1" Association="Self.fk_album_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cardapio_CardapioCategoria1" Association="Self.fk_Cardapio_CardapioCategoria1">
+            <End Role="CardapioCategoria" EntitySet="CardapioCategoria" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cardapio_Status1" Association="Self.fk_Cardapio_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CardapioCategoria_Status1" Association="Self.fk_CardapioCategoria_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="CardapioCategoria" EntitySet="CardapioCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_categoria_has_publicacao_categoria1" Association="Self.fk_categoria_has_publicacao_categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="CategoriaPublicacao" EntitySet="CategoriaPublicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_categoria_has_publicacao_publicacao1" Association="Self.fk_categoria_has_publicacao_publicacao1">
+            <End Role="Publicacao" EntitySet="Publicacao" />
+            <End Role="CategoriaPublicacao" EntitySet="CategoriaPublicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Categoria_Status1" Association="Self.fk_Categoria_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Categoria" EntitySet="Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_pessoa1" Association="Self.fk_cliente_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="ClienteParceiro" EntitySet="ClienteParceiro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClienteParceiro_has_CupomDesconto_ClienteParceiro1" Association="Self.fk_ClienteParceiro_has_CupomDesconto_ClienteParceiro1">
+            <End Role="ClienteParceiro" EntitySet="ClienteParceiro" />
+            <End Role="ClienteParceiroCupomDesconto" EntitySet="ClienteParceiroCupomDesconto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClienteParceiro_has_CupomDesconto_CupomDesconto1" Association="Self.fk_ClienteParceiro_has_CupomDesconto_CupomDesconto1">
+            <End Role="CupomDesconto" EntitySet="CupomDesconto" />
+            <End Role="ClienteParceiroCupomDesconto" EntitySet="ClienteParceiroCupomDesconto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CupomDesconto_Status1" Association="Self.fk_CupomDesconto_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="CupomDesconto" EntitySet="CupomDesconto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_depoimento_status1" Association="Self.fk_depoimento_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Depoimento" EntitySet="Depoimento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Download_Status1" Association="Self.fk_Download_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Download" EntitySet="Download" />
+          </AssociationSet>
+          <AssociationSet Name="fk_empresa_pessoa1" Association="Self.fk_empresa_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipe_pessoa1" Association="Self.fk_equipe_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemAlbum_Album1" Association="Self.fk_ImagemAlbum_Album1">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="ImagemAlbum" EntitySet="ImagemAlbum" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemPortifolio_Portifolio1" Association="Self.fk_ImagemPortifolio_Portifolio1">
+            <End Role="Portifolio" EntitySet="Portifolio" />
+            <End Role="ImagemPortifolio" EntitySet="ImagemPortifolio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemProduto_Produto1" Association="Self.fk_ImagemProduto_Produto1">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="ImagemProduto" EntitySet="ImagemProduto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemPropriedade_Propriedade" Association="Self.fk_ImagemPropriedade_Propriedade">
+            <End Role="Imovel" EntitySet="Imovel" />
+            <End Role="ImagemImovel" EntitySet="ImagemImovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemPublicacao_Publicacao1" Association="Self.fk_ImagemPublicacao_Publicacao1">
+            <End Role="Publicacao" EntitySet="Publicacao" />
+            <End Role="ImagemPublicacao" EntitySet="ImagemPublicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Imovel_TipoContrato1" Association="Self.fk_Imovel_TipoContrato1">
+            <End Role="TipoContrato" EntitySet="TipoContrato" />
+            <End Role="Imovel" EntitySet="Imovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Imovel_TipoImovel1" Association="Self.fk_Imovel_TipoImovel1">
+            <End Role="TipoImovel" EntitySet="TipoImovel" />
+            <End Role="Imovel" EntitySet="Imovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_link_status1" Association="Self.fk_link_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Link" EntitySet="Link" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pessoa_status1" Association="Self.fk_Pessoa_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Portifolio_Categoria1" Association="Self.fk_Portifolio_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Portifolio" EntitySet="Portifolio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Portifolio_Status1" Association="Self.fk_Portifolio_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Portifolio" EntitySet="Portifolio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Produto_Categoria1" Association="Self.fk_Produto_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Produto" EntitySet="Produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Produto_Status1" Association="Self.fk_Produto_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Produto" EntitySet="Produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Promocao_Status1" Association="Self.fk_Promocao_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Promocao" EntitySet="Promocao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Propriedade_Status1" Association="Self.fk_Propriedade_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Imovel" EntitySet="Imovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_publicacao_status1" Association="Self.fk_publicacao_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Publicacao" EntitySet="Publicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rede_social_pessoa1" Association="Self.fk_rede_social_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="RedeSocial" EntitySet="RedeSocial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rede_social_rede1" Association="Self.fk_rede_social_rede1">
+            <End Role="Rede" EntitySet="Rede" />
+            <End Role="RedeSocial" EntitySet="RedeSocial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_servico_status1" Association="Self.fk_servico_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+          <AssociationSet Name="fk_servico_tipo1" Association="Self.fk_servico_tipo1">
+            <End Role="TipoServico" EntitySet="TipoServico" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Telefone_Pessoa1" Association="Self.fk_Telefone_Pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Contato" EntitySet="Contato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Telefone_TipoTelefone1" Association="Self.fk_Telefone_TipoTelefone1">
+            <End Role="TipoContato" EntitySet="TipoContato" />
+            <End Role="Contato" EntitySet="Contato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Perfil1" Association="Self.fk_Usuario_Perfil1">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_pessoa1" Association="Self.fk_usuario_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="cmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agenda" EntityType="cmsModel.Agenda" />
+          <EntitySet Name="Ajuda" EntityType="cmsModel.Ajuda" />
+          <EntitySet Name="AjudaTopico" EntityType="cmsModel.AjudaTopico" />
+          <EntitySet Name="Album" EntityType="cmsModel.Album" />
+          <EntitySet Name="Bairro" EntityType="cmsModel.Bairro" />
+          <EntitySet Name="Cardapio" EntityType="cmsModel.Cardapio" />
+          <EntitySet Name="CardapioCategoria" EntityType="cmsModel.CardapioCategoria" />
+          <EntitySet Name="Categoria" EntityType="cmsModel.Categoria" />
+          <EntitySet Name="CategoriaPublicacao" EntityType="cmsModel.CategoriaPublicacao" />
+          <EntitySet Name="ClienteParceiro" EntityType="cmsModel.ClienteParceiro" />
+          <EntitySet Name="Contador" EntityType="cmsModel.Contador" />
+          <EntitySet Name="Contato" EntityType="cmsModel.Contato" />
+          <EntitySet Name="CupomDesconto" EntityType="cmsModel.CupomDesconto" />
+          <EntitySet Name="Depoimento" EntityType="cmsModel.Depoimento" />
+          <EntitySet Name="Download" EntityType="cmsModel.Download" />
+          <EntitySet Name="Empresa" EntityType="cmsModel.Empresa" />
+          <EntitySet Name="Equipe" EntityType="cmsModel.Equipe" />
+          <EntitySet Name="Estado" EntityType="cmsModel.Estado" />
+          <EntitySet Name="ImagemAlbum" EntityType="cmsModel.ImagemAlbum" />
+          <EntitySet Name="ImagemImovel" EntityType="cmsModel.ImagemImovel" />
+          <EntitySet Name="ImagemPortifolio" EntityType="cmsModel.ImagemPortifolio" />
+          <EntitySet Name="ImagemProduto" EntityType="cmsModel.ImagemProduto" />
+          <EntitySet Name="ImagemPublicacao" EntityType="cmsModel.ImagemPublicacao" />
+          <EntitySet Name="Imovel" EntityType="cmsModel.Imovel" />
+          <EntitySet Name="Link" EntityType="cmsModel.Link" />
+          <EntitySet Name="Log" EntityType="cmsModel.Log" />
+          <EntitySet Name="Mensagem" EntityType="cmsModel.Mensagem" />
+          <EntitySet Name="Municipio" EntityType="cmsModel.Municipio" />
+          <EntitySet Name="Perfil" EntityType="cmsModel.Perfil" />
+          <EntitySet Name="Pessoa" EntityType="cmsModel.Pessoa" />
+          <EntitySet Name="Portifolio" EntityType="cmsModel.Portifolio" />
+          <EntitySet Name="Produto" EntityType="cmsModel.Produto" />
+          <EntitySet Name="Promocao" EntityType="cmsModel.Promocao" />
+          <EntitySet Name="Publicacao" EntityType="cmsModel.Publicacao" />
+          <EntitySet Name="Rede" EntityType="cmsModel.Rede" />
+          <EntitySet Name="RedeSocial" EntityType="cmsModel.RedeSocial" />
+          <EntitySet Name="Regiao" EntityType="cmsModel.Regiao" />
+          <EntitySet Name="Servico" EntityType="cmsModel.Servico" />
+          <EntitySet Name="Slide" EntityType="cmsModel.Slide" />
+          <EntitySet Name="Status" EntityType="cmsModel.Status" />
+          <EntitySet Name="TipoContato" EntityType="cmsModel.TipoContato" />
+          <EntitySet Name="TipoContrato" EntityType="cmsModel.TipoContrato" />
+          <EntitySet Name="TipoImovel" EntityType="cmsModel.TipoImovel" />
+          <EntitySet Name="TipoServico" EntityType="cmsModel.TipoServico" />
+          <EntitySet Name="Usuario" EntityType="cmsModel.Usuario" />
+          <EntitySet Name="Video" EntityType="cmsModel.Video" />
+          <AssociationSet Name="fk_Agenda_Status1" Association="cmsModel.fk_Agenda_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Agenda" EntitySet="Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Ajuda_AjudaTopico1" Association="cmsModel.fk_Ajuda_AjudaTopico1">
+            <End Role="AjudaTopico" EntitySet="AjudaTopico" />
+            <End Role="Ajuda" EntitySet="Ajuda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AjudaTopico_AjudaTopico1" Association="cmsModel.fk_AjudaTopico_AjudaTopico1">
+            <End Role="AjudaTopico" EntitySet="AjudaTopico" />
+            <End Role="AjudaTopico1" EntitySet="AjudaTopico" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Album_Categoria1" Association="cmsModel.fk_Album_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_album_status1" Association="cmsModel.fk_album_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemAlbum_Album1" Association="cmsModel.fk_ImagemAlbum_Album1">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="ImagemAlbum" EntitySet="ImagemAlbum" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cardapio_CardapioCategoria1" Association="cmsModel.fk_Cardapio_CardapioCategoria1">
+            <End Role="CardapioCategoria" EntitySet="CardapioCategoria" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cardapio_Status1" Association="cmsModel.fk_Cardapio_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CardapioCategoria_Status1" Association="cmsModel.fk_CardapioCategoria_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="CardapioCategoria" EntitySet="CardapioCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_categoria_has_publicacao_categoria1" Association="cmsModel.fk_categoria_has_publicacao_categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="CategoriaPublicacao" EntitySet="CategoriaPublicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Categoria_Status1" Association="cmsModel.fk_Categoria_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Categoria" EntitySet="Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Portifolio_Categoria1" Association="cmsModel.fk_Portifolio_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Portifolio" EntitySet="Portifolio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Produto_Categoria1" Association="cmsModel.fk_Produto_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Produto" EntitySet="Produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_categoria_has_publicacao_publicacao1" Association="cmsModel.fk_categoria_has_publicacao_publicacao1">
+            <End Role="Publicacao" EntitySet="Publicacao" />
+            <End Role="CategoriaPublicacao" EntitySet="CategoriaPublicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_pessoa1" Association="cmsModel.fk_cliente_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="ClienteParceiro" EntitySet="ClienteParceiro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Telefone_Pessoa1" Association="cmsModel.fk_Telefone_Pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Contato" EntitySet="Contato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Telefone_TipoTelefone1" Association="cmsModel.fk_Telefone_TipoTelefone1">
+            <End Role="TipoContato" EntitySet="TipoContato" />
+            <End Role="Contato" EntitySet="Contato" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CupomDesconto_Status1" Association="cmsModel.fk_CupomDesconto_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="CupomDesconto" EntitySet="CupomDesconto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_depoimento_status1" Association="cmsModel.fk_depoimento_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Depoimento" EntitySet="Depoimento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Download_Status1" Association="cmsModel.fk_Download_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Download" EntitySet="Download" />
+          </AssociationSet>
+          <AssociationSet Name="fk_empresa_pessoa1" Association="cmsModel.fk_empresa_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipe_pessoa1" Association="cmsModel.fk_equipe_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemPropriedade_Propriedade" Association="cmsModel.fk_ImagemPropriedade_Propriedade">
+            <End Role="Imovel" EntitySet="Imovel" />
+            <End Role="ImagemImovel" EntitySet="ImagemImovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemPortifolio_Portifolio1" Association="cmsModel.fk_ImagemPortifolio_Portifolio1">
+            <End Role="Portifolio" EntitySet="Portifolio" />
+            <End Role="ImagemPortifolio" EntitySet="ImagemPortifolio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemProduto_Produto1" Association="cmsModel.fk_ImagemProduto_Produto1">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="ImagemProduto" EntitySet="ImagemProduto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ImagemPublicacao_Publicacao1" Association="cmsModel.fk_ImagemPublicacao_Publicacao1">
+            <End Role="Publicacao" EntitySet="Publicacao" />
+            <End Role="ImagemPublicacao" EntitySet="ImagemPublicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Imovel_TipoContrato1" Association="cmsModel.fk_Imovel_TipoContrato1">
+            <End Role="TipoContrato" EntitySet="TipoContrato" />
+            <End Role="Imovel" EntitySet="Imovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Imovel_TipoImovel1" Association="cmsModel.fk_Imovel_TipoImovel1">
+            <End Role="TipoImovel" EntitySet="TipoImovel" />
+            <End Role="Imovel" EntitySet="Imovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Propriedade_Status1" Association="cmsModel.fk_Propriedade_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Imovel" EntitySet="Imovel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_link_status1" Association="cmsModel.fk_link_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Link" EntitySet="Link" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Perfil1" Association="cmsModel.fk_Usuario_Perfil1">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pessoa_status1" Association="cmsModel.fk_Pessoa_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rede_social_pessoa1" Association="cmsModel.fk_rede_social_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="RedeSocial" EntitySet="RedeSocial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_pessoa1" Association="cmsModel.fk_usuario_pessoa1">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Portifolio_Status1" Association="cmsModel.fk_Portifolio_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Portifolio" EntitySet="Portifolio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Produto_Status1" Association="cmsModel.fk_Produto_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Produto" EntitySet="Produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Promocao_Status1" Association="cmsModel.fk_Promocao_Status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Promocao" EntitySet="Promocao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_publicacao_status1" Association="cmsModel.fk_publicacao_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Publicacao" EntitySet="Publicacao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rede_social_rede1" Association="cmsModel.fk_rede_social_rede1">
+            <End Role="Rede" EntitySet="Rede" />
+            <End Role="RedeSocial" EntitySet="RedeSocial" />
+          </AssociationSet>
+          <AssociationSet Name="fk_servico_status1" Association="cmsModel.fk_servico_status1">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+          <AssociationSet Name="fk_servico_tipo1" Association="cmsModel.fk_servico_tipo1">
+            <End Role="TipoServico" EntitySet="TipoServico" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteParceiroCupomDesconto" Association="cmsModel.ClienteParceiroCupomDesconto">
+            <End Role="ClienteParceiro" EntitySet="ClienteParceiro" />
+            <End Role="CupomDesconto" EntitySet="CupomDesconto" />
+          </AssociationSet>
+          <EntitySet Name="VwCidade" EntityType="cmsModel.VwCidade" />
+          <EntitySet Name="VwBairro" EntityType="cmsModel.VwBairro" />
+        </EntityContainer>
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" />
+          <Property Name="DataFim" Type="DateTime" />
+          <Property Name="Titulo" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Status_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Agenda_Status1" FromRole="Agenda" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Ajuda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AjudaTopicoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AjudaTopico" Relationship="cmsModel.fk_Ajuda_AjudaTopico1" FromRole="Ajuda" ToRole="AjudaTopico" />
+        </EntityType>
+        <EntityType Name="AjudaTopico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AjudaTopicoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ajuda" Relationship="cmsModel.fk_Ajuda_AjudaTopico1" FromRole="AjudaTopico" ToRole="Ajuda" />
+          <NavigationProperty Name="AjudaTopico1" Relationship="cmsModel.fk_AjudaTopico_AjudaTopico1" FromRole="AjudaTopico" ToRole="AjudaTopico1" />
+          <NavigationProperty Name="AjudaTopico2" Relationship="cmsModel.fk_AjudaTopico_AjudaTopico1" FromRole="AjudaTopico1" ToRole="AjudaTopico" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="PostarNoFacebook" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="cmsModel.fk_Album_Categoria1" FromRole="Album" ToRole="Categoria" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_album_status1" FromRole="Album" ToRole="Status" />
+          <NavigationProperty Name="ImagemAlbum" Relationship="cmsModel.fk_ImagemAlbum_Album1" FromRole="Album" ToRole="ImagemAlbum" />
+        </EntityType>
+        <EntityType Name="Bairro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cardapio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Ingredientes" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Preco" Type="Decimal" />
+          <Property Name="Imagem" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="CardapioCategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="Status_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CardapioCategoria" Relationship="cmsModel.fk_Cardapio_CardapioCategoria1" FromRole="Cardapio" ToRole="CardapioCategoria" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Cardapio_Status1" FromRole="Cardapio" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="CardapioCategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="65" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="65" FixedLength="false" Unicode="false" />
+          <Property Name="Bebida" Type="Boolean" Nullable="false" />
+          <Property Name="Status_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cardapio" Relationship="cmsModel.fk_Cardapio_CardapioCategoria1" FromRole="CardapioCategoria" ToRole="Cardapio" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_CardapioCategoria_Status1" FromRole="CardapioCategoria" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="cmsModel.fk_Album_Categoria1" FromRole="Categoria" ToRole="Album" />
+          <NavigationProperty Name="CategoriaPublicacao" Relationship="cmsModel.fk_categoria_has_publicacao_categoria1" FromRole="Categoria" ToRole="CategoriaPublicacao" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Categoria_Status1" FromRole="Categoria" ToRole="Status" />
+          <NavigationProperty Name="Portifolio" Relationship="cmsModel.fk_Portifolio_Categoria1" FromRole="Categoria" ToRole="Portifolio" />
+          <NavigationProperty Name="Produto" Relationship="cmsModel.fk_Produto_Categoria1" FromRole="Categoria" ToRole="Produto" />
+        </EntityType>
+        <EntityType Name="CategoriaPublicacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="PublicacaoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="cmsModel.fk_categoria_has_publicacao_categoria1" FromRole="CategoriaPublicacao" ToRole="Categoria" />
+          <NavigationProperty Name="Publicacao" Relationship="cmsModel.fk_categoria_has_publicacao_publicacao1" FromRole="CategoriaPublicacao" ToRole="Publicacao" />
+        </EntityType>
+        <EntityType Name="ClienteParceiro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_cliente_pessoa1" FromRole="ClienteParceiro" ToRole="Pessoa" />
+          <NavigationProperty Name="CupomDesconto" Relationship="cmsModel.ClienteParceiroCupomDesconto" FromRole="ClienteParceiro" ToRole="CupomDesconto" />
+        </EntityType>
+        <EntityType Name="Contador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="65" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Icone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <Property Name="TipoContatoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_Telefone_Pessoa1" FromRole="Contato" ToRole="Pessoa" />
+          <NavigationProperty Name="TipoContato" Relationship="cmsModel.fk_Telefone_TipoTelefone1" FromRole="Contato" ToRole="TipoContato" />
+        </EntityType>
+        <EntityType Name="CupomDesconto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DataValidade" Type="DateTime" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="TermosCondicoes" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_CupomDesconto_Status1" FromRole="CupomDesconto" ToRole="Status" />
+          <NavigationProperty Name="ClienteParceiro" Relationship="cmsModel.ClienteParceiroCupomDesconto" FromRole="CupomDesconto" ToRole="ClienteParceiro" />
+        </EntityType>
+        <EntityType Name="Depoimento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Autor" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Texto" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_depoimento_status1" FromRole="Depoimento" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Download">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="MimeType" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Arquivo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Status_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Download_Status1" FromRole="Download" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PessoaId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Resumo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <Property Name="TemaPainel" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Latitute" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_empresa_pessoa1" FromRole="Empresa" ToRole="Pessoa" />
+        </EntityType>
+        <EntityType Name="Equipe">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PessoaId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Foto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentoProfissional" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_equipe_pessoa1" FromRole="Equipe" ToRole="Pessoa" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoUf" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Uf" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Regiao" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemAlbum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagem" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Legenda" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Ordem" Type="Int32" Nullable="false" />
+          <Property Name="AlbumId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="cmsModel.fk_ImagemAlbum_Album1" FromRole="ImagemAlbum" ToRole="Album" />
+        </EntityType>
+        <EntityType Name="ImagemImovel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagem" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Ordem" Type="Int32" />
+          <Property Name="ImovelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Imovel" Relationship="cmsModel.fk_ImagemPropriedade_Propriedade" FromRole="ImagemImovel" ToRole="Imovel" />
+        </EntityType>
+        <EntityType Name="ImagemPortifolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagem" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Legenda" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Ordem" Type="Int32" Nullable="false" />
+          <Property Name="PortifolioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Portifolio" Relationship="cmsModel.fk_ImagemPortifolio_Portifolio1" FromRole="ImagemPortifolio" ToRole="Portifolio" />
+        </EntityType>
+        <EntityType Name="ImagemProduto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagem" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Legenda" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Ordem" Type="Int32" Nullable="false" />
+          <Property Name="ProdutoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Produto" Relationship="cmsModel.fk_ImagemProduto_Produto1" FromRole="ImagemProduto" ToRole="Produto" />
+        </EntityType>
+        <EntityType Name="ImagemPublicacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagem" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Legenda" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Ordem" Type="Int32" Nullable="false" />
+          <Property Name="PublicacaoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Publicacao" Relationship="cmsModel.fk_ImagemPublicacao_Publicacao1" FromRole="ImagemPublicacao" ToRole="Publicacao" />
+        </EntityType>
+        <EntityType Name="Imovel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="CentralNegocio" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" />
+          <Property Name="ValorCondominio" Type="Decimal" />
+          <Property Name="AreaTotal" Type="Double" />
+          <Property Name="AreaConstruida" Type="Double" />
+          <Property Name="Dormitorio" Type="Int32" />
+          <Property Name="Suite" Type="Int32" />
+          <Property Name="Banheiro" Type="Int32" />
+          <Property Name="Garagem" Type="Int32" />
+          <Property Name="Endereco" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Bairro" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Cep" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TipoContratoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoImovelId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="DataCadastro" Type="DateTime" />
+          <Property Name="DataExclusao" Type="DateTime" />
+          <Property Name="UsuarioExclusao" Type="String" MaxLength="245" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ImagemImovel" Relationship="cmsModel.fk_ImagemPropriedade_Propriedade" FromRole="Imovel" ToRole="ImagemImovel" />
+          <NavigationProperty Name="TipoContrato" Relationship="cmsModel.fk_Imovel_TipoContrato1" FromRole="Imovel" ToRole="TipoContrato" />
+          <NavigationProperty Name="TipoImovel" Relationship="cmsModel.fk_Imovel_TipoImovel1" FromRole="Imovel" ToRole="TipoImovel" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Propriedade_Status1" FromRole="Imovel" ToRole="Status" />
+          <Property Name="BairroUrl" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="CidadeUrl" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Target" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_link_status1" FromRole="Link" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Datetime" Type="DateTime" />
+          <Property Name="Thread" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Logger" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Exception" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Mensagem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Remetente" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Assunto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Conteudo" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" />
+          <Property Name="Lida" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Uf" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="cmsModel.fk_Usuario_Perfil1" FromRole="Perfil" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Bio" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Observacao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="CpfCnpj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DataCadastro" Type="DateTime" Nullable="false" />
+          <Property Name="DataNascimento" Type="DateTime" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Whatsapp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="245" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClienteParceiro" Relationship="cmsModel.fk_cliente_pessoa1" FromRole="Pessoa" ToRole="ClienteParceiro" />
+          <NavigationProperty Name="Contato" Relationship="cmsModel.fk_Telefone_Pessoa1" FromRole="Pessoa" ToRole="Contato" />
+          <NavigationProperty Name="Empresa" Relationship="cmsModel.fk_empresa_pessoa1" FromRole="Pessoa" ToRole="Empresa" />
+          <NavigationProperty Name="Equipe" Relationship="cmsModel.fk_equipe_pessoa1" FromRole="Pessoa" ToRole="Equipe" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Pessoa_status1" FromRole="Pessoa" ToRole="Status" />
+          <NavigationProperty Name="RedeSocial" Relationship="cmsModel.fk_rede_social_pessoa1" FromRole="Pessoa" ToRole="RedeSocial" />
+          <NavigationProperty Name="Usuario" Relationship="cmsModel.fk_usuario_pessoa1" FromRole="Pessoa" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Portifolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DadosTecnico" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="cmsModel.fk_Portifolio_Categoria1" FromRole="Portifolio" ToRole="Categoria" />
+          <NavigationProperty Name="ImagemPortifolio" Relationship="cmsModel.fk_ImagemPortifolio_Portifolio1" FromRole="Portifolio" ToRole="ImagemPortifolio" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Portifolio_Status1" FromRole="Portifolio" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="DadosTecnico" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Video" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Preco" Type="Decimal" />
+          <Property Name="UrlAmigavel" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="PostarNoFacebook" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="cmsModel.fk_Produto_Categoria1" FromRole="Produto" ToRole="Categoria" />
+          <NavigationProperty Name="ImagemProduto" Relationship="cmsModel.fk_ImagemProduto_Produto1" FromRole="Produto" ToRole="ImagemProduto" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Produto_Status1" FromRole="Produto" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Promocao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Resumo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="DataInicio" Type="DateTime" />
+          <Property Name="DataFim" Type="DateTime" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_Promocao_Status1" FromRole="Promocao" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Publicacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Name="Resumo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Texto" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="DataPublicacao" Type="DateTime" Nullable="false" />
+          <Property Name="DataAtualizacao" Type="DateTime" />
+          <Property Name="ExibirComoPopup" Type="Boolean" Nullable="false" />
+          <Property Name="ExibirImagem" Type="Boolean" Nullable="false" />
+          <Property Name="UrlAmigavel" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="PostarNoFacebook" Type="Boolean" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="Autor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CategoriaPublicacao" Relationship="cmsModel.fk_categoria_has_publicacao_publicacao1" FromRole="Publicacao" ToRole="CategoriaPublicacao" />
+          <NavigationProperty Name="ImagemPublicacao" Relationship="cmsModel.fk_ImagemPublicacao_Publicacao1" FromRole="Publicacao" ToRole="ImagemPublicacao" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_publicacao_status1" FromRole="Publicacao" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Rede">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UrlBase" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Icone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RedeSocial" Relationship="cmsModel.fk_rede_social_rede1" FromRole="Rede" ToRole="RedeSocial" />
+        </EntityType>
+        <EntityType Name="RedeSocial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="245" FixedLength="false" Unicode="false" />
+          <Property Name="RedeId" Type="Int32" Nullable="false" />
+          <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_rede_social_pessoa1" FromRole="RedeSocial" ToRole="Pessoa" />
+          <NavigationProperty Name="Rede" Relationship="cmsModel.fk_rede_social_rede1" FromRole="RedeSocial" ToRole="Rede" />
+        </EntityType>
+        <EntityType Name="Regiao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Resumo" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Icone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Imagem" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="TipoId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="cmsModel.fk_servico_status1" FromRole="Servico" ToRole="Status" />
+          <NavigationProperty Name="TipoServico" Relationship="cmsModel.fk_servico_tipo1" FromRole="Servico" ToRole="TipoServico" />
+        </EntityType>
+        <EntityType Name="Slide">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imagem" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Subtitulo" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agenda" Relationship="cmsModel.fk_Agenda_Status1" FromRole="Status" ToRole="Agenda" />
+          <NavigationProperty Name="Album" Relationship="cmsModel.fk_album_status1" FromRole="Status" ToRole="Album" />
+          <NavigationProperty Name="Cardapio" Relationship="cmsModel.fk_Cardapio_Status1" FromRole="Status" ToRole="Cardapio" />
+          <NavigationProperty Name="CardapioCategoria" Relationship="cmsModel.fk_CardapioCategoria_Status1" FromRole="Status" ToRole="CardapioCategoria" />
+          <NavigationProperty Name="Categoria" Relationship="cmsModel.fk_Categoria_Status1" FromRole="Status" ToRole="Categoria" />
+          <NavigationProperty Name="CupomDesconto" Relationship="cmsModel.fk_CupomDesconto_Status1" FromRole="Status" ToRole="CupomDesconto" />
+          <NavigationProperty Name="Depoimento" Relationship="cmsModel.fk_depoimento_status1" FromRole="Status" ToRole="Depoimento" />
+          <NavigationProperty Name="Download" Relationship="cmsModel.fk_Download_Status1" FromRole="Status" ToRole="Download" />
+          <NavigationProperty Name="Imovel" Relationship="cmsModel.fk_Propriedade_Status1" FromRole="Status" ToRole="Imovel" />
+          <NavigationProperty Name="Link" Relationship="cmsModel.fk_link_status1" FromRole="Status" ToRole="Link" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_Pessoa_status1" FromRole="Status" ToRole="Pessoa" />
+          <NavigationProperty Name="Portifolio" Relationship="cmsModel.fk_Portifolio_Status1" FromRole="Status" ToRole="Portifolio" />
+          <NavigationProperty Name="Produto" Relationship="cmsModel.fk_Produto_Status1" FromRole="Status" ToRole="Produto" />
+          <NavigationProperty Name="Promocao" Relationship="cmsModel.fk_Promocao_Status1" FromRole="Status" ToRole="Promocao" />
+          <NavigationProperty Name="Publicacao" Relationship="cmsModel.fk_publicacao_status1" FromRole="Status" ToRole="Publicacao" />
+          <NavigationProperty Name="Servico" Relationship="cmsModel.fk_servico_status1" FromRole="Status" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="TipoContato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Icone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contato" Relationship="cmsModel.fk_Telefone_TipoTelefone1" FromRole="TipoContato" ToRole="Contato" />
+        </EntityType>
+        <EntityType Name="TipoContrato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Imovel" Relationship="cmsModel.fk_Imovel_TipoContrato1" FromRole="TipoContrato" ToRole="Imovel" />
+        </EntityType>
+        <EntityType Name="TipoImovel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Imovel" Relationship="cmsModel.fk_Imovel_TipoImovel1" FromRole="TipoImovel" ToRole="Imovel" />
+        </EntityType>
+        <EntityType Name="TipoServico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Servico" Relationship="cmsModel.fk_servico_tipo1" FromRole="TipoServico" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PessoaId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <Property Name="PerfilId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="cmsModel.fk_Usuario_Perfil1" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="Pessoa" Relationship="cmsModel.fk_usuario_pessoa1" FromRole="Usuario" ToRole="Pessoa" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YoutubeId" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="UrlAmigavel" Type="String" Nullable="false" MaxLength="145" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_Agenda_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Agenda" Role="Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agenda">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Ajuda_AjudaTopico1">
+          <End Type="cmsModel.AjudaTopico" Role="AjudaTopico" Multiplicity="1" />
+          <End Type="cmsModel.Ajuda" Role="Ajuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AjudaTopico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ajuda">
+              <PropertyRef Name="AjudaTopicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AjudaTopico_AjudaTopico1">
+          <End Type="cmsModel.AjudaTopico" Role="AjudaTopico" Multiplicity="1" />
+          <End Type="cmsModel.AjudaTopico" Role="AjudaTopico1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AjudaTopico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AjudaTopico1">
+              <PropertyRef Name="AjudaTopicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Album_Categoria1">
+          <End Type="cmsModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="cmsModel.Album" Role="Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_album_status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Album" Role="Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemAlbum_Album1">
+          <End Type="cmsModel.Album" Role="Album" Multiplicity="1" />
+          <End Type="cmsModel.ImagemAlbum" Role="ImagemAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemAlbum">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cardapio_CardapioCategoria1">
+          <End Type="cmsModel.CardapioCategoria" Role="CardapioCategoria" Multiplicity="1" />
+          <End Type="cmsModel.Cardapio" Role="Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CardapioCategoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="CardapioCategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cardapio_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Cardapio" Role="Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CardapioCategoria_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.CardapioCategoria" Role="CardapioCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CardapioCategoria">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_categoria_has_publicacao_categoria1">
+          <End Type="cmsModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="cmsModel.CategoriaPublicacao" Role="CategoriaPublicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriaPublicacao">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Categoria_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Categoria" Role="Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categoria">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Portifolio_Categoria1">
+          <End Type="cmsModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="cmsModel.Portifolio" Role="Portifolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portifolio">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Produto_Categoria1">
+          <End Type="cmsModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="cmsModel.Produto" Role="Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Produto">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_categoria_has_publicacao_publicacao1">
+          <End Type="cmsModel.Publicacao" Role="Publicacao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="cmsModel.CategoriaPublicacao" Role="CategoriaPublicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriaPublicacao">
+              <PropertyRef Name="PublicacaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_pessoa1">
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="cmsModel.ClienteParceiro" Role="ClienteParceiro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClienteParceiro">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Telefone_Pessoa1">
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="cmsModel.Contato" Role="Contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contato">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Telefone_TipoTelefone1">
+          <End Type="cmsModel.TipoContato" Role="TipoContato" Multiplicity="1" />
+          <End Type="cmsModel.Contato" Role="Contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContato">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contato">
+              <PropertyRef Name="TipoContatoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CupomDesconto_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.CupomDesconto" Role="CupomDesconto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CupomDesconto">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_depoimento_status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Depoimento" Role="Depoimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Depoimento">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Download_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Download" Role="Download" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Download">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_empresa_pessoa1">
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="cmsModel.Empresa" Role="Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipe_pessoa1">
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="cmsModel.Equipe" Role="Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemPropriedade_Propriedade">
+          <End Type="cmsModel.Imovel" Role="Imovel" Multiplicity="1" />
+          <End Type="cmsModel.ImagemImovel" Role="ImagemImovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imovel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemImovel">
+              <PropertyRef Name="ImovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemPortifolio_Portifolio1">
+          <End Type="cmsModel.Portifolio" Role="Portifolio" Multiplicity="1" />
+          <End Type="cmsModel.ImagemPortifolio" Role="ImagemPortifolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portifolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemPortifolio">
+              <PropertyRef Name="PortifolioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemProduto_Produto1">
+          <End Type="cmsModel.Produto" Role="Produto" Multiplicity="1" />
+          <End Type="cmsModel.ImagemProduto" Role="ImagemProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemProduto">
+              <PropertyRef Name="ProdutoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ImagemPublicacao_Publicacao1">
+          <End Type="cmsModel.Publicacao" Role="Publicacao" Multiplicity="1" />
+          <End Type="cmsModel.ImagemPublicacao" Role="ImagemPublicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagemPublicacao">
+              <PropertyRef Name="PublicacaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Imovel_TipoContrato1">
+          <End Type="cmsModel.TipoContrato" Role="TipoContrato" Multiplicity="1" />
+          <End Type="cmsModel.Imovel" Role="Imovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContrato">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imovel">
+              <PropertyRef Name="TipoContratoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Imovel_TipoImovel1">
+          <End Type="cmsModel.TipoImovel" Role="TipoImovel" Multiplicity="1" />
+          <End Type="cmsModel.Imovel" Role="Imovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoImovel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imovel">
+              <PropertyRef Name="TipoImovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Propriedade_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Imovel" Role="Imovel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imovel">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_link_status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Link" Role="Link" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Link">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Perfil1">
+          <End Type="cmsModel.Perfil" Role="Perfil" Multiplicity="1" />
+          <End Type="cmsModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="PerfilId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pessoa_status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rede_social_pessoa1">
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="cmsModel.RedeSocial" Role="RedeSocial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RedeSocial">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_pessoa1">
+          <End Type="cmsModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="cmsModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Portifolio_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Portifolio" Role="Portifolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portifolio">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Produto_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Produto" Role="Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Produto">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Promocao_Status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Promocao" Role="Promocao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Promocao">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_publicacao_status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Publicacao" Role="Publicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacao">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rede_social_rede1">
+          <End Type="cmsModel.Rede" Role="Rede" Multiplicity="1" />
+          <End Type="cmsModel.RedeSocial" Role="RedeSocial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rede">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RedeSocial">
+              <PropertyRef Name="RedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_servico_status1">
+          <End Type="cmsModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="cmsModel.Servico" Role="Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_servico_tipo1">
+          <End Type="cmsModel.TipoServico" Role="TipoServico" Multiplicity="1" />
+          <End Type="cmsModel.Servico" Role="Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoServico">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="TipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteParceiroCupomDesconto">
+          <End Type="cmsModel.ClienteParceiro" Role="ClienteParceiro" Multiplicity="*" />
+          <End Type="cmsModel.CupomDesconto" Role="CupomDesconto" Multiplicity="*" />
+        </Association>
+        <EntityType Name="VwCidade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="NomeCidade" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="CidadeUrl" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VwBairro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="NomeBairro" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+          <Property Name="BairroUrl" Type="String" MaxLength="145" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cmsModelStoreContainer" CdmEntityContainer="cmsEntities">
+          <EntitySetMapping Name="Agenda">
+            <EntityTypeMapping TypeName="cmsModel.Agenda">
+              <MappingFragment StoreEntitySet="Agenda">
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ajuda">
+            <EntityTypeMapping TypeName="cmsModel.Ajuda">
+              <MappingFragment StoreEntitySet="Ajuda">
+                <ScalarProperty Name="AjudaTopicoId" ColumnName="AjudaTopicoId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AjudaTopico">
+            <EntityTypeMapping TypeName="cmsModel.AjudaTopico">
+              <MappingFragment StoreEntitySet="AjudaTopico">
+                <ScalarProperty Name="AjudaTopicoId" ColumnName="AjudaTopicoId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Album">
+            <EntityTypeMapping TypeName="cmsModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="PostarNoFacebook" ColumnName="PostarNoFacebook" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bairro">
+            <EntityTypeMapping TypeName="cmsModel.Bairro">
+              <MappingFragment StoreEntitySet="Bairro">
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cardapio">
+            <EntityTypeMapping TypeName="cmsModel.Cardapio">
+              <MappingFragment StoreEntitySet="Cardapio">
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="CardapioCategoriaId" ColumnName="CardapioCategoriaId" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Ingredientes" ColumnName="Ingredientes" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CardapioCategoria">
+            <EntityTypeMapping TypeName="cmsModel.CardapioCategoria">
+              <MappingFragment StoreEntitySet="CardapioCategoria">
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="Bebida" ColumnName="Bebida" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="cmsModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriaPublicacao">
+            <EntityTypeMapping TypeName="cmsModel.CategoriaPublicacao">
+              <MappingFragment StoreEntitySet="CategoriaPublicacao">
+                <ScalarProperty Name="PublicacaoId" ColumnName="PublicacaoId" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClienteParceiro">
+            <EntityTypeMapping TypeName="cmsModel.ClienteParceiro">
+              <MappingFragment StoreEntitySet="ClienteParceiro">
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contador">
+            <EntityTypeMapping TypeName="cmsModel.Contador">
+              <MappingFragment StoreEntitySet="Contador">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Icone" ColumnName="Icone" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contato">
+            <EntityTypeMapping TypeName="cmsModel.Contato">
+              <MappingFragment StoreEntitySet="Contato">
+                <ScalarProperty Name="TipoContatoId" ColumnName="TipoContatoId" />
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CupomDesconto">
+            <EntityTypeMapping TypeName="cmsModel.CupomDesconto">
+              <MappingFragment StoreEntitySet="CupomDesconto">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="TermosCondicoes" ColumnName="TermosCondicoes" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="DataValidade" ColumnName="DataValidade" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Depoimento">
+            <EntityTypeMapping TypeName="cmsModel.Depoimento">
+              <MappingFragment StoreEntitySet="Depoimento">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Download">
+            <EntityTypeMapping TypeName="cmsModel.Download">
+              <MappingFragment StoreEntitySet="Download">
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="Arquivo" ColumnName="Arquivo" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="cmsModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitute" ColumnName="Latitute" />
+                <ScalarProperty Name="TemaPainel" ColumnName="TemaPainel" />
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Resumo" ColumnName="Resumo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipe">
+            <EntityTypeMapping TypeName="cmsModel.Equipe">
+              <MappingFragment StoreEntitySet="Equipe">
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="DocumentoProfissional" ColumnName="DocumentoProfissional" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="cmsModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Regiao" ColumnName="Regiao" />
+                <ScalarProperty Name="Uf" ColumnName="Uf" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="CodigoUf" ColumnName="CodigoUf" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagemAlbum">
+            <EntityTypeMapping TypeName="cmsModel.ImagemAlbum">
+              <MappingFragment StoreEntitySet="ImagemAlbum">
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+                <ScalarProperty Name="Legenda" ColumnName="Legenda" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagemImovel">
+            <EntityTypeMapping TypeName="cmsModel.ImagemImovel">
+              <MappingFragment StoreEntitySet="ImagemImovel">
+                <ScalarProperty Name="ImovelId" ColumnName="ImovelId" />
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagemPortifolio">
+            <EntityTypeMapping TypeName="cmsModel.ImagemPortifolio">
+              <MappingFragment StoreEntitySet="ImagemPortifolio">
+                <ScalarProperty Name="PortifolioId" ColumnName="PortifolioId" />
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+                <ScalarProperty Name="Legenda" ColumnName="Legenda" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagemProduto">
+            <EntityTypeMapping TypeName="cmsModel.ImagemProduto">
+              <MappingFragment StoreEntitySet="ImagemProduto">
+                <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+                <ScalarProperty Name="Legenda" ColumnName="Legenda" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagemPublicacao">
+            <EntityTypeMapping TypeName="cmsModel.ImagemPublicacao">
+              <MappingFragment StoreEntitySet="ImagemPublicacao">
+                <ScalarProperty Name="PublicacaoId" ColumnName="PublicacaoId" />
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+                <ScalarProperty Name="Legenda" ColumnName="Legenda" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imovel">
+            <EntityTypeMapping TypeName="cmsModel.Imovel">
+              <MappingFragment StoreEntitySet="Imovel">
+                <ScalarProperty Name="CidadeUrl" ColumnName="CidadeUrl" />
+                <ScalarProperty Name="BairroUrl" ColumnName="BairroUrl" />
+                <ScalarProperty Name="UsuarioExclusao" ColumnName="UsuarioExclusao" />
+                <ScalarProperty Name="DataExclusao" ColumnName="DataExclusao" />
+                <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="TipoImovelId" ColumnName="TipoImovelId" />
+                <ScalarProperty Name="TipoContratoId" ColumnName="TipoContratoId" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Cep" ColumnName="Cep" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Uf" ColumnName="Uf" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Garagem" ColumnName="Garagem" />
+                <ScalarProperty Name="Banheiro" ColumnName="Banheiro" />
+                <ScalarProperty Name="Suite" ColumnName="Suite" />
+                <ScalarProperty Name="Dormitorio" ColumnName="Dormitorio" />
+                <ScalarProperty Name="AreaConstruida" ColumnName="AreaConstruida" />
+                <ScalarProperty Name="AreaTotal" ColumnName="AreaTotal" />
+                <ScalarProperty Name="ValorCondominio" ColumnName="ValorCondominio" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="CentralNegocio" ColumnName="CentralNegocio" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Link">
+            <EntityTypeMapping TypeName="cmsModel.Link">
+              <MappingFragment StoreEntitySet="Link">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="cmsModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensagem">
+            <EntityTypeMapping TypeName="cmsModel.Mensagem">
+              <MappingFragment StoreEntitySet="Mensagem">
+                <ScalarProperty Name="Lida" ColumnName="Lida" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Conteudo" ColumnName="Conteudo" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Assunto" ColumnName="Assunto" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Remetente" ColumnName="Remetente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipio">
+            <EntityTypeMapping TypeName="cmsModel.Municipio">
+              <MappingFragment StoreEntitySet="Municipio">
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Uf" ColumnName="Uf" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="cmsModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoa">
+            <EntityTypeMapping TypeName="cmsModel.Pessoa">
+              <MappingFragment StoreEntitySet="Pessoa">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Whatsapp" ColumnName="Whatsapp" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="CpfCnpj" ColumnName="CpfCnpj" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portifolio">
+            <EntityTypeMapping TypeName="cmsModel.Portifolio">
+              <MappingFragment StoreEntitySet="Portifolio">
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="DadosTecnico" ColumnName="DadosTecnico" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produto">
+            <EntityTypeMapping TypeName="cmsModel.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="PostarNoFacebook" ColumnName="PostarNoFacebook" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="DadosTecnico" ColumnName="DadosTecnico" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promocao">
+            <EntityTypeMapping TypeName="cmsModel.Promocao">
+              <MappingFragment StoreEntitySet="Promocao">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Resumo" ColumnName="Resumo" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publicacao">
+            <EntityTypeMapping TypeName="cmsModel.Publicacao">
+              <MappingFragment StoreEntitySet="Publicacao">
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="PostarNoFacebook" ColumnName="PostarNoFacebook" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="ExibirImagem" ColumnName="ExibirImagem" />
+                <ScalarProperty Name="ExibirComoPopup" ColumnName="ExibirComoPopup" />
+                <ScalarProperty Name="DataAtualizacao" ColumnName="DataAtualizacao" />
+                <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Resumo" ColumnName="Resumo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rede">
+            <EntityTypeMapping TypeName="cmsModel.Rede">
+              <MappingFragment StoreEntitySet="Rede">
+                <ScalarProperty Name="Icone" ColumnName="Icone" />
+                <ScalarProperty Name="UrlBase" ColumnName="UrlBase" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RedeSocial">
+            <EntityTypeMapping TypeName="cmsModel.RedeSocial">
+              <MappingFragment StoreEntitySet="RedeSocial">
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="RedeId" ColumnName="RedeId" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regiao">
+            <EntityTypeMapping TypeName="cmsModel.Regiao">
+              <MappingFragment StoreEntitySet="Regiao">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servico">
+            <EntityTypeMapping TypeName="cmsModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="TipoId" ColumnName="TipoId" />
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Icone" ColumnName="Icone" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Resumo" ColumnName="Resumo" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slide">
+            <EntityTypeMapping TypeName="cmsModel.Slide">
+              <MappingFragment StoreEntitySet="Slide">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Subtitulo" ColumnName="Subtitulo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="cmsModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContato">
+            <EntityTypeMapping TypeName="cmsModel.TipoContato">
+              <MappingFragment StoreEntitySet="TipoContato">
+                <ScalarProperty Name="Icone" ColumnName="Icone" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContrato">
+            <EntityTypeMapping TypeName="cmsModel.TipoContrato">
+              <MappingFragment StoreEntitySet="TipoContrato">
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoImovel">
+            <EntityTypeMapping TypeName="cmsModel.TipoImovel">
+              <MappingFragment StoreEntitySet="TipoImovel">
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoServico">
+            <EntityTypeMapping TypeName="cmsModel.TipoServico">
+              <MappingFragment StoreEntitySet="TipoServico">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="cmsModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="PerfilId" ColumnName="PerfilId" />
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Video">
+            <EntityTypeMapping TypeName="cmsModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="UrlAmigavel" ColumnName="UrlAmigavel" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="YoutubeId" ColumnName="YoutubeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ClienteParceiroCupomDesconto" TypeName="cmsModel.ClienteParceiroCupomDesconto" StoreEntitySet="ClienteParceiroCupomDesconto">
+            <EndProperty Name="CupomDesconto">
+              <ScalarProperty Name="Id" ColumnName="CupomDescontoId" />
+            </EndProperty>
+            <EndProperty Name="ClienteParceiro">
+              <ScalarProperty Name="Id" ColumnName="ClienteParceiroId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="VwCidade">
+            <EntityTypeMapping TypeName="cmsModel.VwCidade">
+              <MappingFragment StoreEntitySet="VwCidade">
+                <ScalarProperty Name="CidadeUrl" ColumnName="CidadeUrl" />
+                <ScalarProperty Name="NomeCidade" ColumnName="NomeCidade" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwBairro">
+            <EntityTypeMapping TypeName="cmsModel.VwBairro">
+              <MappingFragment StoreEntitySet="VwBairro">
+                <ScalarProperty Name="BairroUrl" ColumnName="BairroUrl" />
+                <ScalarProperty Name="NomeBairro" ColumnName="NomeBairro" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B14C33A-435D-40C9-9C99-126996A7E322}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Impl\BairroDal.cs" />
+    <Compile Include="Impl\CategoriaDal.cs" />
+    <Compile Include="Impl\CategoriaPublicacaoDal.cs" />
+    <Compile Include="Impl\ClienteParceiroDal.cs" />
+    <Compile Include="Impl\ContatoDal.cs" />
+    <Compile Include="Impl\DepoimentoDal.cs" />
+    <Compile Include="Impl\DownloadDal.cs" />
+    <Compile Include="Impl\EmpresaDal.cs" />
+    <Compile Include="Impl\EquipeDal.cs" />
+    <Compile Include="Impl\EstadoDal.cs" />
+    <Compile Include="Impl\ImagemImovelDal.cs" />
+    <Compile Include="Impl\ImagemPublicacaoDal.cs" />
+    <Compile Include="Impl\ImovelDal.cs" />
+    <Compile Include="Impl\LinkDal.cs" />
+    <Compile Include="Impl\MensagemDal.cs" />
+    <Compile Include="Impl\CidadeDal.cs" />
+    <Compile Include="Impl\PerfilDal.cs" />
+    <Compile Include="Impl\PessoaDal.cs" />
+    <Compile Include="Impl\PublicacaoDal.cs" />
+    <Compile Include="Impl\RedeDal.cs" />
+    <Compile Include="Impl\RedeSocialDal.cs" />
+    <Compile Include="Impl\RegiaoDal.cs" />
+    <Compile Include="Impl\ServicoDal.cs" />
+    <Compile Include="Impl\SlideDal.cs" />
+    <Compile Include="Impl\StatusDal.cs" />
+    <Compile Include="Impl\TipoContatoDal.cs" />
+    <Compile Include="Impl\TipoContratoDal.cs" />
+    <Compile Include="Impl\TipoImovelDal.cs" />
+    <Compile Include="Impl\TipoServicoDal.cs" />
+    <Compile Include="Impl\UsuarioDal.cs" />
+    <Compile Include="Interface\IBairroDal.cs" />
+    <Compile Include="Interface\ICategoriaDal.cs" />
+    <Compile Include="Interface\ICategoriaPublicacaoDal.cs" />
+    <Compile Include="Interface\IClienteParceiroDal.cs" />
+    <Compile Include="Interface\IContatoDal.cs" />
+    <Compile Include="Interface\IDepoimentoDal.cs" />
+    <Compile Include="Interface\IDownloadDal.cs" />
+    <Compile Include="Interface\IEmpresaDal.cs" />
+    <Compile Include="Interface\IEquipeDal.cs" />
+    <Compile Include="Interface\IEstadoDal.cs" />
+    <Compile Include="Interface\IImagemImovelDal.cs" />
+    <Compile Include="Interface\IImagemPublicacaoDal.cs" />
+    <Compile Include="Interface\IImovelDal.cs" />
+    <Compile Include="Interface\ILinkDal.cs" />
+    <Compile Include="Interface\IMensagemDal.cs" />
+    <Compile Include="Interface\ICidadeDal.cs" />
+    <Compile Include="Interface\IPerfilDal.cs" />
+    <Compile Include="Interface\IPessoaDal.cs" />
+    <Compile Include="Interface\IPublicacaoDal.cs" />
+    <Compile Include="Interface\IRedeDal.cs" />
+    <Compile Include="Interface\IRedeSocialDal.cs" />
+    <Compile Include="Interface\IRegiaoDal.cs" />
+    <Compile Include="Interface\IServicoDal.cs" />
+    <Compile Include="Interface\ISlideDal.cs" />
+    <Compile Include="Interface\ITipoContatoDal.cs" />
+    <Compile Include="Interface\ITipoContratoDal.cs" />
+    <Compile Include="Interface\ITipoImovelDal.cs" />
+    <Compile Include="Interface\ITipoServicoDal.cs" />
+    <Compile Include="Interface\IUsuarioDal.cs" />
+    <Compile Include="Interface\IStatusDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\IRepositorio.cs" />
+    <Compile Include="Repositorio\Repositorio.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{672843a1-e38e-429b-b7b9-0963826fa1b6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

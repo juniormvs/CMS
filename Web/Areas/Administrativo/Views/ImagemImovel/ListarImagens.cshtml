@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Model.ImagemImovel>
+
+@foreach (var item in Model)
+{
+    <li data-id="@item.Id" data-nome="@item.Imagem" data-album="@item.ImovelId">
+        <a class="colorbox cboxElement" href="@Url.Action("GaleriaImovel","Img", new {id = item.Id, thumb = false})" data-rel="colorbox">
+            <img style="max-width: 180px"  alt="150x150" src="@Url.Action("GaleriaImovel","Img", new {id = item.Id, thumb = true})" />
+            <div class="text">
+                <div class="inner">Clique para visualizar</div>
+            </div>
+        </a>
+
+        <div class="tools tools-bottom">
+            <a href="#modal-delete" role="button" data-toggle="modal" data-local="banco" data-id="@item.Id" data-nome="@item.Imagem" class="red" data-rel="tooltip" title="Excluir">
+                <i class="ace-icon fa fa-times red"></i>
+            </a>
+        </div>
+    </li>
+}

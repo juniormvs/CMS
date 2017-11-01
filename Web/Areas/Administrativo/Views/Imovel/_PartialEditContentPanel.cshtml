@@ -1,0 +1,253 @@
+﻿@model Model.Imovel
+
+@Html.HiddenFor(model => model.Id)
+@Html.Hidden("imagensMultiUpload")
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-11">
+            @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Imagem, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-10">
+            <span class="profile-picture">
+                @if (Model == null)
+                {
+                    <img id="avatar" class="editable img-responsive" alt="" src="~/Content/upload/upload.jpg" style="max-height: 200px;" />
+                }
+                else
+                {
+                    <img id="avatar" class="editable img-responsive" alt="" src="@Url.Action("Imovel","Img", new { id = Model.Id})" style="max-height: 200px;" />
+                }
+                @Html.HiddenFor(model => model.Imagem)
+            </span>
+            <p><small>Tamanho mínimo recomendado: <strong>800px x 600px</strong></small></p>
+            @Html.ValidationMessageFor(model => model.Imagem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- multiupload -->
+    <div class="space-24"></div>
+    <h3 class="header smaller lighter blue">
+        Fotos
+        <small><button type="button" class="btn btn-purple btn-minier" data-toggle="modal" data-target="#modalMultiupload">Clique aqui para adicionar fotos</button></small>
+    </h3>
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+            <ul id="galeria" class="ace-thumbnails clearfix ui-sortable">
+                @if (Model != null)
+                {
+                    @Html.Action("ListarImagens", "ImagemImovel", new { imovelId = Model.Id})
+                }
+            </ul>
+        </div>
+    </div>
+    <!-- fim multiupload-->
+
+    <div class="space-24"></div>
+    <h3 class="header smaller lighter blue">
+        Localização e Valores
+        <small>Preencha os campos de localização, para que o imóvel seja exibido no mapa</small>
+    </h3>
+
+    <div class="form-group">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Observação!</strong> Digite um endereço, para que o imóvel seja exibido no mapa. E selecione o endereço sugerido, para que seja completado corretamente.<br />
+            Por exemplo: <em>Avenida Brasil, 2219 - Jardim Bela Daria, Presidente Prudente - SP</em>. 
+        </div>
+
+        @Html.Label("Logradouro", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-11">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-map-marker bigger-110"></i>
+                </span>
+                <input id="Endereco" name="Endereco" placeholder="Digite o endereço da propriedade" 
+                    onFocus="geolocate()" type="text" class="form-control"
+                       value="@(Model != null ? Model.Endereco : string.Empty)"/>
+            </div>
+            @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        @Html.LabelFor(model => model.Uf, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Uf, new { htmlAttributes = new { @class = "form-control", @maxlength = "2", @readonly="readonly"} })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StatusId, "Status", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-1">
+            @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.TipoImovelId, "Imóvel", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            @Html.DropDownList("TipoImovelId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TipoImovelId, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.TipoContratoId, "Contrato", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-3">
+            @Html.DropDownList("TipoContratoId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TipoContratoId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    R$
+                </span>
+                @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Condomínio", htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    R$
+                </span>
+                @Html.TextBoxFor(model => model.ValorCondominio, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(model => model.ValorCondominio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="space-24"></div>
+    <h3 class="header smaller lighter blue">
+        Informações Técnicas
+        <small>Detalhes de informações técnicas sobre o imóvel</small>
+    </h3>
+
+    <div class="form-group">
+        @Html.Label("Área Total", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    m²
+                </span>
+                @Html.EditorFor(model => model.AreaTotal, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.AreaTotal, "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Área Construída", htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0; line-heigth: 1" })
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    m²
+                </span>
+                @Html.EditorFor(model => model.AreaConstruida, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.AreaConstruida, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Qtd. Dormitório", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-bed bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Dormitorio, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Dormitorio, "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Qtd. Suíte", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-bath bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Suite, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Suite, "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Qtd. Banheiro", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-shower bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Banheiro, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Banheiro, "", new { @class = "text-danger" })
+        </div>
+        @Html.Label("Qtd. Garagem", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-car bigger-110"></i>
+                </span>
+                @Html.EditorFor(model => model.Garagem, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.Garagem, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="space-24"></div>
+    <h3 class="header smaller lighter blue">
+        Descrição Detalhada e Central de Negócio
+        <small>Descrição detalhada sobre o imóvel</small>
+    </h3>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-11">
+            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CentralNegocio, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-11">
+            @if (Model == null)
+            {
+                @Html.TextArea("CentralNegocio", new { @class = "form-control"})
+            }
+            else
+            { 
+                @Html.TextAreaFor(model => model.CentralNegocio, new { @class = "form-control"})
+            }
+            @Html.ValidationMessageFor(model => model.CentralNegocio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" name="command" value="Salvar" class="btn btn-success" />
+            <input type="submit" name="command" value="Salvar Rascunho" class="btn btn-primary" />
+            <input type="submit" name="command" value="Salvar e Adicionar novo" class="btn btn-success" />
+            <input type="button" value="Voltar" class="cancel btn btn-default" onclick="location.href = '@Url.Action("Index","Imovel")'" />
+        </div>
+    </div>
+</div>

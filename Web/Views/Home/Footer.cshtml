@@ -1,0 +1,44 @@
+﻿@model Model.Empresa
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 margin30">
+                <h3>Sobre nós</h3>
+                <p>
+                    @Html.DisplayFor(model => model.Resumo)
+                </p>
+            </div>
+            <div class="col-md-6 col-sm-6 margin30">
+                @*<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsupernovaweb1&tabs=timeline&width=600&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=714065572000534" width="600" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>*@
+            </div>
+            <div class="col-md-3 col-sm-6 margin30">
+                <h3>Informações de Contato</h3>
+                <p>
+                    <strong>@Html.DisplayFor(model => model.Pessoa.Nome)</strong><br>
+                    <strong>creci 28.800-J</strong><br>
+                    <i class="fa fa-map-marker"></i> &nbsp; 
+                    @Html.DisplayFor(model => model.Endereco)
+                </p>
+
+                <p>
+                    <i class="fa fa-phone"></i> &nbsp; @Html.DisplayFor(model => model.Telefone)<br />
+                    @*<i class="fa fa-phone"></i> &nbsp; (18) 3217-2771<br>
+                    <i class="fa fa-phone"></i> &nbsp; (18) 3203-0259 <br>
+                    <i class="fa fa-phone"></i> &nbsp; (18) 9 9709-8750<br>*@
+
+                    <i class="fa fa-envelope-o"></i> &nbsp; <a href="mailto:@Html.DisplayFor(model => model.Email)">@Html.DisplayFor(model => model.Email)</a>
+                </p>
+                <p>
+                    <strong>Horário de funcionamento</strong><br>
+                    das 9:00 hrs até as 18:00 hrs.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer><!--footer-->
+<div class="copyright">
+    <div class="container text-center">
+        <span>&copy; Copyright @DateTime.Now.Year - Todos os direitos Reservados. @Html.DisplayFor(model => model.Pessoa.Nome). - Desenvolvido e mantido por <a href="http://supernovaweb.com.br" targe="_blank" style="color: #fff">Supernova WEB</a></span>
+    </div>
+</div>

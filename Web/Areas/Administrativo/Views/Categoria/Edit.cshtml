@@ -1,0 +1,68 @@
+﻿@model Model.Categoria
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section breadcrumb{
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="@Url.Action("Index","Home", null)">Home</a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Index", "Publicacao")">Publicação</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Categoria")">Categoria</a>
+    </li>
+    <li class="active">Editar</li>
+}
+
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Categoria
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Editar
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.Id)
+                @Html.Partial("~/Areas/Administrativo/Views/Categoria/_PartialEditContentPanel.cshtml", Model)
+            }
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+
+
+@section plugin{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/ContentAdmin/js/jquery.inputlimiter.1.3.1.js"></script>
+}
+
+@section script{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#menu-publicacao").addClass("active open");
+            $("#submenu-categoria").addClass("active");
+
+            $('textarea.limited').inputlimiter({
+                remText: '%n caractere%s restantes...',
+                limitText: 'max permitido : %n.'
+            });
+        });
+    </script>
+}   

@@ -1,0 +1,185 @@
+﻿@model Model.Imovel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section head{
+    <link rel="stylesheet" href="~/ContentAdmin/css/colorbox.css" />
+    <style type="text/css">
+        #galeria li {
+            margin: 3px 3px 3px 0;
+            float: left;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            top: 60px;
+            left: 10px;
+        }
+
+        #cboxContent {
+            background: #fff;
+            overflow: inherit;
+        }
+    </style>
+
+    <script src="@Url.Content("~/ckeditor/ckeditor.js")"></script>
+    <script type="text/javascript">
+        var pathSingleUpload = '@Url.Action("Upload","Imovel")';
+        var fotosMultiUpload = [];
+    </script>
+}
+@section breadcrumb{
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="@Url.Action("Index","Home", null)">Home</a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Index", "Imovel")">Imóvel</a>
+    </li>
+    <li class="active">@Model.Titulo</li>
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Imóvel
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Editar
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            @Html.Partial("~/Views/Shared/_PartialAlert.cshtml", Model)
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.Partial("~/Areas/Administrativo/Views/Imovel/_PartialEditContentPanel.cshtml", Model)
+            }
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+
+<div id="modalMultiupload" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload de imagens para o imóvel</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Action("UploadPage", "ImagemImovel", null)
+            </div>
+            <div class="modal-footer">
+                <button id="btnCloseModal" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-delete" class="modal fade in" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><strong>Atenção!</strong> Deseja confirmar a exclusão?</h4>
+            </div>
+            <div class="modal-body">
+                A foto selecionada será excluida.<br />
+                <img id="imgFotoExclusao" style="max-width: 150px" src="" />
+                <input type="hidden" id="fotoId" name="fotoId" />
+                <input type="hidden" id="fotoNome" name="fotoNome" />
+                <input type="hidden" id="isUpload" name="isUpload" />
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Cancelar
+                </button>
+
+                <button class="btn btn-sm btn-danger" id="btnExcluirFoto" name="btnExcluirFoto">
+                    <i class="ace-icon fa fa-check"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section plugin{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/ContentAdmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="~/Scripts/globalize.js"></script>
+    <script src="~/Scripts/jquery.validate.globalize.min.js"></script>
+
+    <script src="@Url.Content("~/ContentAdmin/js/x-editable/bootstrap-editable.js")"></script>
+    <script src="@Url.Content("~/ContentAdmin/js/x-editable/ace-editable.js")"></script>
+    <script src="@Url.Content("~/ContentAdmin/js/jquery.gritter.js")"></script>
+    <script src="@Url.Content("~/ContentAdmin/js/ace/ace.widget-box.js")"></script>
+
+    <script src="@Url.Content("~/ContentAdmin/js/jquery.colorbox.js")"></script>
+    <script src="@Url.Content("~/ContentAdmin/js/jquery-ui.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery.moneymask.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/app/Imovel.js")"></script>
+    <script src="@Url.Content("~/Scripts/app/SingleUpload.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/app/Colorbox.js")"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE4HZcUdxqP1_zftFCSa5TKawZWdDwmwc&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="~/Scripts/app/GmapsAutocomplete .js"></script>
+}
+
+@section script{
+    <script type="text/javascript">
+        $('#modalMultiupload').on('hidden.bs.modal', function () {
+            if (fotosMultiUpload.length <= 0) {
+                return false;
+            }
+            $('#imagensMultiUpload').val(fotosMultiUpload);
+            checkUpdate();
+        });
+
+        function checkUpdate() {
+
+            var html = '';
+
+            for (var i = 0; i < fotosMultiUpload.length; i++) {
+                html += '<li data-id="" data-nome="' + fotosMultiUpload[i]+'">'+
+                    '<a class="colorbox cboxElement" href="@Url.Action("GaleriaUpload", "Img", null)?nome=' + fotosMultiUpload[i] +'" data-rel="colorbox">'+
+                    '<img style="max-width: 180px" alt="150x150" src="@Url.Action("GaleriaUpload","Img", null)?nome=' + fotosMultiUpload[i]+'&thumb=true" />'+
+                    '<div class="text"><div class="inner">Clique para visualizar</div></div>'+
+                    '</a>'+
+                    '<div class="tools tools-bottom" > '+
+                    '<a href= "#modal-delete" role= "button" data-toggle="modal" data-local="upload" data-nome="' + fotosMultiUpload[i]+'" class="red" data- rel="tooltip" title= "Excluir" > '+
+                    '<i class="ace-icon fa fa-times red" ></i> '+
+                    '</a> '+
+                    '</div> '+
+                    '</li>';
+            }
+
+
+            if (typeof html != 'undefined') {
+                if ($("#galeria").html().trim() == '') {
+                    $("#galeria").html(html);
+                } else {
+                    $("#galeria").append(html);
+                }
+
+                initColorbox();
+            }
+        }
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿@model Model.Equipe
+
+<dt>
+    @Html.DisplayNameFor(model => model.Pessoa.Imagem)
+</dt>
+
+<dd class="ace-thumbnails">
+    <a href="@Url.Action("Equipe","Img", new { id = Model.Id})" data-rel="colorbox">
+        <img id="imagem" class="editable img-responsive" alt="" src="@Url.Action("Equipe","Img", new { id = Model.Id})" style="max-height: 100px; padding: 5px;" />
+    </a>
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Pessoa.Nome)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Pessoa.Nome)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Pessoa.Bio)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Pessoa.Bio)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Pessoa.Observacao)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Pessoa.Observacao)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Cargo)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Cargo)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.DocumentoProfissional)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.DocumentoProfissional)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Pessoa.Status.Nome)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Pessoa.Status.Nome)
+</dd>
+

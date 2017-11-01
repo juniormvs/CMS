@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6701d948ce164c7d836229072204c2e0" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="cmsModel.Agenda" Width="1.5" PointX="14.375" PointY="27.875" />
+        <EntityTypeShape EntityType="cmsModel.Ajuda" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="cmsModel.AjudaTopico" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="cmsModel.Album" Width="1.5" PointX="3.75" PointY="25.25" />
+        <EntityTypeShape EntityType="cmsModel.Bairro" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cmsModel.Cardapio" Width="1.5" PointX="16.625" PointY="9.875" />
+        <EntityTypeShape EntityType="cmsModel.CardapioCategoria" Width="1.5" PointX="14.375" PointY="1.125" />
+        <EntityTypeShape EntityType="cmsModel.Categoria" Width="1.5" PointX="5.875" PointY="11.875" />
+        <EntityTypeShape EntityType="cmsModel.CategoriaPublicacao" Width="1.5" PointX="16.625" PointY="29.5" />
+        <EntityTypeShape EntityType="cmsModel.ClienteParceiro" Width="1.5" PointX="3.75" PointY="30.875" />
+        <EntityTypeShape EntityType="cmsModel.Contador" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cmsModel.Contato" Width="1.5" PointX="3.75" PointY="34.25" />
+        <EntityTypeShape EntityType="cmsModel.CupomDesconto" Width="1.5" PointX="18.875" PointY="28.875" />
+        <EntityTypeShape EntityType="cmsModel.Depoimento" Width="1.5" PointX="5.875" PointY="9" />
+        <EntityTypeShape EntityType="cmsModel.Download" Width="1.5" PointX="14.375" PointY="24.75" />
+        <EntityTypeShape EntityType="cmsModel.Empresa" Width="1.5" PointX="8.125" PointY="11.125" />
+        <EntityTypeShape EntityType="cmsModel.Equipe" Width="1.5" PointX="8.125" PointY="15" />
+        <EntityTypeShape EntityType="cmsModel.Estado" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cmsModel.ImagemAlbum" Width="1.5" PointX="18.875" PointY="25.875" />
+        <EntityTypeShape EntityType="cmsModel.ImagemImovel" Width="1.5" PointX="19.625" PointY="18.375" />
+        <EntityTypeShape EntityType="cmsModel.ImagemPortifolio" Width="1.5" PointX="9" PointY="30.625" />
+        <EntityTypeShape EntityType="cmsModel.ImagemProduto" Width="1.5" PointX="9" PointY="25.625" />
+        <EntityTypeShape EntityType="cmsModel.ImagemPublicacao" Width="1.5" PointX="16.625" PointY="5.375" />
+        <EntityTypeShape EntityType="cmsModel.Imovel" Width="1.5" PointX="17.375" PointY="15.75" />
+        <EntityTypeShape EntityType="cmsModel.Link" Width="1.5" PointX="1.5" PointY="27.875" />
+        <EntityTypeShape EntityType="cmsModel.Log" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cmsModel.Mensagem" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="cmsModel.Municipio" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cmsModel.Perfil" Width="1.5" PointX="4.5" PointY="22.5" />
+        <EntityTypeShape EntityType="cmsModel.Pessoa" Width="1.5" PointX="1.5" PointY="32.75" />
+        <EntityTypeShape EntityType="cmsModel.Portifolio" Width="1.5" PointX="6.75" PointY="30" />
+        <EntityTypeShape EntityType="cmsModel.Produto" Width="1.5" PointX="6.75" PointY="24.875" />
+        <EntityTypeShape EntityType="cmsModel.Promocao" Width="1.5" PointX="5.875" PointY="15.625" />
+        <EntityTypeShape EntityType="cmsModel.Publicacao" Width="1.5" PointX="14.375" PointY="4.375" />
+        <EntityTypeShape EntityType="cmsModel.Rede" Width="1.5" PointX="5.875" PointY="19.75" />
+        <EntityTypeShape EntityType="cmsModel.RedeSocial" Width="1.5" PointX="3.75" PointY="37.25" />
+        <EntityTypeShape EntityType="cmsModel.Regiao" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="cmsModel.Servico" Width="1.5" PointX="14.375" PointY="17.875" />
+        <EntityTypeShape EntityType="cmsModel.Slide" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="cmsModel.Status" Width="1.5" PointX="12.125" PointY="17.125" />
+        <EntityTypeShape EntityType="cmsModel.TipoContato" Width="1.5" PointX="1.5" PointY="24.5" />
+        <EntityTypeShape EntityType="cmsModel.TipoContrato" Width="1.5" PointX="15.125" PointY="21.75" />
+        <EntityTypeShape EntityType="cmsModel.TipoImovel" Width="1.5" PointX="15.125" PointY="15.25" />
+        <EntityTypeShape EntityType="cmsModel.TipoServico" Width="1.5" PointX="12.125" PointY="14.625" />
+        <EntityTypeShape EntityType="cmsModel.Usuario" Width="1.5" PointX="6.75" PointY="34.125" />
+        <EntityTypeShape EntityType="cmsModel.Video" Width="1.5" PointX="8.75" PointY="3.75" />
+        <AssociationConnector Association="cmsModel.fk_Agenda_Status1" />
+        <AssociationConnector Association="cmsModel.fk_Ajuda_AjudaTopico1" />
+        <AssociationConnector Association="cmsModel.fk_AjudaTopico_AjudaTopico1" />
+        <AssociationConnector Association="cmsModel.fk_Album_Categoria1" />
+        <AssociationConnector Association="cmsModel.fk_album_status1" />
+        <AssociationConnector Association="cmsModel.fk_ImagemAlbum_Album1" />
+        <AssociationConnector Association="cmsModel.fk_Cardapio_CardapioCategoria1" />
+        <AssociationConnector Association="cmsModel.fk_Cardapio_Status1" />
+        <AssociationConnector Association="cmsModel.fk_CardapioCategoria_Status1" />
+        <AssociationConnector Association="cmsModel.fk_categoria_has_publicacao_categoria1" />
+        <AssociationConnector Association="cmsModel.fk_Categoria_Status1" />
+        <AssociationConnector Association="cmsModel.fk_Portifolio_Categoria1" />
+        <AssociationConnector Association="cmsModel.fk_Produto_Categoria1" />
+        <AssociationConnector Association="cmsModel.fk_categoria_has_publicacao_publicacao1" />
+        <AssociationConnector Association="cmsModel.fk_cliente_pessoa1" />
+        <AssociationConnector Association="cmsModel.fk_Telefone_Pessoa1" />
+        <AssociationConnector Association="cmsModel.fk_Telefone_TipoTelefone1" />
+        <AssociationConnector Association="cmsModel.fk_CupomDesconto_Status1" />
+        <AssociationConnector Association="cmsModel.fk_depoimento_status1" />
+        <AssociationConnector Association="cmsModel.fk_Download_Status1" />
+        <AssociationConnector Association="cmsModel.fk_empresa_pessoa1" />
+        <AssociationConnector Association="cmsModel.fk_equipe_pessoa1" />
+        <AssociationConnector Association="cmsModel.fk_ImagemPropriedade_Propriedade" />
+        <AssociationConnector Association="cmsModel.fk_ImagemPortifolio_Portifolio1" />
+        <AssociationConnector Association="cmsModel.fk_ImagemProduto_Produto1" />
+        <AssociationConnector Association="cmsModel.fk_ImagemPublicacao_Publicacao1" />
+        <AssociationConnector Association="cmsModel.fk_Imovel_TipoContrato1" />
+        <AssociationConnector Association="cmsModel.fk_Imovel_TipoImovel1" />
+        <AssociationConnector Association="cmsModel.fk_Propriedade_Status1" />
+        <AssociationConnector Association="cmsModel.fk_link_status1" />
+        <AssociationConnector Association="cmsModel.fk_Usuario_Perfil1" />
+        <AssociationConnector Association="cmsModel.fk_Pessoa_status1" />
+        <AssociationConnector Association="cmsModel.fk_rede_social_pessoa1" />
+        <AssociationConnector Association="cmsModel.fk_usuario_pessoa1" />
+        <AssociationConnector Association="cmsModel.fk_Portifolio_Status1" />
+        <AssociationConnector Association="cmsModel.fk_Produto_Status1" />
+        <AssociationConnector Association="cmsModel.fk_Promocao_Status1" />
+        <AssociationConnector Association="cmsModel.fk_publicacao_status1" />
+        <AssociationConnector Association="cmsModel.fk_rede_social_rede1" />
+        <AssociationConnector Association="cmsModel.fk_servico_status1" />
+        <AssociationConnector Association="cmsModel.fk_servico_tipo1" />
+        <AssociationConnector Association="cmsModel.ClienteParceiroCupomDesconto" />
+        <EntityTypeShape EntityType="cmsModel.VwCidade" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="cmsModel.VwBairro" Width="1.5" PointX="8.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

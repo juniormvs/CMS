@@ -1,0 +1,63 @@
+﻿@model Model.Slide
+<div class="space-10"></div>
+<div class="form-group">
+    <div class="col-lg-offset-1">
+        <p><small><strong>Observações</strong></small></p>
+        <p><small>Tamanho recomendado: <strong>1920x1080px</strong></small></p>
+        <p><small>É recomendado fotos em posição de paisagem (horizontal).</small>
+            <small><strong>Não</strong> é recomendado fotos em posição de retrato (vertical).</small>
+        </p>
+    </div>
+</div>
+<div class="space-10"></div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Imagem, htmlAttributes: new { @class = "control-label col-md-1" })
+    <div class="col-md-10">
+        <span class="profile-picture">
+            @if (Model == null)
+            {
+                <img id="avatar" class="editable img-responsive" alt="" src="~/Content/images/upload.jpg" style="max-height: 200px;" />
+            }
+            else
+            {
+                <img id="avatar" class="editable img-responsive" alt="" src="@Url.Action("Slide","Img", new { id = Model.Id})" style="max-height: 200px;" />
+            }
+            @Html.HiddenFor(model => model.Imagem)
+        </span>
+        @Html.ValidationMessageFor(model => model.Imagem, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        <p><strong>Preencha os campos abaixo, caso deseje adicionar textos, e links. Os campos são opcionais.</strong></p>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-1" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Subtitulo, htmlAttributes: new { @class = "control-label col-md-1" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.Subtitulo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Subtitulo, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-1" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Salvar" class="btn btn-success" />
+        <input type="button" value="Voltar" class="cancel btn btn-default" onclick="location.href = '@Url.Action("index","slide")'" />
+    </div>
+</div>

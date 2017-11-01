@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D495971-B338-4338-8A08-63ADEB84E1F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Impl\BairroBll.cs" />
+    <Compile Include="Impl\CategoriaBll.cs" />
+    <Compile Include="Impl\CategoriaPublicacaoBll.cs" />
+    <Compile Include="Impl\ClienteParceiroBll.cs" />
+    <Compile Include="Impl\ContatoBll.cs" />
+    <Compile Include="Impl\DepoimentoBll.cs" />
+    <Compile Include="Impl\DownloadBll.cs" />
+    <Compile Include="Impl\EmpresaBll.cs" />
+    <Compile Include="Impl\EquipeBll.cs" />
+    <Compile Include="Impl\EstadoBll.cs" />
+    <Compile Include="Impl\ImagemImovelBll.cs" />
+    <Compile Include="Impl\ImagemPublicacaoBll.cs" />
+    <Compile Include="Impl\ImovelBll.cs" />
+    <Compile Include="Impl\LinkBll.cs" />
+    <Compile Include="Impl\MensagemBll.cs" />
+    <Compile Include="Impl\CidadeBll.cs" />
+    <Compile Include="Impl\PerfilBll.cs" />
+    <Compile Include="Impl\PessoaBll.cs" />
+    <Compile Include="Impl\PublicacaoBll.cs" />
+    <Compile Include="Impl\RegiaoBll.cs" />
+    <Compile Include="Impl\ServicoBll.cs" />
+    <Compile Include="Impl\SlideBll.cs" />
+    <Compile Include="Impl\TipoContatoBll.cs" />
+    <Compile Include="Impl\TipoContratoBll.cs" />
+    <Compile Include="Impl\TipoImovelBll.cs" />
+    <Compile Include="Impl\TipoServicoBll.cs" />
+    <Compile Include="Impl\UsuarioBll.cs" />
+    <Compile Include="Interface\IBairroBll.cs" />
+    <Compile Include="Interface\ICategoriaBll.cs" />
+    <Compile Include="Interface\IClienteParceiroBll.cs" />
+    <Compile Include="Interface\IContatoBll.cs" />
+    <Compile Include="Interface\IDepoimentoBll.cs" />
+    <Compile Include="Interface\IDownloadBll.cs" />
+    <Compile Include="Interface\IEmpresaBll.cs" />
+    <Compile Include="Interface\IEquipeBll.cs" />
+    <Compile Include="Interface\IEstadoBll.cs" />
+    <Compile Include="Interface\IImagemImovelBll.cs" />
+    <Compile Include="Interface\IImagemPublicacaoBll.cs" />
+    <Compile Include="Interface\IImovelBll.cs" />
+    <Compile Include="Interface\ILinkBll.cs" />
+    <Compile Include="Interface\IMensagemBll.cs" />
+    <Compile Include="Interface\ICategoriaPublicacaoBll.cs" />
+    <Compile Include="Interface\ICidadeBll.cs" />
+    <Compile Include="Interface\IPerfilBll.cs" />
+    <Compile Include="Interface\IPessoaBll.cs" />
+    <Compile Include="Interface\IPublicacaoBll.cs" />
+    <Compile Include="Interface\IRedeBll.cs" />
+    <Compile Include="Interface\IRedeSocialBll.cs" />
+    <Compile Include="Interface\IRegiaoBll.cs" />
+    <Compile Include="Interface\IServicoBll.cs" />
+    <Compile Include="Interface\ISlideBll.cs" />
+    <Compile Include="Interface\IStatusBll.cs" />
+    <Compile Include="Interface\ITipoContatoBll.cs" />
+    <Compile Include="Interface\ITipoContratoBll.cs" />
+    <Compile Include="Interface\ITipoImovelBll.cs" />
+    <Compile Include="Interface\ITipoServicoBll.cs" />
+    <Compile Include="Interface\IUsuarioBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Impl\StatusBll.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{7b14c33a-435d-40c9-9c99-126996a7e322}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{672843a1-e38e-429b-b7b9-0963826fa1b6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servico\ServicoExterno.csproj">
+      <Project>{e939aec9-cb65-404c-9aa9-54b74c93152b}</Project>
+      <Name>ServicoExterno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{b7862894-8102-43cf-af30-68d3e1834edb}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

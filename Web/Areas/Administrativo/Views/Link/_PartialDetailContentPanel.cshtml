@@ -1,0 +1,23 @@
+﻿@model Model.Link
+<dt>
+    @Html.DisplayNameFor(model => model.Titulo)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Titulo)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Url)
+    
+</dt>
+<dd>
+    <a href="@Html.DisplayFor(model => model.Url)" target="_blank">@Html.DisplayFor(model => model.Url)</a>
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Status.Nome)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Status.Nome)
+</dd>
+

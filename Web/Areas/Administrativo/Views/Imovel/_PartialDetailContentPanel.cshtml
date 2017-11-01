@@ -1,0 +1,128 @@
+﻿@model Model.Imovel
+<dt>
+    @Html.DisplayNameFor(model => model.Titulo)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Titulo)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Valor)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Valor)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.ValorCondominio)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.ValorCondominio)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Status.Nome)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Status.Nome)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Endereco)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Endereco)
+</dd>
+
+<dt>
+    Cidade
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Cidade) - @Html.DisplayFor(model => model.Uf)
+</dd>
+
+<dt>
+    Bairro
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Bairro)
+</dd>
+
+<dt>
+    Tipo de Imóvel
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.TipoImovel.Nome)
+</dd>
+
+<dt>
+    Finalidade
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.TipoContrato.Nome)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Dormitorio)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Dormitorio)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Suite)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Suite)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Banheiro)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Banheiro)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Garagem)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.Garagem)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.AreaTotal)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.AreaTotal)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.AreaConstruida)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.AreaConstruida)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.Descricao)
+</dt>
+<dd>
+    @Html.Raw(Model.Descricao)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.CentralNegocio)
+</dt>
+<dd>
+    @Html.Raw(Model.CentralNegocio)
+</dd>
+<dt>
+    Fotos
+</dt>
+<dd>
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+            <ul id="galeria" class="ace-thumbnails clearfix ui-sortable">
+                @if (Model != null)
+                {
+                    @Html.Action("ListarImagens", "ImagemImovel", new { imovelId = Model.Id })
+                }
+            </ul>
+        </div>
+    </div>
+
+</dd>
