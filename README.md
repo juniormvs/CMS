@@ -4,7 +4,7 @@ Projeto CMS para gerenciamento de conteúdo de sites institucionais, corporativo
 #Getting Started
 Os passos abaixo devem ser corretamente seguidos
 1.	Novo projeto / Cliente
-    Ao adicionar um novo projeto/cliente, deve ser criado uma nova branch com os itens do CMS necessário para o projeto.
+    Ao adicionar um novo projeto/cliente, Deve ser copiado projeto por projeto (do visual studio), para dentro da nova Solution (vide video: Criação de novo projeto). E posteriormente importado para o novo projeto.
 2.	Visual Studio
     Ao abrir o projeto no visual studio, da nova branch, em primeiro lugar deve ser realizado a restauração das dependências do nuget, em seguida um rebuild para garantir que o cms está funcional.
 3.	Desenvolvimento
