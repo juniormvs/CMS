@@ -1063,15 +1063,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Views\Home\Header.cshtml" />
-    <Content Include="Views\Home\Menu.cshtml" />
-    <Content Include="Views\Home\Slide.cshtml" />
-    <Content Include="Views\Home\Footer.cshtml" />
-    <Content Include="Views\Home\Corretores.cshtml" />
-    <Content Include="Views\Home\SideBar.cshtml" />
-    <Content Include="Views\Home\MenuTipoImoveisVenda.cshtml" />
-    <Content Include="Views\Home\MenuTipoImoveisAluguel.cshtml" />
-    <Content Include="Views\Home\Imoveis.cshtml" />
+    <Content Include="Views\Autenticacao\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
