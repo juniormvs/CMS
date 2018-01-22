@@ -1,0 +1,53 @@
+﻿@model Model.CategoriaPublicacao
+@{
+    ViewBag.Title = "Detalhes da Categoria";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section breadcrumb{
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="@Url.Action("Index","Home", null)">Home</a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Index", "Publicacao")">Publicação</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "CategoriaPublicacao")">Categoria</a>
+    </li>
+    <li class="active">Detalhes</li>
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Categoria
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Visualizar Detalhes
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <dl class="dl-horizontal">
+                @Html.Partial("~/Areas/Administrativo/Views/CategoriaPublicacao/_PartialDetailContentPanel.cshtml", Model)
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+        </p>
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+
+@section script{
+    <script type="text/javascript">
+        $("#menu-publicacao").addClass("active open");
+        $("#submenu-categoria").addClass("active");
+    </script>
+}

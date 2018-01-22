@@ -29,49 +29,51 @@ namespace Model
         public DbSet<Ajuda> Ajuda { get; set; }
         public DbSet<AjudaTopico> AjudaTopico { get; set; }
         public DbSet<Album> Album { get; set; }
+        public DbSet<AlbumPorCategoria> AlbumPorCategoria { get; set; }
         public DbSet<Bairro> Bairro { get; set; }
         public DbSet<Cardapio> Cardapio { get; set; }
         public DbSet<CardapioCategoria> CardapioCategoria { get; set; }
-        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<CategoriaAlbum> CategoriaAlbum { get; set; }
+        public DbSet<CategoriaPortifolio> CategoriaPortifolio { get; set; }
+        public DbSet<CategoriaProduto> CategoriaProduto { get; set; }
         public DbSet<CategoriaPublicacao> CategoriaPublicacao { get; set; }
-        public DbSet<ClienteParceiro> ClienteParceiro { get; set; }
+        public DbSet<Cidade> Cidade { get; set; }
         public DbSet<Contador> Contador { get; set; }
-        public DbSet<Contato> Contato { get; set; }
-        public DbSet<CupomDesconto> CupomDesconto { get; set; }
         public DbSet<Depoimento> Depoimento { get; set; }
+        public DbSet<DetalhePorImovel> DetalhePorImovel { get; set; }
         public DbSet<Download> Download { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
-        public DbSet<Equipe> Equipe { get; set; }
         public DbSet<Estado> Estado { get; set; }
         public DbSet<ImagemAlbum> ImagemAlbum { get; set; }
         public DbSet<ImagemImovel> ImagemImovel { get; set; }
         public DbSet<ImagemPortifolio> ImagemPortifolio { get; set; }
         public DbSet<ImagemProduto> ImagemProduto { get; set; }
         public DbSet<ImagemPublicacao> ImagemPublicacao { get; set; }
+        public DbSet<ImoveInformacao> ImoveInformacao { get; set; }
         public DbSet<Imovel> Imovel { get; set; }
+        public DbSet<ImovelDetalhe> ImovelDetalhe { get; set; }
         public DbSet<Link> Link { get; set; }
         public DbSet<Log> Log { get; set; }
         public DbSet<Mensagem> Mensagem { get; set; }
-        public DbSet<Municipio> Municipio { get; set; }
-        public DbSet<Perfil> Perfil { get; set; }
+        public DbSet<PerfilPessoa> PerfilPessoa { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<Portifolio> Portifolio { get; set; }
+        public DbSet<PortifolioPorCategoria> PortifolioPorCategoria { get; set; }
         public DbSet<Produto> Produto { get; set; }
-        public DbSet<Promocao> Promocao { get; set; }
+        public DbSet<ProdutoPorCategoria> ProdutoPorCategoria { get; set; }
         public DbSet<Publicacao> Publicacao { get; set; }
-        public DbSet<Rede> Rede { get; set; }
-        public DbSet<RedeSocial> RedeSocial { get; set; }
+        public DbSet<PublicacaoPorCategoria> PublicacaoPorCategoria { get; set; }
         public DbSet<Regiao> Regiao { get; set; }
         public DbSet<Servico> Servico { get; set; }
         public DbSet<Slide> Slide { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<TipoContato> TipoContato { get; set; }
         public DbSet<TipoContrato> TipoContrato { get; set; }
         public DbSet<TipoImovel> TipoImovel { get; set; }
         public DbSet<TipoServico> TipoServico { get; set; }
-        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Video> Video { get; set; }
-        public DbSet<VwCidade> VwCidade { get; set; }
-        public DbSet<VwBairro> VwBairro { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+        public DbSet<UserLogins> UserLogins { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<UserClaims> UserClaimsSet { get; set; }
     }
 }

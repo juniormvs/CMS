@@ -3,71 +3,64 @@ using DAL;
 using DAL.Interface;
 using Model;
 using System.Collections.Generic;
-using System;
 using System.Linq;
+using Util;
 
 namespace BLL
 {
     public class CategoriaPublicacaoBll : ICategoriaPublicacaoBll
     {
-        private ICategoriaPublicacaoDal _dal;
-
+        private ICategoriaPublicacaoDal _categoriaDal;
         public CategoriaPublicacaoBll()
         {
-            _dal = new CategoriaPublicacaoDal();
+            _categoriaDal = new CategoriaDal();
+        }
+        public void Atualizar(CategoriaPublicacao categoriaPublicacao)
+        {
+            if(null != categoriaPublicacao)
+            {
+                _categoriaDal.Update(categoriaPublicacao);
+                _categoriaDal.SaveChanges();
+            }
         }
 
         public void Excluir(CategoriaPublicacao categoriaPublicacao)
         {
-            _dal.Delete(categoriaPublicacao);
-            _dal.SaveChanges();
-            _dal.Dispose();
-        }
-
-        public void Excluir(ICollection<CategoriaPublicacao> categoriasPublicaccoes)
-        {
-            foreach (var item in categoriasPublicaccoes)
+            if (null != categoriaPublicacao)
             {
-                _dal.Delete(item);
-                _dal.SaveChanges();
-                _dal.Dispose();
+                _categoriaDal.Delete(categoriaPublicacao);
+                _categoriaDal.SaveChanges();
             }
         }
 
-        public void ExcluirPorPublicacao(int id)
+        public IQueryable<CategoriaPublicacao> ListarTodos()
         {
-            var categoriasPublicacoes = _dal.Get(c => c.PublicacaoId == id).ToList();
-            foreach (var item in categoriasPublicacoes)
-            {
-                _dal.Delete(item);
-                _dal.SaveChanges();
-            }
+            return _categoriaDal.GetAll();
         }
+        
 
-        public IQueryable<CategoriaPublicacao> ListarPorCategoria(int categoriaId)
+        public CategoriaPublicacao Obter(int id)
         {
-            return _dal.Get(x => x.CategoriaId == categoriaId); 
-        }
-
-        public IQueryable<CategoriaPublicacao> ListarPorPublicacao(int publicacaoId)
-        {
-            return _dal.Get(x => x.PublicacaoId == publicacaoId);
+            return _categoriaDal.Find(c => c.Id == id);
         }
 
         public void Salvar(CategoriaPublicacao categoriaPublicacao)
         {
-            _dal.Add(categoriaPublicacao);
-            _dal.SaveChanges();
-            _dal.Dispose();
+            if(null != categoriaPublicacao)
+            {
+                _categoriaDal.Add(categoriaPublicacao);
+                _categoriaDal.SaveChanges();
+            }
         }
 
-        public void Salvar(List<CategoriaPublicacao> categorias)
+        public IQueryable<CategoriaPublicacao> Listar(List<int> ids)
         {
-            foreach (var item in categorias)
-            {
-                _dal.Add(item);
-            }
-            _dal.SaveChanges();
+            return _categoriaDal.Get(c => ids.Contains(c.Id));
+        }
+
+        public CategoriaPublicacao ObterPorUrl(string categoriaPublicacao)
+        {
+            return _categoriaDal.Find(c => c.UrlAmigavel.Equals(categoriaPublicacao));
         }
     }
 }

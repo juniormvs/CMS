@@ -21,7 +21,7 @@ namespace BLL
 
         #region CRUD
 
-        public void Atualizar(Usuario usuario)
+        public void Atualizar(Users usuario)
         {
             if (null != usuario)
             {
@@ -30,7 +30,7 @@ namespace BLL
             }
         }
 
-        public void Excluir(Usuario usuario)
+        public void Excluir(Users usuario)
         {
             if (null != usuario)
             {
@@ -39,22 +39,17 @@ namespace BLL
             }
         }
 
-        public IQueryable<Usuario> Listar()
+        public IQueryable<Users> Listar()
         {
             return _usuarioDal.GetAll();
         }
-
-        public IQueryable<Usuario> ListarAtivos()
-        {
-            return _usuarioDal.Get(u => u.Pessoa.StatusId == Constants.STATUS_ATIVO_ID);
-        }
-
-        public Usuario Obter(int id)
+        
+        public Users Obter(string id)
         {
             return _usuarioDal.Find(u => u.Id == id);
         }
 
-        public void Salvar(Usuario usuario)
+        public void Salvar(Users usuario)
         {
             if (null != usuario)
             {
@@ -67,16 +62,16 @@ namespace BLL
 
         #region ROTINA DE AUTENTICACAO
 
-        public bool Autenticar(Usuario usuario)
+        public bool Autenticar(Users usuario)
         {
-            return _usuarioDal.Autenticar(usuario);
+            return true; // _usuarioDal.Autenticar(usuario);
         }
 
-        public bool RecuperarSenhaPorEmail(Usuario usuario)
+        public bool RecuperarSenhaPorEmail(Users usuario)
         {
-            usuario = _usuarioDal.Find(u => u.Email.ToLower().Equals(usuario.Email.ToLower()));
-
             bool retorno = false;
+
+            usuario = _usuarioDal.Find(u => u.Email.ToLower().Equals(usuario.Email.ToLower()));
 
             if (usuario != null)
             {
@@ -87,14 +82,14 @@ namespace BLL
         }
 
 
-        private bool EnviarSenha(Usuario usuario)
+        private bool EnviarSenha(Users usuario)
         {
             bool retorno = false;
 
             try
             {
                 MailMessage mailMessage = new MailMessage();
-                MailAddress mailAddress = new MailAddress(usuario.Pessoa.Nome + " <atendimento@supernovaweb.com.br>");
+                MailAddress mailAddress = new MailAddress(usuario.Email + " <email@mainsoftware.com.br>");
 
                 mailMessage.To.Add(usuario.Email);
                 mailMessage.Bcc.Add("ericosouza87@outlook.com");
@@ -109,18 +104,18 @@ namespace BLL
                 StringBuilder mensagem = new StringBuilder();
                 mensagem.Append("<h3> Solicitação de envio de senha </h3>").Append(Environment.NewLine);
                 mensagem.Append("<hr/>").Append(Environment.NewLine);
-                mensagem.Append("<p><strong>Nome: </strong>" + usuario.Pessoa.Nome + "</p>").Append(Environment.NewLine);
+                mensagem.Append("<p><strong>Nome: </strong>" + usuario.UserName + "</p>").Append(Environment.NewLine);
                 mensagem.Append("<p><strong>E-mail: </strong>" + usuario.Email + "</p>").Append(Environment.NewLine);
                 mensagem.Append("<p><strong>Segue abaixo a sua senha:</strong></p>").Append(Environment.NewLine);
-                mensagem.Append("<p><strong>Senha: </strong>" + usuario.Senha + "</p>").Append(Environment.NewLine);
+                mensagem.Append("<p><strong>Senha: </strong>" + usuario.PasswordHash + "</p>").Append(Environment.NewLine);
 
                 mailMessage.Body = mensagem.ToString();
 
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Port = 587;
-                smtpClient.Host = "smtp.supernovaweb.com.br";
-                smtpClient.Credentials = new System.Net.NetworkCredential("atendimento@supernovaweb.com.br", "Mvtmjsunp339");
+                smtpClient.Host = "smtp.mainsoftware.com.br";
+                smtpClient.Credentials = new System.Net.NetworkCredential("email@mainsoftware.com.br", "Mvtmjsunp@87");
                 smtpClient.Send(mailMessage);
                 mailMessage.Dispose();
                 retorno = true;

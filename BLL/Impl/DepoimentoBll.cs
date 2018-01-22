@@ -41,7 +41,7 @@ namespace BLL
 
         public IQueryable<Depoimento> ListarAtivos()
         {
-            return _depoimentoDal.Get(d => d.StatusId == Constants.STATUS_ATIVO_ID);
+            return _depoimentoDal.Get(d => d.Ativo);
         }
 
         public Depoimento Obter(int id)

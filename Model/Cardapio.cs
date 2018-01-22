@@ -20,10 +20,9 @@ namespace Model
         public string Ingredientes { get; set; }
         public Nullable<decimal> Preco { get; set; }
         public string Imagem { get; set; }
+        public bool Ativo { get; set; }
         public int CardapioCategoriaId { get; set; }
-        public int Status_Id { get; set; }
     
         public virtual CardapioCategoria CardapioCategoria { get; set; }
-        public virtual Status Status { get; set; }
     }
 }

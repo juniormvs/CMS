@@ -9,22 +9,20 @@ using Util;
 
 namespace Web.Areas.Administrativo.Controllers
 {
-    [Authorize]
+
     public class LinkController : Controller
     {
         private readonly ILinkBll _linkBll;
-        private readonly IStatusBll _statusBll;
 
         public LinkController()
         {
             _linkBll = new LinkBll();
-            _statusBll = new StatusBll();
         }
 
         // GET: Administrativo/Link
         public ActionResult Index()
         {
-            return View(_linkBll.Listar().Include(x => x.Status).OrderBy(x => x.Titulo));
+            return View(_linkBll.Listar().OrderBy(x => x.Titulo));
         }
 
         // GET: Administrativo/Link/Details/5
@@ -42,13 +40,14 @@ namespace Web.Areas.Administrativo.Controllers
         // GET: Administrativo/Link/Create
         public ActionResult Create()
         {
-            ViewBag.StatusId = new SelectList(_statusBll.Listar(), "Id", "Nome");
+            //ViewBag.StatusId = new SelectList(_statusBll.Listar(), "Id", "Nome");
+
             return View();
         }
 
         // POST: Administrativo/Link/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Id, Titulo, Url, Target, Status, StatusId")] Link link)
+        public ActionResult Create([Bind(Include = "Id, Titulo, Url, Target, Ativo")] Link link)
         {
             try
             {
@@ -60,7 +59,7 @@ namespace Web.Areas.Administrativo.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(e);
                 ExibirMensagem(Mensagens.ERRO_AO_ADICIONAR, Constants.DANGER);
-                ViewBag.StatusId = new SelectList(_statusBll.Listar(), "Id", "Nome");
+                
                 return View(link);
             }
         }
@@ -74,13 +73,13 @@ namespace Web.Areas.Administrativo.Controllers
                 ExibirMensagem(Mensagens.SELECIONAR_REGISTRO, Constants.WARNING);
                 return RedirectToAction("Index");
             }
-            ViewBag.StatusId = new SelectList(_statusBll.Listar(), "Id", "Nome");
+            
             return View(link);
         }
 
         // POST: Administrativo/Link/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id, Titulo, Url, Target, Status, StatusId")] Link link)
+        public ActionResult Edit([Bind(Include = "Id, Titulo, Url, Target, Ativo")] Link link)
         {
             try
             {
@@ -92,7 +91,6 @@ namespace Web.Areas.Administrativo.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(e);
                 ExibirMensagem(Mensagens.ERRO_AO_ADICIONAR, Constants.DANGER);
-                ViewBag.StatusId = new SelectList(_statusBll.Listar(), "Id", "Nome");
                 return View(link);
             }
         }
@@ -124,7 +122,6 @@ namespace Web.Areas.Administrativo.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(e);
                 ExibirMensagem(Mensagens.ERRO_AO_EXCLUIR, Constants.DANGER);
-                ViewBag.StatusId = new SelectList(_statusBll.Listar(), "Id", "Nome");
                 return View(link);
             }
         }

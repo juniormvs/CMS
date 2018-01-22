@@ -19,8 +19,5 @@ namespace Model
         public Nullable<System.DateTime> DataFim { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
-        public int Status_Id { get; set; }
-    
-        public virtual Status Status { get; set; }
     }
 }

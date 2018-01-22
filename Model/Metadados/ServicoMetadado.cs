@@ -18,10 +18,8 @@ namespace Model
         public string Icone { get; set; }
         public string Imagem { get; set; }
         public string UrlAmigavel { get; set; }
+        public bool Ativo { get; set; }
         public int TipoId { get; set; }
-        public int StatusId { get; set; }
-
-        public virtual Status Status { get; set; }
         public virtual TipoServico TipoServico { get; set; }
     }
 }

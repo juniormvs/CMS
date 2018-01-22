@@ -13,7 +13,7 @@ namespace Web
                 "Detalhe",
                 "Imovel/{Id}/{urlAmigavel}",
                 new { controller = "Imovel", action = "Detalhe", urlAmigavel = UrlParameter.Optional },
-                new[] { "Web.Controllers"}
+                new[] { "Web.Controllers" }
             );
 
             routes.MapRoute(

@@ -41,9 +41,11 @@
     @Html.DisplayFor(model => model.Descricao)
 </dd>
 <dt>
-    @Html.DisplayNameFor(model => model.Status.Nome)
+    @Html.DisplayNameFor(model => model.Ativo)
 </dt>
 
 <dd>
-    @Html.DisplayFor(model => model.Status.Nome)
+    <span class="label label-sm @(Model.Ativo ? "label-success" : "label-danger")">
+        @(Model.Ativo ? "Sim" : "Não")
+    </span>
 </dd>

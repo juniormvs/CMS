@@ -33,10 +33,10 @@
         public const string IMG_EMPRESA = "~/Content/upload/empresa/";
         public const string IMG_ALBUM = "~/Content/upload/album/";
         public const string IMG_SLIDE = "~/Content/upload/slide/";
-        public const string IMG_CLIENTE = "~/Content/upload/cliente/";
-        public const string IMG_EQUIPE = "~/Content/upload/equipe/";
+        public const string IMG_PESSOA = "~/Content/upload/pessoa/";
         public const string IMG_PUBLICACAO = "~/Content/upload/publicacao/";
         public const string IMG_IMOVEL = "~/Content/upload/imovel/";
+        public const string IMG_SERVICO = "~/Content/upload/servico/";
 
         public const string MENSAGEM = "Mensagem";
         public const string CSS_CLASS = "CssClass";

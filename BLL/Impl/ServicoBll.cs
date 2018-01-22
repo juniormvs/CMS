@@ -36,7 +36,7 @@ namespace BLL
 
         public IQueryable<Servico> ListarAtivosPorTipo(int tipoId)
         {
-            return _servicoDal.Get(s => s.TipoId == tipoId).Where(s => s.StatusId == Constants.STATUS_ATIVO_ID);
+            return _servicoDal.Get(s => s.TipoId == tipoId).Where(s => s.Ativo);
         }
 
         public IQueryable<Servico> ListarTodosPorTipo(int tipoId)

@@ -2,20 +2,20 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ServicoExterno
+namespace Servicos
 {
     public class GoogleMaps
     {
         private const string urlGeocode = "https://maps.googleapis.com/maps/api/geocode/json?";
-        private const string key = "&key=AIzaSyBU7wcTnef3GwcAzGTGCrX-1uEwpMRRoM4";
+        private const string key = "&key=" + Util.KeyIntregracao.GOOGLE_MAPS;
 
         public async Task<dynamic> GetLatitudeLongitude(string endereco)
         {
-            HttpClient client = new HttpClient();
+            string url = urlGeocode + "address=" + endereco.Replace(" ", "+") + key;
 
-            string address = "address=" + endereco.Replace(" ", "+");
+            HttpClient client = new HttpClient();
             
-            HttpResponseMessage response = await client.GetAsync(urlGeocode + address + key);
+            HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             string responseBody = await response.Content.ReadAsStringAsync();

@@ -2,7 +2,7 @@
 
 namespace DAL.Interface
 {
-    public interface ICidadeDal : IRepositorio<VwCidade>
+    public interface ICidadeDal : IRepositorio<Cidade>
     {
     }
 }

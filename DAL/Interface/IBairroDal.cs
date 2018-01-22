@@ -2,7 +2,7 @@
 
 namespace DAL.Interface
 {
-    public interface IBairroDal : IRepositorio<VwBairro>
+    public interface IBairroDal : IRepositorio<Bairro>
     {
     }
 }

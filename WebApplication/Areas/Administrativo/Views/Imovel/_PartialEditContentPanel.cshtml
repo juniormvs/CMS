@@ -1,0 +1,752 @@
+﻿@model WebApplication.Models.ImovelViewModel
+@using WebApplication.Helper
+@Html.HiddenFor(model => model.Id)
+@Html.Hidden("imagensMultiUpload")
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @* VALORES - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Responsável</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProprietarioPessoaId, "Proprietário Responsável", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("ProprietarioPessoaId", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                        @Html.ValidationMessageFor(model => model.ProprietarioPessoaId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" data-toggle="modal" data-target="#addResponsavelModal" data-tipo="Responsavel" class="btn btn-info btn-mini">+ Novo</button>
+                    </div>
+
+                    @Html.LabelFor(model => model.CorretorPessoaId, "Corretor Responsável", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("CorretorPessoaId", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                        @Html.ValidationMessageFor(model => model.CorretorPessoaId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" data-toggle="modal" data-target="#addResponsavelModal" data-tipo="Corretor" class="btn btn-info btn-mini">+ Novo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* VALORES - FIM *@
+    <div class="space-10"></div>
+    @* VALORES - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Informações do Imóvel</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StatusId, "Status", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.TipoImovelId, "Imóvel", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.DropDownList("TipoImovelId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TipoImovelId, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(model => model.TipoContratoId, "Contrato", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("TipoContratoId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TipoContratoId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Destaque, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.Destaque, Html.OptionsForBoolean(m => m.Destaque, true), new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* VALORES - FIM *@
+    <div class="space-10"></div>
+    @* FOTOS - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Fotos</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                @* upload foto principal - inicio *@
+                <h3 class="header smaller lighter blue">
+                    Foto Principal (imagem de capa)
+                </h3>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <span class="profile-picture">
+                            @if (Model == null)
+                            {
+                                <img id="avatar" class="editable img-responsive" alt="" src="~/Content/upload/upload.jpg" style="max-height: 200px;" />
+                            }
+                            else
+                            {
+                                <img id="avatar" class="editable img-responsive" alt="" src="@Url.Action("Imovel","Img", new { id = Model.Id})" style="max-height: 200px;" />
+                            }
+                            @Html.HiddenFor(model => model.Imagem)
+                        </span>
+                        <p><small>Tamanho mínimo recomendado: <strong>800px x 600px</strong></small></p>
+                        @Html.ValidationMessageFor(model => model.Imagem, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @* upload foto principal - fim *@
+                @* multiupload - inicio *@
+                <div class="space-4"></div>
+                <h3 class="header smaller lighter blue">
+                    Fotos
+                    <small><button type="button" class="btn btn-purple btn-minier" data-toggle="modal" data-target="#modalMultiupload">Clique aqui para adicionar fotos</button></small>
+                </h3>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-1">
+                        <ul id="galeria" class="ace-thumbnails clearfix ui-sortable">
+                            @if (Model != null)
+                            {
+                                @Html.Action("ListarImagens", "ImagemImovel", new { imovelId = Model.Id })
+                            }
+                        </ul>
+                    </div>
+                </div>
+                @* multiupload - fim *@
+            </div>
+        </div>
+    </div>
+    @* FOTOS - FIM *@
+    <div class="space-10"></div>
+    @* LOCALIZAÇÃO E ENDERECO - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Localização e Endereço</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Observação!</strong> Digite um endereço, para que o imóvel seja exibido no mapa. E selecione o endereço sugerido, para que seja completado corretamente.<br />
+                        Por exemplo: <em>Avenida Brasil, 2219 - Jardim Bela Daria, Presidente Prudente - SP</em>.
+                    </div>
+
+                    @Html.Label("Logradouro", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-11">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-map-marker bigger-110"></i>
+                            </span>
+                            <input id="EnderecoGoogle" name="EnderecoGoogle" placeholder="Digite o endereço da propriedade"
+                                   type="text" class="form-control"
+                                   value="@(Model != null ? Model.EnderecoGoogle : string.Empty)" />
+                        </div>
+                        @Html.ValidationMessageFor(model => model.EnderecoGoogle, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Logradouro)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Complemento, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Zona, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Zona, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Regiao, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Regiao, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Uf, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @*@Html.EditorFor(model => model.Uf, new { htmlAttributes = new { @class = "form-control", @maxlength = "2" } })*@
+                        @Html.DropDownList("EstadoId", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                        @Html.HiddenFor(model => model.Uf)
+                    </div>
+                    
+                    @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @*@Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownList("EstadoId", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                        @*<select id="CidadeId" name="CidadeId" class="form-control chosen-select"></select>*@
+                        @Html.HiddenFor(model => model.Cidade)
+                    </div>
+
+                    @Html.HiddenFor(model => model.Bairro)
+                    @Html.LabelFor(model => model.BairroId, "Bairro", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.DropDownList("BairroId", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                        @Html.ValidationMessageFor(model => model.BairroId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" data-toggle="modal" data-target="#addBairroModal" class="btn btn-info btn-mini">+ Novo</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PontoReferencia, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.PontoReferencia, new { htmlAttributes = new { @class = "form-control"} })
+                    </div>
+                    @Html.LabelFor(model => model.GerarMapa, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.GerarMapa, Html.OptionsForBoolean(m => m.GerarMapa, true), new { @class = "form-control" })
+                    </div>
+                    @Html.LabelFor(model => model.IncluirNoMapa, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.IncluirNoMapa, Html.OptionsForBoolean(m => m.IncluirNoMapa, true), new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* LOCALIZAÇÃO E ENDERECO - FIM *@
+    <div class="space-10"></div>
+    @* VALORES - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Valores</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                R$
+                            </span>
+                            @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Iptu, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                R$
+                            </span>
+                            @Html.TextBoxFor(model => model.Iptu, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Iptu, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Condominio, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                R$
+                            </span>
+                            @Html.TextBoxFor(model => model.Condominio, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Condominio, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Taxa, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                R$
+                            </span>
+                            @Html.TextBoxFor(model => model.Taxa, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Taxa, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ObservacaoValor, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.ObservacaoValor, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ObservacaoValor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* VALORES - FIM *@
+    <div class="space-10"></div>
+    @* MEDIDAS - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Medidas</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AreaTotal, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.AreaTotal, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaTotal", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+
+                    @Html.LabelFor(model => model.AreaConstruida, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.AreaConstruida, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaConstruida", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+
+                    @Html.LabelFor(model => model.AreaPrivativa, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.AreaPrivativa, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaPrivativa", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+
+                    @Html.LabelFor(model => model.AreaTerreno, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.AreaTerreno, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaTerreno", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TerrenoFrente, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.TerrenoFrente, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaTerrenoFrente", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+
+                    @Html.LabelFor(model => model.TerrenoFundo, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.TerrenoFundo, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaTerrenoFundo", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+
+                    @Html.LabelFor(model => model.TerrenoDireita, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.TerrenoDireita, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaTerrenoDireita", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+
+                    @Html.LabelFor(model => model.TerrenoEsquerrda, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.TerrenoEsquerrda, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0" } })
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DropDownList("UnMedidaTerrenoEsquerda", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* MEDIDAS - FIM *@
+    <div class="space-10"></div>
+    @* CARACTERISTICAS - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Características</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Dormitorio, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Dormitorio, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Suite, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Suite, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Banheiro, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Banheiro, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Garagem, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Garagem, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Acomodacoes, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Acomodacoes, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1", @value = "0", @max = "20" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Mobiliado, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @*@Html.EditorFor(model => model.Mobiliado, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(m => m.Mobiliado, Html.OptionsForBoolean(m => m.Mobiliado, false), new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EmCondominio, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-1">
+                        @*@Html.EditorFor(model => model.EmCondominio, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(m => m.EmCondominio, Html.OptionsForBoolean(m => m.EmCondominio, false), new { @class = "form-control" })
+                    </div>
+
+                    @Html.LabelFor(model => model.NomeCondominio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.NomeCondominio, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.AnoConstrucao, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.AnoConstrucao, new { htmlAttributes = new { @class = "form-control", @max = DateTime.Now.Year + 5 } })
+                    </div>
+
+                    @Html.LabelFor(model => model.Pavimento, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.Pavimento, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Video, new { htmlAttributes = new { @class = "form-control", placeholder = "cole a URL do Youtube. Exemplo: https://www.youtube.com/watch?v=gosY-UrpHcA" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* CARACTERISTICAS - FIM *@
+    <div class="space-10"></div>
+    @* CARACTERISTICAS PERSONALIZADAS - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Informações Privativa</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main">
+                
+            </div>
+        </div>
+    </div>
+    @* CARACTERISTICAS PERSONALIZADAS - FIM *@
+    <div class="space-10"></div>
+    @* DESCRIÇÃO - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Descrição e Informações do Imóvel</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-11">
+                        @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-11">
+                        @Html.TextAreaFor(model => model.Observacao, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PontosFortes, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-11">
+                        @Html.TextAreaFor(model => model.PontosFortes, new { @class = "form-control" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CentralNegocio, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-11">
+                        @if (Model == null)
+                        {
+                            @Html.TextArea("CentralNegocio", new { @class = "form-control" })
+                        }
+                        else
+                        {
+                            @Html.TextAreaFor(model => model.CentralNegocio, new { @class = "form-control" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* DESCRIÇÃO - FIM *@
+    <div class="space-10"></div>
+    @* INFORMAÇÃO - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Informações privativa</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DataCadastro, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.DataCadastro, new { @class = "form-control", @Value = DateTime.Now.ToString("dd/MM/yyyy HH:mm")})
+                    </div>
+
+                    @Html.LabelFor(model => model.Disponibilidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.Disponibilidade, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.LabelFor(model => model.LocalChave, htmlAttributes: new { @class = "control-label col-md-1", @style = "padding-top: 0" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.LocalChave, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Exclusividade, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.Exclusividade, Html.OptionsForBoolean(m => m.Exclusividade, false), new { @class = "form-control"})
+                    </div>
+
+                    @Html.LabelFor(model => model.Autorizacao, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.Autorizacao, Html.OptionsForBoolean(m => m.Autorizacao, false), new { @class = "form-control" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Averbada, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.Averbada, Html.OptionsForBoolean(m => m.Averbada, false), new { @class = "form-control" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Financiamento, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.Financiamento, Html.OptionsForBoolean(m => m.Financiamento, false), new { @class = "form-control" })
+                    </div>
+
+                    @Html.LabelFor(model => model.ComPlaca, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-1">
+                        @Html.DropDownListFor(m => m.ComPlaca, Html.OptionsForBoolean(m => m.ComPlaca, false), new { @class = "form-control" })
+                    </div>
+
+                    
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Informacao, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-11">
+                        @Html.TextAreaFor(model => model.Informacao, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* INFORMAÇÃO - FIM *@
+    <div class="space-10"></div>
+
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" name="command" value="Salvar" class="btn btn-success" />
+            <input type="submit" name="command" value="Salvar e Adicionar novo" class="btn btn-success" />
+            <input type="button" value="Voltar" class="cancel btn btn-default" onclick="location.href = '@Url.Action(" Index","Imovel")'" />
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addResponsavelModal" tabindex="-1" role="dialog" aria-labelledby="addResponsavelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="float: left" id="addResponsavelModalLabel">Adicionar Novo</h5>
+                <button type="button" style="float: right" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="txtResponsavelNome">Nome</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user bigger-110"></i>
+                                </span>
+                                <input id="txtResponsavelNome" name="txtResponsavelNome" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="txtResponsavelTelefone">Telefone</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-phone bigger-110"></i>
+                                </span>
+                                <input id="txtResponsavelTelefone" name="txtResponsavelTelefone" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="selectPerfil">Perfil</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <select class="form-control">
+                                    <option value="3">Proprietário Responsável</option>
+                                    <option value="1">Corretor Responsável</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id="btnSalvarResponsavel" type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addBairroModal" tabindex="-1" role="dialog" aria-labelledby="addBairroModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="float: left" id="addBairroModalLabel">Adicionar Novo Bairro</h5>
+                <button type="button" style="float: right" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="txtResponsavelNome">Nome</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-map bigger-110"></i>
+                                </span>
+                                <input id="txtResponsavelNome" name="txtResponsavelNome" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id="btnSalvarBairro" type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Model.Link>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Url)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                    @(item.Ativo ? "Sim" : "Não")
+                </td>
+                <td>
+                    <div class="hidden-sm hidden-xs action-buttons">
+                        <a class="blue" href="@Url.Action("Details", "Link", new { id = item.Id })">
+                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                        </a>
+
+                        <a class="green" href="@Url.Action("Edit", "Link", new { id = item.Id })">
+                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                        </a>
+
+                        <a class="red" href="@Url.Action("Delete", "Link", new { id = item.Id })">
+                            <i class="ace-icon fa fa-trash bigger-130"></i>
+                        </a>
+                    </div>
+
+                    <div class="hidden-md hidden-lg">
+                        <div class="inline pos-rel">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="@Url.Action("Details", "Link", new { id = item.Id })" class="tooltip-info" data-rel="tooltip" title="Visualizar">
+                                        <span class="blue">
+                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("Edit", "Link", new { id = item.Id })" class="tooltip-success" data-rel="tooltip" title="Editar">
+                                        <span class="green">
+                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("Delete", "Link", new { id = item.Id })" class="tooltip-error" data-rel="tooltip" title="Excluir">
+                                        <span class="red">
+                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

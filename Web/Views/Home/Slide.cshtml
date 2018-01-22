@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Model.Slide>
+
+<div class="fullwidthbanner">
+    <div class="tp-banner">
+        <ul>
+            @{int cont = 0;}
+            @foreach (var item in Model)
+            {
+                <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="@Html.DisplayFor(modelItem => item.Titulo)">
+                    <!-- MAIN IMAGE -->
+                    <img src="@Url.Action("Slide","Img", new { id = item.Id})" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <div class="caption slider-title sft"
+                         data-x="50"
+                         data-y="160"
+                         data-speed="1000"
+                         data-start="1000"
+                         data-easing="easeOutExpo">
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </div>
+                    <div class="caption slider-text sfl"
+                         data-x="50"
+                         data-y="214"
+                         data-speed="1000"
+                         data-start="1800"
+                         data-easing="easeOutExpo">
+                        @if (item.Url != null)
+                        {
+                            <a href="@Html.DisplayFor(modelItem => item.Url)" class="slider btn btn-system btn-large">Saiba mais!</a>
+                        }
+                    </div>
+                    <div class="caption sfb slider-price tp-resizeme"
+                         data-x="50"
+                         data-y="258"
+                         data-speed="500"
+                         data-start="1800"
+                         data-easing="Sine.easeOut">
+                        @Html.DisplayFor(modelItem => item.Subtitulo)
+                    </div>
+                </li>
+                cont++;
+            }
+        </ul>
+    </div>
+</div>

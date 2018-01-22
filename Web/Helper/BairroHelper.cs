@@ -7,7 +7,7 @@ namespace Web.Helper
 {
     public class BairroHelper
     {
-        public static SelectList MontarListaBairro(List<VwBairro> bairros)
+        public static SelectList MontarListaBairro(List<Bairro> bairros)
         {
             List<ViewBairro> retorno = new List<ViewBairro>();
 
@@ -19,8 +19,8 @@ namespace Web.Helper
                 ViewBairro vb = new ViewBairro()
                 {
                     Id = count,
-                    Bairro = item.NomeBairro,
-                    Url = item.BairroUrl
+                    Bairro = item.Nome,
+                    Url = Util.Texto.FormatarParaURLAmigavel(item.Nome)
                 };
 
                 retorno.Add(vb);

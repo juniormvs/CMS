@@ -16,41 +16,83 @@ namespace Model
     {
         public Imovel()
         {
+            this.DetalhePorImovel = new HashSet<DetalhePorImovel>();
             this.ImagemImovel = new HashSet<ImagemImovel>();
+            this.ImoveInformacao = new HashSet<ImoveInformacao>();
         }
     
         public int Id { get; set; }
         public string Codigo { get; set; }
-        public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string CentralNegocio { get; set; }
+        public string PontosFortes { get; set; }
+        public string Observacao { get; set; }
         public string Imagem { get; set; }
+        public string UrlAmigavel { get; set; }
+        public Nullable<System.DateTime> DataCadastro { get; set; }
+        public Nullable<System.DateTime> DataExclusao { get; set; }
+        public string UsuarioExclusao { get; set; }
+        public bool Destaque { get; set; }
         public Nullable<decimal> Valor { get; set; }
-        public Nullable<decimal> ValorCondominio { get; set; }
-        public Nullable<double> AreaTotal { get; set; }
-        public Nullable<double> AreaConstruida { get; set; }
+        public Nullable<decimal> Iptu { get; set; }
+        public Nullable<decimal> Condominio { get; set; }
+        public Nullable<decimal> Taxa { get; set; }
+        public string ObservacaoValor { get; set; }
         public Nullable<int> Dormitorio { get; set; }
         public Nullable<int> Suite { get; set; }
         public Nullable<int> Banheiro { get; set; }
         public Nullable<int> Garagem { get; set; }
-        public string Endereco { get; set; }
-        public string Cidade { get; set; }
-        public string Uf { get; set; }
-        public string Bairro { get; set; }
+        public Nullable<int> Acomodacoes { get; set; }
+        public Nullable<bool> Mobiliado { get; set; }
+        public Nullable<bool> EmCondominio { get; set; }
+        public Nullable<int> AnoConstrucao { get; set; }
+        public string Pavimento { get; set; }
+        public string Video { get; set; }
         public string Cep { get; set; }
+        public string EnderecoGoogle { get; set; }
+        public string Logradouro { get; set; }
+        public string Numero { get; set; }
+        public string Complemento { get; set; }
+        public string Zona { get; set; }
+        public string Regiao { get; set; }
+        public string PontoReferencia { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public string UrlAmigavel { get; set; }
+        public Nullable<bool> GerarMapa { get; set; }
+        public Nullable<bool> IncluirNoMapa { get; set; }
+        public Nullable<double> AreaTotal { get; set; }
+        public string UnMedidaTotal { get; set; }
+        public Nullable<double> AreaPrivativa { get; set; }
+        public string UnMedidaPrivativa { get; set; }
+        public Nullable<double> AreaConstruida { get; set; }
+        public string UnMedidaConstruida { get; set; }
+        public Nullable<double> AreaTerreno { get; set; }
+        public string UnMedidaTerreno { get; set; }
+        public Nullable<double> TerrenoFrente { get; set; }
+        public string UnMedidaTerrenoFrente { get; set; }
+        public Nullable<double> TerrenoFundo { get; set; }
+        public string UnMedidaTerrenoFundo { get; set; }
+        public Nullable<double> TerrenoDireita { get; set; }
+        public string UnMedidaTerrenoDireita { get; set; }
+        public Nullable<double> TerrenoEsquerrda { get; set; }
+        public string UnMedidaTerrenoEsquerda { get; set; }
         public int TipoContratoId { get; set; }
         public int TipoImovelId { get; set; }
         public int StatusId { get; set; }
-        public Nullable<System.DateTime> DataCadastro { get; set; }
-        public Nullable<System.DateTime> DataExclusao { get; set; }
-        public string UsuarioExclusao { get; set; }
-        public string BairroUrl { get; set; }
-        public string CidadeUrl { get; set; }
+        public int BairroId { get; set; }
+        public int CidadeId { get; set; }
+        public Nullable<int> CorretorPessoaId { get; set; }
+        public Nullable<int> ProprietarioPessoaId { get; set; }
+        public string UserId { get; set; }
+        public string NomeCondominio { get; set; }
     
+        public virtual Bairro Bairro { get; set; }
+        public virtual Cidade Cidade { get; set; }
+        public virtual ICollection<DetalhePorImovel> DetalhePorImovel { get; set; }
         public virtual ICollection<ImagemImovel> ImagemImovel { get; set; }
+        public virtual ICollection<ImoveInformacao> ImoveInformacao { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
+        public virtual Pessoa Pessoa1 { get; set; }
         public virtual TipoContrato TipoContrato { get; set; }
         public virtual TipoImovel TipoImovel { get; set; }
         public virtual Status Status { get; set; }

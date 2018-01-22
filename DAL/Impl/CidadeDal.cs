@@ -3,7 +3,7 @@ using Model;
 
 namespace DAL
 {
-    public class CidadeDal : Repositorio<VwCidade>, ICidadeDal
+    public class CidadeDal : Repositorio<Cidade>, ICidadeDal
     {
     }
 }

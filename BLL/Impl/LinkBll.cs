@@ -39,7 +39,7 @@ namespace BLL
 
         public IQueryable<Link> ListarAtivos()
         {
-            return _linkDal.Get(l => l.StatusId == Constants.STATUS_ATIVO_ID);
+            return _linkDal.Get(l => l.Ativo);
         }
 
         public Link Obter(int id)

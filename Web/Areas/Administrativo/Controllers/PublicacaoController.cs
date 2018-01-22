@@ -13,22 +13,22 @@ using Util;
 
 namespace Web.Areas.Administrativo.Controllers
 {
-    [Authorize]
+    
     public class PublicacaoController : Controller
     {
         private readonly IPublicacaoBll _publicacaoBll;
-        private readonly ICategoriaBll _categoriaBll;
+        private readonly ICategoriaPublicacaoBll _categoriaPublicacaoBll;
         private readonly IStatusBll _statusBll;
         private readonly IImagemPublicacaoBll _imagemBll;
-        private readonly ICategoriaPublicacaoBll _categoriaPublicacaoBll;
+        private readonly IPublicacaoPorCategoriaBll _publicacaoPorCategoriaBll;
 
         public PublicacaoController()
         {
             _publicacaoBll = new PublicacaoBll();
-            _categoriaBll = new CategoriaBll();
+            _categoriaPublicacaoBll = new CategoriaPublicacaoBll();
             _statusBll = new StatusBll();
             _imagemBll = new ImagemPublicacaoBll();
-            _categoriaPublicacaoBll = new CategoriaPublicacaoBll();
+            _publicacaoPorCategoriaBll = new PublicacaoPorCategoriaBll();
         }
 
         #region CRUD
@@ -36,7 +36,9 @@ namespace Web.Areas.Administrativo.Controllers
         // GET: Administrativo/Publicacao
         public ActionResult Index()
         {
-            return View(_publicacaoBll.Listar().Include(p => p.Status).Include(p => p.CategoriaPublicacao).OrderByDescending(p => p.DataPublicacao).ToList());
+            List<Publicacao> lista = _publicacaoBll.Listar().Include(p => p.Status).Include(p => p.PublicacaoPorCategoria).OrderByDescending(p => p.DataPublicacao).ToList();
+
+            return View(lista);
         }
 
         // GET: Administrativo/Publicacao/Details/5
@@ -55,7 +57,7 @@ namespace Web.Areas.Administrativo.Controllers
         public ActionResult Create()
         {
             ViewBag.StatusId = new SelectList(_statusBll.ListarStatusPublicacao(), "Id", "Nome");
-            ViewBag.Categorias = new MultiSelectList(_categoriaBll.ListarAtivos(), "Id", "Nome");
+            ViewBag.Categorias = new MultiSelectList(_categoriaPublicacaoBll.ListarTodos(), "Id", "Nome");
             ViewBag.BtnSalvar = Constants.BTN_RASCUNHO;
             return View();
         }
@@ -68,7 +70,7 @@ namespace Web.Areas.Administrativo.Controllers
         {
             publicacao.UrlAmigavel = Texto.FormatarParaURLAmigavel(publicacao.Titulo);
             
-            publicacao.CategoriaPublicacao = ResolverCategorias(categorias, null);
+            publicacao.PublicacaoPorCategoria = ResolverCategorias(categorias, null);
 
             publicacao.DataPublicacao = publicacao.DataPublicacao == null ? DateTime.Now : publicacao.DataPublicacao;
 
@@ -114,12 +116,12 @@ namespace Web.Areas.Administrativo.Controllers
                 ExibirMensagem(e.Message, Constants.DANGER);
 
                 ViewBag.StatusId = new SelectList(_statusBll.ListarStatusPublicacao(), "Id", "Nome");
-                ViewBag.Categorias = new MultiSelectList(_categoriaBll.ListarAtivos(), "Id", "Nome", categorias);
+                ViewBag.Categorias = new MultiSelectList(_categoriaPublicacaoBll.ListarTodos(), "Id", "Nome", categorias);
                 return View(publicacao);
             }
         }
 
-        private ICollection<CategoriaPublicacao> ResolverCategorias(List<int> categorias, int? publicacaoId)
+        private ICollection<PublicacaoPorCategoria> ResolverCategorias(List<int> categorias, int? publicacaoId)
         {
             if (categorias == null)
             {
@@ -127,16 +129,16 @@ namespace Web.Areas.Administrativo.Controllers
                 categorias.Add(Constants.ID_CATEGORIA_NOTICIA);
             }
 
-            List<CategoriaPublicacao> listaCategorias = new List<CategoriaPublicacao>();
+            List<PublicacaoPorCategoria> listaCategorias = new List<PublicacaoPorCategoria>();
 
             foreach (var idCategoria in categorias)
             {
-                CategoriaPublicacao categoriaPublicacao = new CategoriaPublicacao()
+                PublicacaoPorCategoria publicacaoPorCategoria = new PublicacaoPorCategoria()
                 {
                     CategoriaId = idCategoria,
                     PublicacaoId = publicacaoId.GetValueOrDefault()
                 };
-                listaCategorias.Add(categoriaPublicacao);
+                listaCategorias.Add(publicacaoPorCategoria);
             }
 
             return listaCategorias;
@@ -153,9 +155,9 @@ namespace Web.Areas.Administrativo.Controllers
             }
 
             ViewBag.StatusId = new SelectList(_statusBll.ListarStatusPublicacao(), "Id", "Nome", publicacao.StatusId);
-            ViewBag.Categorias = new MultiSelectList(_categoriaBll.ListarAtivos(), "Id", "Nome");
-            ViewBag.CategoriasPublicacao = publicacao.CategoriaPublicacao;
-            System.Diagnostics.Trace.WriteLine("CATEGORIAS : " + publicacao.CategoriaPublicacao);
+            ViewBag.Categorias = new MultiSelectList(_categoriaPublicacaoBll.ListarTodos(), "Id", "Nome");
+            ViewBag.CategoriasPublicacao = publicacao.PublicacaoPorCategoria;
+            System.Diagnostics.Trace.WriteLine("CATEGORIAS : " + publicacao.PublicacaoPorCategoria);
 
             ViewBag.BtnSalvar = Constants.BTN_SALVAR;
 
@@ -178,12 +180,12 @@ namespace Web.Areas.Administrativo.Controllers
             
             try
             {
-                _categoriaPublicacaoBll.ExcluirPorPublicacao(publicacao.Id);
+                _publicacaoPorCategoriaBll.ExcluirPorPublicacao(publicacao.Id);
                 
                 _publicacaoBll.Atualizar(publicacao);
 
-                List<CategoriaPublicacao> categoriaPublicacao = ResolverCategorias(categorias, publicacao.Id).ToList();
-                _categoriaPublicacaoBll.Salvar(categoriaPublicacao);
+                List<PublicacaoPorCategoria> publicacaoPorCategoria = ResolverCategorias(categorias, publicacao.Id).ToList();
+                _publicacaoPorCategoriaBll.Salvar(publicacaoPorCategoria);
 
                 if (Session[Constants.SESSAO_NOME_ARQUIVO] != null)
                 {
@@ -216,8 +218,8 @@ namespace Web.Areas.Administrativo.Controllers
                 ExibirMensagem(Mensagens.ERRO_AO_ATUALIZAR, Constants.DANGER);
 
                 ViewBag.StatusId = new SelectList(_statusBll.ListarStatusPublicacao(), "Id", "Nome", publicacao.StatusId);
-                ViewBag.Categorias = new MultiSelectList(_categoriaBll.ListarAtivos(), "Id", "Nome");
-                ViewBag.CategoriasPublicacao = publicacao.CategoriaPublicacao;
+                ViewBag.Categorias = new MultiSelectList(_categoriaPublicacaoBll.ListarTodos(), "Id", "Nome");
+                ViewBag.PublicacaoPorCategoria = publicacao.PublicacaoPorCategoria;
 
                 ViewBag.BtnSalvar = Constants.BTN_SALVAR;
 

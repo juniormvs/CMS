@@ -1,0 +1,98 @@
+﻿@model Model.Empresa
+
+<style type="text/css">
+    .top-welcome > a {
+        color: #ffffff !important;
+        font-size: 13px;
+        margin-right: 10px;
+        transition: all 200ms ease-in;
+        padding: 2px 3px;
+    }
+
+        .top-welcome > a:hover {
+            color: #fff !important;
+            background-color: #2db1bd
+        }
+</style>
+
+
+<div class="top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 hidden-xs">
+                <span class="top-welcome">
+                    <a class="top-welcome-link" href="@Url.Action("Index", "Empresa", null)">
+                        Consultoria Imobiliária
+                    </a>
+                </span>
+                <span class="top-welcome">
+                    <a class="top-welcome-link" href="@Url.Action("Index", "Imovel", null)">
+                        Imóveis
+                    </a>
+                </span>
+                <span class="top-welcome">
+                    <a class="top-welcome-link" href="@Url.Action("Index", "SimularFinanciamento", null)">
+                        Simular Financiamento
+                    </a>
+                </span>
+                <span class="top-welcome">
+                    <a class="top-welcome-link" href="@Url.Action("Index", "CadastrarMeuImovel", null)">
+                        Anunciar meu imóvel
+                    </a>
+                </span>
+                <span class="top-welcome">
+                    <a class="top-welcome-link" href="@Url.Action("Index", "Busca", null)">
+                        Busca Completa
+                    </a>
+                </span>
+            </div>
+            <div class="col-sm-3">
+                <div class="top-social">
+                    <a href="http://https//www.facebook.com/imobiliariaprudente" target="_blank"><i class="fa fa-facebook"></i></a>
+                    @*<a href="~/Content/#"><i class="fa fa-youtube-play"></i></a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header-logo-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <a href="@Url.Action("Index","Home")" class="header-logo">
+                    <img src="~/Content/img/logo.png" />
+                    <!--
+                    <span class="header-icon"><i class="fa fa-home"></i></span>
+                    <span class="header-title">Prudente</span>
+                    <span class="header-slogan">Consultoria  <br>Imobiliária</span>
+                    -->
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-6 hidden-sm hidden-xs">
+                <div class="contact-info-blocks hidden-sm hidden-xs">
+                    <div>
+                        <i class="fa fa-phone"></i> Ligue para nós
+                        <span>(18) 3217-2771</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i> Whatsapp
+                        <span>(18) 9 9709-8750</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i> Email
+                        <span>imobiliariaprudente@hotmail.com</span>
+                    </div>
+                </div>
+            </div>
+            @*
+                <div class="col-md-2 col-sm-5">
+                    <div class="top-search">
+                            <form role="form" class="search-widget">
+                                <input type="text" class="form-control" placeholder="Procurar">
+                                <button type="submit" class="btn btn-submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        </div>*@
+        </div>
+    </div>
+</div>

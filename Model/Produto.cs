@@ -17,6 +17,7 @@ namespace Model
         public Produto()
         {
             this.ImagemProduto = new HashSet<ImagemProduto>();
+            this.ProdutoPorCategoria = new HashSet<ProdutoPorCategoria>();
         }
     
         public int Id { get; set; }
@@ -27,12 +28,10 @@ namespace Model
         public string Video { get; set; }
         public Nullable<decimal> Preco { get; set; }
         public string UrlAmigavel { get; set; }
-        public int StatusId { get; set; }
-        public int CategoriaId { get; set; }
         public bool PostarNoFacebook { get; set; }
+        public bool Ativo { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         public virtual ICollection<ImagemProduto> ImagemProduto { get; set; }
-        public virtual Status Status { get; set; }
+        public virtual ICollection<ProdutoPorCategoria> ProdutoPorCategoria { get; set; }
     }
 }

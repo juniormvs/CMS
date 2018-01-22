@@ -16,8 +16,8 @@ namespace Model
     {
         public Publicacao()
         {
-            this.CategoriaPublicacao = new HashSet<CategoriaPublicacao>();
             this.ImagemPublicacao = new HashSet<ImagemPublicacao>();
+            this.PublicacaoPorCategoria = new HashSet<PublicacaoPorCategoria>();
         }
     
         public int Id { get; set; }
@@ -34,8 +34,8 @@ namespace Model
         public int StatusId { get; set; }
         public string Autor { get; set; }
     
-        public virtual ICollection<CategoriaPublicacao> CategoriaPublicacao { get; set; }
         public virtual ICollection<ImagemPublicacao> ImagemPublicacao { get; set; }
+        public virtual ICollection<PublicacaoPorCategoria> PublicacaoPorCategoria { get; set; }
         public virtual Status Status { get; set; }
     }
 }

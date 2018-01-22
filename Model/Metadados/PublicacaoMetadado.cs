@@ -37,6 +37,6 @@ namespace Model
 
         public virtual ICollection<ImagemPublicacao> ImagemPublicacao { get; set; }
         public virtual Status Status { get; set; }
-        public virtual ICollection<CategoriaPublicacao> CategoriaPublicacao { get; set; }
+        public virtual ICollection<PublicacaoPorCategoria> PublicacaoPorCategoria { get; set; }
     }
 }

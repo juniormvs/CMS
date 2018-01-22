@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Model.Imovel>
+
+@foreach (var item in Model)
+{
+    <div class="row property-listing">
+        <div class="col-sm-4 margin30">
+            <div class="image">
+                <div class="content" style="max-height: 200px;">
+                    <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})"><i class="fa fa-search-plus"></i></a>
+                    <img src="@Url.Action("Imovel","Img", new { id = item.Id})" class="img-responsive" alt="propety">
+                    <span class="label-property" style="font-size: 12px">@Html.DisplayFor(modelItem => item.TipoImovel.Nome)</span>
+                    <span class="label-price">@Html.DisplayFor(modelItem => item.Valor)</span>
+                </div><!--content-->
+            </div><!--image-->
+        </div><!--image col-->
+        <div class="col-sm-8">
+            <h1 style="font-size: 1.4em; line-height: 1.4em; margin-bottom: 1.8em;">
+                <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})">
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </a>
+            </h1>
+            <em><strong>Código:</strong> @Html.DisplayFor(modelItem => item.Id)</em><br>
+            @if (item.Valor > 0)
+            {
+                <em><strong>Valor:</strong> @Html.DisplayFor(modelItem => item.Valor)</em><br>
+            }
+            @if (item.Condominio > 0)
+            {
+                <em><strong>Condomínio:</strong> @Html.DisplayFor(modelItem => item.Condominio)</em><br>
+            }
+            <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})" class="btn btn-default">Enviar Proposta</a>
+            @*<p>
+                @Html.Raw(item.Descricao)
+            </p>*@
+            <div class="clearfix">
+                <div class="pull-left">
+
+                    @if (item.AreaConstruida > 0)
+                    {
+                        <span>
+                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                            @Html.DisplayFor(modelItem => item.AreaConstruida)m²
+                        </span>
+                    }
+
+                    @if (item.AreaTotal > 0 || item.AreaTotal != null)
+                    {
+                        <span>
+                            <span class="fa-stack fa-lg" style="margin-right: 0">
+                                <i class="fa fa-square-o fa-stack-2x"></i>
+                                <i class="fa fa-home fa-stack-1x"></i>
+                            </span>
+                            @Html.DisplayFor(modelItem => item.AreaTotal)m²
+                        </span>
+                    }
+
+                    @if (item.Banheiro > 0)
+                    {
+                        <span>
+                            <i class="fa fa-shower fa-2x" aria-hidden="true"></i>
+                            @Html.DisplayFor(modelItem => item.Banheiro)
+                        </span>
+                    }
+
+                    @if (item.Dormitorio > 0)
+                    {
+                        <span>
+                            <i class="fa fa-bed fa-2x" aria-hidden="true"></i>
+                            @Html.DisplayFor(modelItem => item.Dormitorio)
+                        </span>
+                    }
+                    @if (item.Suite > 0)
+                    {
+                        <span>
+                            <i class="fa fa-bath fa-2x" aria-hidden="true"></i>
+                            @Html.DisplayFor(modelItem => item.Suite)
+                        </span>
+                    }
+                    @if (item.Garagem > 0)
+                    {
+                        <span>
+                            <i class="fa fa-car fa-2x" aria-hidden="true"></i>
+                            @Html.DisplayFor(modelItem => item.Garagem)
+                        </span>
+                    }
+                </div>
+                <div class="pull-right">
+                    <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})"><i class="fa fa-chevron-circle-right"></i> Mais detalhes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

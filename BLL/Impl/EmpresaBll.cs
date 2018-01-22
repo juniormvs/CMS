@@ -2,7 +2,9 @@
 using DAL;
 using DAL.Interface;
 using Model;
+using Servicos;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -13,13 +15,35 @@ namespace BLL
         {
             _empresaDal = new EmpresaDal();
         }
-        public void Atualizar(Empresa empresa)
+        public async Task Atualizar(Empresa empresa)
         {
             if(null != empresa)
             {
+                if (empresa.Endereco != null)
+                {
+                    GoogleMaps googleMaps = new GoogleMaps();
+
+                    dynamic retorno = await googleMaps.GetLatitudeLongitude(empresa.Endereco);
+
+                    if (retorno.status == "OK")
+                    {
+                        foreach (var data in retorno.results)
+                        {
+                            empresa.Latitute = data.geometry.location.lat;
+                            empresa.Longitude = data.geometry.location.lng;
+                        }
+                    }
+                }
+
                 _empresaDal.Update(empresa);
                 _empresaDal.SaveChanges();
             }
+        }
+
+        public void AtualizarSkin(Empresa empresa)
+        {
+            _empresaDal.Update(empresa);
+            _empresaDal.SaveChanges();
         }
 
         public void Excluir(Empresa empresa)

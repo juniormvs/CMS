@@ -5,7 +5,7 @@ using Util;
 
 namespace Web.Areas.Administrativo.Controllers
 {
-    [Authorize]
+    
     public class UsuarioController : Controller
     {
         private IUsuarioBll _usuarioBll;

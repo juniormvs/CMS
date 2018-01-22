@@ -3,7 +3,7 @@ using Model;
 
 namespace DAL.Impl
 {
-    public class BairroDal : Repositorio<VwBairro>, IBairroDal
+    public class BairroDal : Repositorio<Bairro>, IBairroDal
     {
     }
 }

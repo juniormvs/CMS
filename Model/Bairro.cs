@@ -14,8 +14,15 @@ namespace Model
     
     public partial class Bairro
     {
+        public Bairro()
+        {
+            this.Imovel = new HashSet<Imovel>();
+        }
+    
         public int Id { get; set; }
         public string Nome { get; set; }
         public string UrlAmigavel { get; set; }
+    
+        public virtual ICollection<Imovel> Imovel { get; set; }
     }
 }

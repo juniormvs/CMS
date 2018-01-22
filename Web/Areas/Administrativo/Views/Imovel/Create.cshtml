@@ -1,4 +1,4 @@
-﻿@model Model.Imovel
+﻿@model Web.Models.ImovelViewModel
 @{
     ViewBag.Title = "Novo";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -128,17 +128,16 @@
     <script src="@Url.Content("~/ContentAdmin/js/x-editable/bootstrap-editable.js")"></script>
     <script src="@Url.Content("~/ContentAdmin/js/x-editable/ace-editable.js")"></script>
     <script src="@Url.Content("~/ContentAdmin/js/jquery.gritter.js")"></script>
-    <script src="@Url.Content("~/ContentAdmin/js/ace/ace.widget-box.js")"></script>
-
+    
     <script src="@Url.Content("~/ContentAdmin/js/jquery.colorbox.js")"></script>
     <script src="@Url.Content("~/ContentAdmin/js/jquery-ui.js")"></script>
 
     <script src="@Url.Content("~/Scripts/jquery.moneymask.js")"></script>
     
-    <script src="@Url.Content("~/Scripts/app/Imovel.js")"></script>
+    <script src="@Url.Content("~/Scripts/admin/Imovel.js")"></script>
     <script src="@Url.Content("~/Scripts/app/SingleUpload.js")"></script>
-
     <script src="@Url.Content("~/Scripts/app/Colorbox.js")"></script>
+
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE4HZcUdxqP1_zftFCSa5TKawZWdDwmwc&libraries=places&callback=initAutocomplete" async defer></script>
     <script src="~/Scripts/app/GmapsAutocomplete .js"></script>

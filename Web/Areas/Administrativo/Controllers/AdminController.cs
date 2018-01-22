@@ -30,7 +30,7 @@ namespace Web.Areas.Administrativo.Controllers
             {
                 if(item.UrlAmigavel == null)
                 {
-                    item.UrlAmigavel = Texto.FormatarParaURLAmigavel(item.Titulo);
+                    //item.UrlAmigavel = Texto.FormatarParaURLAmigavel(item.Titulo);
                     _imovelBll = null;
                     _imovelBll = new ImovelBll();
                     _imovelBll.Atualizar(item);

@@ -17,6 +17,7 @@ namespace Model
         public Portifolio()
         {
             this.ImagemPortifolio = new HashSet<ImagemPortifolio>();
+            this.PortifolioPorCategoria = new HashSet<PortifolioPorCategoria>();
         }
     
         public int Id { get; set; }
@@ -26,11 +27,9 @@ namespace Model
         public string Imagem { get; set; }
         public string Url { get; set; }
         public string UrlAmigavel { get; set; }
-        public int StatusId { get; set; }
-        public int CategoriaId { get; set; }
+        public bool Ativo { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         public virtual ICollection<ImagemPortifolio> ImagemPortifolio { get; set; }
-        public virtual Status Status { get; set; }
+        public virtual ICollection<PortifolioPorCategoria> PortifolioPorCategoria { get; set; }
     }
 }

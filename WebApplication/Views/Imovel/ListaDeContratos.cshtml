@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Model.TipoContrato>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="@Url.Action("ImovelPorContrato","Imovel", new { urlAmigavelContrato = item.UrlAmigavel})">
+            @Html.DisplayFor(modelItem => item.Nome)
+        </a>
+    </li>
+}

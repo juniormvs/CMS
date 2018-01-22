@@ -54,6 +54,24 @@ namespace Web.Areas.Administrativo.Controllers
             return File(imageFile, "image/jpeg");
         }
 
+        public FileResult Servico(int? id)
+        {
+            IServicoBll _bll = new ServicoBll();
+
+            if (id == null) return null;
+
+            var servico = _bll.Obter(id.GetValueOrDefault());
+
+            if (servico == null) return null;
+
+            var imageFile = Server.MapPath(Constants.IMG_SERVICO + servico.Imagem);
+
+            System.Diagnostics.Debug.WriteLine(imageFile);
+
+            return File(imageFile, "image/jpeg");
+        }
+
+
         public FileResult Publicacao(int? id)
         {
             IPublicacaoBll _bll = new PublicacaoBll();
@@ -69,40 +87,17 @@ namespace Web.Areas.Administrativo.Controllers
             return File(imageFile, "image/jpeg");
         }
 
-        public FileResult Cliente(int? id)
+        public FileResult Pessoa(int? id)
         {
-            IClienteParceiroBll _clienteBll = new ClienteParceiroBll();
+            IPessoaBll _bll = new PessoaBll();
 
             if (id == null) return null;
 
-            var cliente = _clienteBll.Obter(id.GetValueOrDefault());
+            var pessoa = _bll.Obter(id.GetValueOrDefault());
 
-            if (cliente == null) return null;
+            if (pessoa == null) return null;
 
-            var imageFile = Server.MapPath(Constants.IMG_CLIENTE + cliente.Pessoa.Imagem);
-            
-            return File(imageFile, "image/jpeg");
-        }
-
-        public FileResult Equipe(int? id)
-        {
-            IEquipeBll _equipeBll = new EquipeBll();
-
-            if (id == null) return null;
-
-            var cliente = _equipeBll.Obter(id.GetValueOrDefault());
-
-            if (cliente == null) return null;
-
-            var imageFile = "";
-            if (!string.IsNullOrEmpty(cliente.Pessoa.Imagem))
-            {
-                imageFile = Server.MapPath(Constants.IMG_EQUIPE + cliente.Pessoa.Imagem);
-            }
-            else
-            {
-                imageFile = Server.MapPath(Constants.IMG_EQUIPE + Constants.EQUIPE_SEM_IMAGEM);
-            }
+            var imageFile = Server.MapPath(Constants.IMG_PESSOA + pessoa.Imagem);
 
             return File(imageFile, "image/jpeg");
         }
@@ -114,7 +109,7 @@ namespace Web.Areas.Administrativo.Controllers
 
             if (empresa == null) return null;
 
-            var imageFile = Server.MapPath(Constants.IMG_EMPRESA + empresa.Pessoa.Imagem);
+            var imageFile = Server.MapPath(Constants.IMG_EMPRESA + empresa.Imagem);
 
             return File(imageFile, "image/jpeg");
         }

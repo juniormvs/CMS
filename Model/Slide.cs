@@ -19,5 +19,6 @@ namespace Model
         public string Titulo { get; set; }
         public string Subtitulo { get; set; }
         public string Url { get; set; }
+        public bool Ativo { get; set; }
     }
 }

@@ -5,14 +5,13 @@ namespace BLL.Interface
 {
     public interface IUsuarioBll
     {
-        Usuario Obter(int id);
-        IQueryable<Usuario> Listar();
-        IQueryable<Usuario> ListarAtivos();
-        void Excluir(Usuario usuario);
-        void Salvar(Usuario usuario);
-        void Atualizar(Usuario usuario);
-        bool Autenticar(Usuario usuario);
-        bool RecuperarSenhaPorEmail(Usuario usuario);
+        Users Obter(string id);
+        IQueryable<Users> Listar();
+        void Excluir(Users usuario);
+        void Salvar(Users usuario);
+        void Atualizar(Users usuario);
+        bool Autenticar(Users usuario);
+        bool RecuperarSenhaPorEmail(Users usuario);
 
     }
 }

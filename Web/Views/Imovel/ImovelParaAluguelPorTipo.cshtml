@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Model.Imovel>
+
+@{
+    ViewBag.Title = ViewBag.Titulo + " - Aluguel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="divide20"></div>
+<div class="container">
+    <div class="row">
+        @Html.Action("SideBar", "Home", null)
+
+        <div class="col-md-9">
+            <h3 class="title-section">Propriedades para locação - @ViewBag.Titulo</h3>
+            @Html.Partial("~/Views/Shared/_PartialAlert.cshtml", Model)
+
+            @Html.Partial("~/Views/Imovel/_PartialListaImovel.cshtml", Model)
+
+        </div>
+    </div>
+</div>

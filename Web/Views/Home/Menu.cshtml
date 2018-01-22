@@ -1,0 +1,43 @@
+﻿@model Model.Empresa
+
+<!-- Static navbar -->
+<nav class="navbar navbar-inverse navbar-static-top sticky yamm">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--     <a class="navbar-brand" href="~/Content/index.html">Assan</a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index","Home")">Início</a></li>
+                <li><a href="@Url.Action("Index","Empresa")">A Imobiliária</a></li>
+                <li><a href="@Url.Action("Index","Imovel")">Imóveis</a></li>
+                <li class="dropdown">
+                    <a href="~/Content/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Para Venda   <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        @Html.Action("MenuTipoImoveisVenda", "Home", null)
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="~/Content/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Para Aluguel   <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        @Html.Action("MenuTipoImoveisAluguel", "Home", null)
+                    </ul>
+                </li>
+                <li><a href="@Url.Action("Index","Mapa")">Mapa de Imóveis</a></li>
+
+                <li><a href="@Url.Action("Index","Contato")">Contato</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @*<li><a href="~/Content/real-estate-login-register.html">Login</a></li>*@
+                <li class="active"><a href="@Url.Action("Index","CadastrarMeuImovel",null)">Vender / Alugar meu imóvel</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container -->
+</nav><!--navigation end-->

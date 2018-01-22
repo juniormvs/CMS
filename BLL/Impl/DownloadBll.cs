@@ -41,7 +41,7 @@ namespace BLL
 
         public IQueryable<Download> ListarAtivos()
         {
-            return _downloadDal.Get(d => d.Status_Id == Constants.STATUS_ATIVO_ID);
+            return _downloadDal.Get(d => d.Ativo);
         }
 
         public Download Obter(int id)

@@ -24,9 +24,7 @@ namespace Model
         public string Descricao { get; set; }
         public string Imagem { get; set; }
         public bool Bebida { get; set; }
-        public int Status_Id { get; set; }
     
         public virtual ICollection<Cardapio> Cardapio { get; set; }
-        public virtual Status Status { get; set; }
     }
 }

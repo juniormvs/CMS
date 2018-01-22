@@ -2,7 +2,7 @@
 using DAL;
 using DAL.Interface;
 using Model;
-using ServicoExterno;
+using Servicos;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -110,12 +110,12 @@ namespace BLL
 
         private async Task ResolverInformacoes(Imovel imovel)
         {
-            if (imovel?.Endereco != null)
+            if (imovel?.EnderecoGoogle != null)
             {
                 dynamic retorno;
                 GoogleMaps googleMaps = new GoogleMaps();
 
-                retorno = await googleMaps.GetLatitudeLongitude(imovel.Endereco);
+                retorno = await googleMaps.GetLatitudeLongitude(imovel.EnderecoGoogle);
 
                 if (retorno.status == "OK")
                 {
@@ -127,10 +127,7 @@ namespace BLL
                 }
             }
 
-            imovel.Titulo = imovel.Titulo.Trim();
-            imovel.UrlAmigavel = Texto.FormatarParaURLAmigavel(imovel.Titulo);
-            imovel.CidadeUrl = Texto.FormatarParaURLAmigavel(imovel.Cidade);
-            imovel.BairroUrl = Texto.FormatarParaURLAmigavel(imovel.Bairro);
+            //MontarUrlSeo(imovel);            
 
             imovel.DataCadastro = DateTime.Now;
 
@@ -142,5 +139,8 @@ namespace BLL
             }
 
         }
+
+       
+
     }
 }

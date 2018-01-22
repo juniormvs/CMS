@@ -1,0 +1,104 @@
+﻿<div class="col-md-3">
+    <div class="sidebar-box">
+        <h3>Busca Detalhada</h3>
+        @using (Html.BeginForm("Busca", "Busca", FormMethod.Get))
+        {
+            <ul class="list-unstyled cat-list">
+                <li>
+                    <div class="form-group">
+                        <input type="text" id="Id" name="Id" class="form-control" placeholder="Código">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group select-option">
+                        <section>
+                            @Html.DropDownList("CidadeUrl", null, "Qual Cidade?", htmlAttributes: new { @class = "form-control" })
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group select-option">
+                        <section>
+                            @Html.DropDownList("BairroUrl", null, "Qual Bairro?", htmlAttributes: new { @class = "form-control" })
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group select-option">
+                        <section>
+                            @Html.DropDownList("TipoImovelId", null, "Qual Tipo?", htmlAttributes: new { @class = "form-control" })
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group select-option">
+                        <section>
+                            @Html.DropDownList("TipoContratoId", null, "Qual Finalidade?", htmlAttributes: new { @class = "form-control" })
+                        </section>
+                    </div>
+                </li>
+                <li class="hidden">
+                    <div class="form-group">
+                        <input type="text" id="Valor" name="Valor" readonly style="border:0; color:#f6931f; font-weight:bold; width: 100%;">
+                        <div id="slider-range"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <section>
+                            <select id="Dormitorio" name="Dormitorio" class="form-control">
+                                <option value="" disabled selected>Dormitórios</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <section>
+                            <select id="Suite" name="Suite" class="form-control">
+                                <option value="" disabled selected>Suite</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <section>
+                            <select id="Banheiro" name="Banheiro" class="form-control">
+                                <option value="" disabled selected>Banheiros</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <section>
+                            <select id="Garagem" name="Garagem" class="form-control">
+                                <option value="" disabled selected>Garagem</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </section>
+                    </div>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-red btn-lg btn-block">Buscar</button>
+                </li>
+            </ul>
+        }
+    </div>
+</div>

@@ -13,18 +13,14 @@ using Util;
 
 namespace Web.Areas.Administrativo.Controllers
 {
-    [Authorize]
+
     public class EmpresaController : Controller
     {
         private readonly IEmpresaBll _empresaBll;
-        private readonly IPessoaBll _pessoaBll;
-        private readonly IStatusBll _statusBll;
 
         public EmpresaController()
         {
             _empresaBll = new EmpresaBll();
-            _pessoaBll = new PessoaBll();
-            _statusBll = new StatusBll();
         }
 
         // GET: Administrativo/Empresa
@@ -92,32 +88,16 @@ namespace Web.Areas.Administrativo.Controllers
 
         // POST: Administrativo/Empresa/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit([Bind(Include = @"Id, Email, Telefone, Endereco, TemaPainel,
-            Logo, Resumo, Pessoa, PessoaId")] Empresa empresa)
+        public async Task<ActionResult> Edit([Bind(Include = @"Id, Nome, Descricao,
+            Resumo, Endereco, Telefone, Whatsapp, Email, Imagem, Logo, TemaPainel")] Empresa empresa, string novaImagem)
         {
-            if (empresa.Endereco != null)
-            {
-                await GetLatLong(empresa);
-            }
-
-            Pessoa pessoa = _pessoaBll.Obter(empresa.PessoaId);
-
-            pessoa.Nome = empresa.Pessoa.Nome;
-            pessoa.Bio = empresa.Pessoa.Bio;
-            pessoa.Imagem = empresa.Pessoa.Imagem;
-            pessoa.Observacao = empresa.Pessoa.Observacao;
-            pessoa.StatusId = Constants.STATUS_ATIVO_ID;
-            pessoa.Tipo = Constants.EMPRESA;
-            
             try
             {
-                _pessoaBll.Atualizar(pessoa);
-                empresa.Pessoa = null;
-                _empresaBll.Atualizar(empresa);
+                await _empresaBll.Atualizar(empresa);
 
-                if (Session[Constants.SESSAO_NOME_ARQUIVO] != null)
+                if (!string.IsNullOrEmpty(novaImagem))
                 {
-                    SalvarImagem(pessoa.Imagem);
+                    SalvarImagem(empresa.Imagem);
                 }
 
                 ExibirMensagem(Mensagens.ATUALIZADO_COM_SUCESSO, Constants.SUCCESS);
@@ -144,41 +124,6 @@ namespace Web.Areas.Administrativo.Controllers
             }
         }
         
-        private async Task GetLatLong(Empresa empresa)
-        {
-            HttpClient client = new HttpClient();
-        
-            string url = "https://maps.googleapis.com/maps/api/geocode/json?";
-            string address = "address=" + empresa.Endereco.Replace(" ","+");
-            string key = "&key=AIzaSyBU7wcTnef3GwcAzGTGCrX-1uEwpMRRoM4";
-
-            HttpResponseMessage response = await client.GetAsync(url + address + key);
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            JsonSerializer json = new JsonSerializer();
-
-            dynamic dynObj = JsonConvert.DeserializeObject(responseBody);
-
-            var lat = "";
-            var lng = "";
-            var enderecoCompleto = "";
-
-            if (dynObj.status == "OK")
-            {
-                foreach(var data in dynObj.results)
-                {
-                    lat = data.geometry.location.lat;
-                    lng = data.geometry.location.lng;
-                    enderecoCompleto = data.formatted_address;
-                }
-            }
-
-            empresa.Latitute = lat;
-            empresa.Longitude = lng;
-            empresa.Endereco = enderecoCompleto ?? empresa.Endereco;
-        }
-
         // GET: Administrativo/Empresa/Delete/5
         public ActionResult Delete(int id)
         {
@@ -218,7 +163,7 @@ namespace Web.Areas.Administrativo.Controllers
                 try
                 {
                     HttpPostedFileBase postedFile = Request.Files[0] as HttpPostedFileBase;
-                    string nomeArquivo = Guid.NewGuid().ToString() + Path.GetFileName(postedFile.FileName);
+                    string nomeArquivo = "Imobiliaria Prudente.jpg";//Guid.NewGuid().ToString() + Path.GetFileName(postedFile.FileName);
                     string savedFileName = Path.Combine(Server.MapPath(Constants.DIRETORIO_TEMPORARIO), nomeArquivo);
                     postedFile.SaveAs(savedFileName);
                     resultado = new
@@ -228,7 +173,7 @@ namespace Web.Areas.Administrativo.Controllers
                         nome = nomeArquivo,
                         url = savedFileName
                     };
-                    Session[Constants.SESSAO_NOME_ARQUIVO] = nomeArquivo;
+                    //Session[Constants.SESSAO_NOME_ARQUIVO] = nomeArquivo;
                 }
                 catch (Exception e)
                 {
@@ -254,7 +199,7 @@ namespace Web.Areas.Administrativo.Controllers
 
         private void SalvarImagem(string nome)
         {
-            string imagem = Session[Constants.SESSAO_NOME_ARQUIVO].ToString();
+            string imagem = nome;
             string diretorioOrigem = Constants.DIRETORIO_TEMPORARIO;
             string diretorioDestino = Constants.IMG_EMPRESA;
 

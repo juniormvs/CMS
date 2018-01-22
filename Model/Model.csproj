@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{672843A1-E38E-429B-B7B9-0963826FA1B6}</ProjectGuid>
+    <ProjectGuid>{751CF4E2-96A8-4590-84D4-70A31DFC8521}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
     <AssemblyName>Model</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,16 +31,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.10\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.10\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -80,6 +91,9 @@
     <Compile Include="Album.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="AlbumPorCategoria.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Bairro.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -89,34 +103,34 @@
     <Compile Include="CardapioCategoria.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Categoria.cs">
+    <Compile Include="CategoriaAlbum.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaPortifolio.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaProduto.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="CategoriaPublicacao.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClienteParceiro.cs">
+    <Compile Include="Cidade.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Contador.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Contato.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CupomDesconto.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Depoimento.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DetalhePorImovel.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Download.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Empresa.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Equipe.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Estado.cs">
@@ -137,7 +151,13 @@
     <Compile Include="ImagemPublicacao.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImoveInformacao.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imovel.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImovelDetalhe.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Link.cs">
@@ -150,12 +170,10 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Metadados\BairroMetadado.cs" />
-    <Compile Include="Metadados\CategoriaMetadado.cs" />
-    <Compile Include="Metadados\ClienteParceiroMetadado.cs" />
-    <Compile Include="Metadados\ContatoMetadado.cs" />
+    <Compile Include="Metadados\CategoriaPublicacaoMetadado.cs" />
+    <Compile Include="Metadados\CidadeMetadado.cs" />
     <Compile Include="Metadados\DownloadMetadado.cs" />
     <Compile Include="Metadados\EmpresaMetadado.cs" />
-    <Compile Include="Metadados\EquipeMetadado.cs" />
     <Compile Include="Metadados\EstadoMetadado.cs" />
     <Compile Include="Metadados\ImagemImovelMetadado.cs" />
     <Compile Include="Metadados\ImagemPublicacaoMetadado.cs" />
@@ -163,8 +181,7 @@
     <Compile Include="Metadados\LinkMetadado.cs" />
     <Compile Include="Metadados\LogMetadado.cs" />
     <Compile Include="Metadados\MensagemMetadado.cs" />
-    <Compile Include="Metadados\MunicipioMetadado.cs" />
-    <Compile Include="Metadados\PerfilMetadado.cs" />
+    <Compile Include="Metadados\PerfilPessoaMetadado.cs" />
     <Compile Include="Metadados\PessoaMetadado.cs" />
     <Compile Include="Metadados\PublicacaoMetadado.cs" />
     <Compile Include="Metadados\RedeMetadado.cs" />
@@ -173,13 +190,10 @@
     <Compile Include="Metadados\ServicoMetadado.cs" />
     <Compile Include="Metadados\SlideMetadado.cs" />
     <Compile Include="Metadados\StatusMetadado.cs" />
-    <Compile Include="Metadados\TipoContatoMetadado.cs" />
     <Compile Include="Metadados\TipoContratoMetadado.cs" />
     <Compile Include="Metadados\TipoImovelMetadado.cs" />
     <Compile Include="Metadados\TipoServicoMetadado.cs" />
     <Compile Include="Metadados\UsuarioMetadado.cs" />
-    <Compile Include="Metadados\VwCidadeMetadado.cs" />
-    <Compile Include="Metadados\VwBairroMetadado.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,10 +209,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Municipio.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Perfil.cs">
+    <Compile Include="PerfilPessoa.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Pessoa.cs">
@@ -207,23 +218,26 @@
     <Compile Include="Portifolio.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PortifolioPorCategoria.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Produto.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Promocao.cs">
+    <Compile Include="ProdutoPorCategoria.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publicacao.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Rede.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RedeSocial.cs">
+    <Compile Include="PublicacaoPorCategoria.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Regiao.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Servico.cs">
@@ -235,9 +249,6 @@
     <Compile Include="Status.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="TipoContato.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoContrato.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -247,44 +258,46 @@
     <Compile Include="TipoServico.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
+    <Compile Include="UserClaims.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLogins.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Video.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="VwBairro.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VwCidade.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
     <None Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <Content Include="Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

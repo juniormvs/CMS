@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Model.Imovel>
+
+@{
+    ViewBag.Title = "Resultado de sua busca";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@section css{
+    <style>
+        .grid-galeria {
+            max-height: 200px;
+        }
+    </style>
+
+    <script src="~/Scripts/angular/angular.min.js"></script>
+    <script src="~/Scripts/angular/BuscaController.js"></script>
+}
+
+
+<div class="divide20"></div>
+<div class="container" ng-app="buscaApp">
+    <div class="row">
+        @Html.Action("SideBar", "Busca", null)
+
+        <div class="col-md-9">
+            <h3 class="title-section">Resultado de Sua Busca</h3>
+
+            <div ng-controller="buscaController">
+                <div ng-show="buscaImoveisLoaded">
+                    carregando, aguarde...
+                </div>
+
+                <div ng-hide="buscaImoveisLoaded">
+                    <div ng-repeat="imovel in listaImoveis">
+                        {{imovel.Id}} - {{imovel.Titulo}} - {{imovel.Endereco}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 text-center">
+                <h3>Deseja anunciar sua propriedade aqui? </h3>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href="@Url.Action("Index", "CadastrarMeuImovel", null)">Anunciar Propriedade Agora</a>
+            </div>
+        </div>
+    </div>
+</div><!--call to action-->
+
+@section script{
+    <script src="~/Content/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Scripts/app/Busca.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 30000,
+                max: 1000000,
+                step: 10000,
+                values: [100000, 300000],
+                slide: function (event, ui) {
+                    if (ui.values[1] == 1000000) {
+                        $("#Valor").val("Valor a partir de R$" + ui.values[0] + ", e mais que R$" + ui.values[1]);
+                    } else {
+                        $("#Valor").val("Valor a partir de R$" + ui.values[0] + ", até R$" + ui.values[1]);
+                    }
+                }
+            });
+
+            $("#Valor").val("Valor a partir de R$" + $("#slider-range").slider("values", 0) +
+                ", até R$" + $("#slider-range").slider("values", 1));
+        });
+    </script>
+
+}

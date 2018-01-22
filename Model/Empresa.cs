@@ -15,16 +15,17 @@ namespace Model
     public partial class Empresa
     {
         public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
         public string Resumo { get; set; }
         public string Endereco { get; set; }
-        public string Logo { get; set; }
+        public string Telefone { get; set; }
+        public string Whatsapp { get; set; }
         public string Email { get; set; }
-        public int PessoaId { get; set; }
+        public string Imagem { get; set; }
+        public string Logo { get; set; }
         public string TemaPainel { get; set; }
         public string Latitute { get; set; }
         public string Longitude { get; set; }
-        public string Telefone { get; set; }
-    
-        public virtual Pessoa Pessoa { get; set; }
     }
 }

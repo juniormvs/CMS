@@ -1,0 +1,33 @@
+﻿<div class="col-md-3">
+    <div class="sidebar-box">
+        <h3>Categorias</h3>
+        <ul class="list-unstyled cat-list">
+            @Html.Action("ListaDeCategorias", "Imovel", null)
+        </ul>
+    </div>
+    <div class="sidebar-box">
+        <h3>Tipo de Contrato</h3>
+        <ul class="list-unstyled cat-list">
+            @Html.Action("ListaDeContratos", "Imovel", null)
+        </ul>
+    </div>
+    <div class="sidebar-box">
+        <h3>Financiamento</h3>
+        <ul class="list-unstyled cat-list">
+            <li>
+                <a href="@Url.Action("Index","SimularFinanciamento", null)">
+                    Simule seu Financiamento
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar-box">
+        <h3>Propriedades Recentes</h3>
+        @Html.Action("PropriedadesRecentes", "Imovel", new { quantidade = 3 })
+    </div>
+
+    <div class="sidebar-box">
+        <h3>Nossos Corretores</h3>
+        
+    </div>
+</div>

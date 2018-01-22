@@ -3,7 +3,7 @@ using Model;
 
 namespace DAL
 {
-    public class CategoriaPublicacaoDal : Repositorio<CategoriaPublicacao>, ICategoriaPublicacaoDal
+    public class CategoriaDal : Repositorio<CategoriaPublicacao>, ICategoriaPublicacaoDal
     {
     }
 }

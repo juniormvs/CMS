@@ -7,7 +7,7 @@ namespace Web.Helper
 {
     public class CidadeHelper
     {
-        public static SelectList MontarListaCidade(List<VwCidade> cidades)
+        public static SelectList MontarListaCidade(List<Cidade> cidades)
         {
             List<ViewCidade> retorno = new List<ViewCidade>();
 
@@ -19,8 +19,8 @@ namespace Web.Helper
                 ViewCidade vc = new ViewCidade()
                 {
                     Id = count,
-                    Cidade = item.NomeCidade,
-                    Url = item.CidadeUrl
+                    Cidade = item.Nome,
+                    Url = Util.Texto.FormatarParaURLAmigavel(item.Nome)
                 };
 
                 retorno.Add(vc);

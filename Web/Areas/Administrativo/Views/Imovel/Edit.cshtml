@@ -1,4 +1,4 @@
-﻿@model Model.Imovel
+﻿@model Web.Models.ImovelViewModel
 @{
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -41,7 +41,7 @@
     <li>
         <a href="@Url.Action("Index", "Imovel")">Imóvel</a>
     </li>
-    <li class="active">@Model.Titulo</li>
+    <li class="active">@Model.UrlAmigavel</li>
 }
 
 <div class="page-content">
@@ -126,8 +126,7 @@
     <script src="@Url.Content("~/ContentAdmin/js/x-editable/bootstrap-editable.js")"></script>
     <script src="@Url.Content("~/ContentAdmin/js/x-editable/ace-editable.js")"></script>
     <script src="@Url.Content("~/ContentAdmin/js/jquery.gritter.js")"></script>
-    <script src="@Url.Content("~/ContentAdmin/js/ace/ace.widget-box.js")"></script>
-
+    
     <script src="@Url.Content("~/ContentAdmin/js/jquery.colorbox.js")"></script>
     <script src="@Url.Content("~/ContentAdmin/js/jquery-ui.js")"></script>
 

@@ -16,6 +16,7 @@ namespace Model
     {
         public Album()
         {
+            this.AlbumPorCategoria = new HashSet<AlbumPorCategoria>();
             this.ImagemAlbum = new HashSet<ImagemAlbum>();
         }
     
@@ -23,12 +24,10 @@ namespace Model
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string UrlAmigavel { get; set; }
-        public int StatusId { get; set; }
-        public int CategoriaId { get; set; }
         public bool PostarNoFacebook { get; set; }
+        public bool Ativo { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
-        public virtual Status Status { get; set; }
+        public virtual ICollection<AlbumPorCategoria> AlbumPorCategoria { get; set; }
         public virtual ICollection<ImagemAlbum> ImagemAlbum { get; set; }
     }
 }

@@ -14,11 +14,17 @@ namespace Model
     
     public partial class CategoriaPublicacao
     {
-        public int Id { get; set; }
-        public int CategoriaId { get; set; }
-        public int PublicacaoId { get; set; }
+        public CategoriaPublicacao()
+        {
+            this.PublicacaoPorCategoria = new HashSet<PublicacaoPorCategoria>();
+        }
     
-        public virtual Categoria Categoria { get; set; }
-        public virtual Publicacao Publicacao { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public string UrlAmigavel { get; set; }
+        public bool Ativo { get; set; }
+    
+        public virtual ICollection<PublicacaoPorCategoria> PublicacaoPorCategoria { get; set; }
     }
 }

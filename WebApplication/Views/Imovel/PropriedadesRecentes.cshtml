@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Model.Imovel>
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left">
+            <div class="image">
+                <div class="content">
+                    <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})"><i class="fa fa-search-plus"></i></a>
+                    <img src="@Url.Action("Imovel","Img", new { id = item.Id})" width="100" alt="propety">
+                </div><!--content-->
+            </div><!--image-->
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})">@Html.DisplayFor(modelItem => item.TipoImovel.Nome)</a>
+            </h4>
+            <p>@Html.DisplayFor(modelItem => item.TipoContrato.Nome)</p>
+            <p>@Html.DisplayFor(modelItem => item.Cidade)</p>
+        </div>
+    </div><!--media-->
+}

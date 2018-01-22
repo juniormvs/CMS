@@ -28,7 +28,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Usuario usuario, string returnUrl)
+        public ActionResult Login(Users usuario, string returnUrl)
         {
             if (!Validar(usuario))
             {
@@ -56,7 +56,7 @@ namespace Web.Controllers
             }
         }
 
-        private bool Validar(Usuario usuario)
+        private bool Validar(Users usuario)
         {
             bool retorno = true;
             if (usuario.Email == null)
@@ -68,12 +68,12 @@ namespace Web.Controllers
             {
                 retorno = false;
             }
-            if (usuario.Senha == null)
+            if (usuario.PasswordHash == null)
             {
                 retorno = false;
             }
 
-            if (usuario.Senha.Equals(string.Empty))
+            if (usuario.PasswordHash.Equals(string.Empty))
             {
                 retorno = false;
             }
@@ -117,7 +117,7 @@ namespace Web.Controllers
                    && !returnUrl.StartsWith("/\\");
         }
 
-        public JsonResult EnviarSenha(Usuario usuario)
+        public JsonResult EnviarSenha(Users usuario)
         {
             string mensagem;
             string status;

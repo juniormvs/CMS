@@ -1,0 +1,149 @@
+﻿@model Model.Empresa
+
+@{
+    ViewBag.Title = "A Imobiliária";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        @Html.Action("SideBar", "Home", null)
+
+        <div class="col-md-9">
+            <div class="blog-post" style="margin-bottom: 0">
+                <div class="row">
+                    <div class="col-md-12" style="margin-bottom: 20px">
+                        <h2 style="margin-top: 0; line-height: normal">A Imobiliária</h2>
+                        <div class="image">
+                            <div class="content">
+                                <img src="@Url.Action("Empresa","Img")" alt="@Html.DisplayFor(model => model.Nome)" class="img-responsive" style="min-width: 100%">
+                            </div><!--content-->
+                        </div><!--image-->
+                    </div>
+                    <div class="col-md-12 margin20" style="margin-top: 20px">
+                        @Html.Raw(Model.Descricao)
+                        <div class="divide4"></div>
+                    </div>
+
+                    <div class="col-md-12 margin20" style="margin-top: 20px">
+                        <strong>@Html.DisplayFor(model => model.Nome)</strong><br>
+                        <strong>Telefones: </strong>@Html.DisplayFor(model => model.Telefone)<br>
+                        <strong>creci</strong> 28.800-J<br>
+                        <strong>Email:</strong> @Html.DisplayFor(model => model.Email)<br>
+                        <strong>Horário de Funcionamento:</strong> das 9:00 hrs até as 18:00 hrs.
+                    </div>
+
+                    <div class="col-md-12">
+                        <strong>Nossa Localização</strong><br>
+                        @Html.DisplayFor(model => model.Endereco)<br>
+                        <br>
+                        <div id="property-map" style="width:100%;height: 400px;">
+                        </div>
+                    </div>
+                </div>
+            </div><!--post-->
+
+
+        </div>
+
+    </div>
+</div>
+<div class="divide70"></div>
+<div class="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 text-center">
+                <h3>Deseja anunciar sua propriedade aqui? </h3>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href="@Url.Action("Index", "CadastrarMeuImovel", null)">Anunciar Propriedade Agora</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+
+    <script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?key=AIzaSyBU7wcTnef3GwcAzGTGCrX-1uEwpMRRoM4&v=3&#038;sensor=true&#038;ver=3.6'></script>
+    <script type='text/javascript' src='~/Content/js/gmap3.infobox.min.js'></script>
+    <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                function LoadMapProperty() {
+                    var locations = new Array(
+                            [@Html.DisplayFor(model => model.Latitute), @Html.DisplayFor(model => model.Longitude)]
+                            );
+                    var types = new Array(
+                            'family-house'
+                            );
+                    var markers = new Array();
+                    var plainMarkers = new Array();
+
+                    var mapOptions = {
+                        center: new google.maps.LatLng(@Html.DisplayFor(model => model.Latitute), @Html.DisplayFor(model => model.Longitude)),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scrollwheel: false
+                    };
+
+                    var map = new google.maps.Map(document.getElementById('property-map'), mapOptions);
+
+                    $.each(locations, function (index, location) {
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(location[0], location[1]),
+                            map: map,
+
+                        });
+
+                        var myOptions = {
+                            draggable: true,
+                            content: '<div class="marker ' + types[index] + '"><div class="marker-inner"></div></div>',
+                            disableAutoPan: true,
+                            pixelOffset: new google.maps.Size(-21, -58),
+                            position: new google.maps.LatLng(location[0], location[1]),
+                            closeBoxURL: "",
+                            isHidden: false,
+                            // pane: "mapPane",
+                            enableEventPropagation: true
+                        };
+                        marker.marker = new InfoBox(myOptions);
+                        marker.marker.isHidden = false;
+                        marker.marker.open(map, marker);
+                        markers.push(marker);
+                    });
+
+                    google.maps.event.addListener(map, 'zoom_changed', function () {
+                        $.each(markers, function (index, marker) {
+                            marker.infobox.close();
+                        });
+                    });
+                }
+
+                google.maps.event.addDomListener(window, 'load', LoadMapProperty);
+
+                var dragFlag = false;
+                var start = 0, end = 0;
+
+                function thisTouchStart(e) {
+                    dragFlag = true;
+                    start = e.touches[0].pageY;
+                }
+
+                function thisTouchEnd() {
+                    dragFlag = false;
+                }
+
+                function thisTouchMove(e) {
+                    if (!dragFlag)
+                        return;
+                    end = e.touches[0].pageY;
+                    window.scrollBy(0, (start - end));
+                }
+
+                document.getElementById("property-map").addEventListener("touchstart", thisTouchStart, true);
+                document.getElementById("property-map").addEventListener("touchend", thisTouchEnd, true);
+                document.getElementById("property-map").addEventListener("touchmove", thisTouchMove, true);
+            });
+
+    </script>
+
+}

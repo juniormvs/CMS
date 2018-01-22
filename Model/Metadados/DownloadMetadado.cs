@@ -11,8 +11,6 @@ namespace Model
         public string MimeType { get; set; }
         public string Descricao { get; set; }
         public string Arquivo { get; set; }
-        public int Status_Id { get; set; }
-
-        public virtual Status Status { get; set; }
+        public bool Ativo { get; set; }
     }
 }

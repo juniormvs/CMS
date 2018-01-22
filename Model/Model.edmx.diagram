@@ -4,98 +4,97 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6701d948ce164c7d836229072204c2e0" Name="Diagram1" ZoomLevel="100">
-        <EntityTypeShape EntityType="cmsModel.Agenda" Width="1.5" PointX="14.375" PointY="27.875" />
-        <EntityTypeShape EntityType="cmsModel.Ajuda" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="cmsModel.AjudaTopico" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="cmsModel.Album" Width="1.5" PointX="3.75" PointY="25.25" />
-        <EntityTypeShape EntityType="cmsModel.Bairro" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="cmsModel.Cardapio" Width="1.5" PointX="16.625" PointY="9.875" />
-        <EntityTypeShape EntityType="cmsModel.CardapioCategoria" Width="1.5" PointX="14.375" PointY="1.125" />
-        <EntityTypeShape EntityType="cmsModel.Categoria" Width="1.5" PointX="5.875" PointY="11.875" />
-        <EntityTypeShape EntityType="cmsModel.CategoriaPublicacao" Width="1.5" PointX="16.625" PointY="29.5" />
-        <EntityTypeShape EntityType="cmsModel.ClienteParceiro" Width="1.5" PointX="3.75" PointY="30.875" />
-        <EntityTypeShape EntityType="cmsModel.Contador" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="cmsModel.Contato" Width="1.5" PointX="3.75" PointY="34.25" />
-        <EntityTypeShape EntityType="cmsModel.CupomDesconto" Width="1.5" PointX="18.875" PointY="28.875" />
-        <EntityTypeShape EntityType="cmsModel.Depoimento" Width="1.5" PointX="5.875" PointY="9" />
-        <EntityTypeShape EntityType="cmsModel.Download" Width="1.5" PointX="14.375" PointY="24.75" />
-        <EntityTypeShape EntityType="cmsModel.Empresa" Width="1.5" PointX="8.125" PointY="11.125" />
-        <EntityTypeShape EntityType="cmsModel.Equipe" Width="1.5" PointX="8.125" PointY="15" />
-        <EntityTypeShape EntityType="cmsModel.Estado" Width="1.5" PointX="4.75" PointY="4.75" />
-        <EntityTypeShape EntityType="cmsModel.ImagemAlbum" Width="1.5" PointX="18.875" PointY="25.875" />
-        <EntityTypeShape EntityType="cmsModel.ImagemImovel" Width="1.5" PointX="19.625" PointY="18.375" />
-        <EntityTypeShape EntityType="cmsModel.ImagemPortifolio" Width="1.5" PointX="9" PointY="30.625" />
-        <EntityTypeShape EntityType="cmsModel.ImagemProduto" Width="1.5" PointX="9" PointY="25.625" />
-        <EntityTypeShape EntityType="cmsModel.ImagemPublicacao" Width="1.5" PointX="16.625" PointY="5.375" />
-        <EntityTypeShape EntityType="cmsModel.Imovel" Width="1.5" PointX="17.375" PointY="15.75" />
-        <EntityTypeShape EntityType="cmsModel.Link" Width="1.5" PointX="1.5" PointY="27.875" />
-        <EntityTypeShape EntityType="cmsModel.Log" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="cmsModel.Mensagem" Width="1.5" PointX="6.75" PointY="4.75" />
-        <EntityTypeShape EntityType="cmsModel.Municipio" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="cmsModel.Perfil" Width="1.5" PointX="4.5" PointY="22.5" />
-        <EntityTypeShape EntityType="cmsModel.Pessoa" Width="1.5" PointX="1.5" PointY="32.75" />
-        <EntityTypeShape EntityType="cmsModel.Portifolio" Width="1.5" PointX="6.75" PointY="30" />
-        <EntityTypeShape EntityType="cmsModel.Produto" Width="1.5" PointX="6.75" PointY="24.875" />
-        <EntityTypeShape EntityType="cmsModel.Promocao" Width="1.5" PointX="5.875" PointY="15.625" />
-        <EntityTypeShape EntityType="cmsModel.Publicacao" Width="1.5" PointX="14.375" PointY="4.375" />
-        <EntityTypeShape EntityType="cmsModel.Rede" Width="1.5" PointX="5.875" PointY="19.75" />
-        <EntityTypeShape EntityType="cmsModel.RedeSocial" Width="1.5" PointX="3.75" PointY="37.25" />
-        <EntityTypeShape EntityType="cmsModel.Regiao" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="cmsModel.Servico" Width="1.5" PointX="14.375" PointY="17.875" />
-        <EntityTypeShape EntityType="cmsModel.Slide" Width="1.5" PointX="2.75" PointY="7.75" />
-        <EntityTypeShape EntityType="cmsModel.Status" Width="1.5" PointX="12.125" PointY="17.125" />
-        <EntityTypeShape EntityType="cmsModel.TipoContato" Width="1.5" PointX="1.5" PointY="24.5" />
-        <EntityTypeShape EntityType="cmsModel.TipoContrato" Width="1.5" PointX="15.125" PointY="21.75" />
-        <EntityTypeShape EntityType="cmsModel.TipoImovel" Width="1.5" PointX="15.125" PointY="15.25" />
-        <EntityTypeShape EntityType="cmsModel.TipoServico" Width="1.5" PointX="12.125" PointY="14.625" />
-        <EntityTypeShape EntityType="cmsModel.Usuario" Width="1.5" PointX="6.75" PointY="34.125" />
-        <EntityTypeShape EntityType="cmsModel.Video" Width="1.5" PointX="8.75" PointY="3.75" />
-        <AssociationConnector Association="cmsModel.fk_Agenda_Status1" />
-        <AssociationConnector Association="cmsModel.fk_Ajuda_AjudaTopico1" />
-        <AssociationConnector Association="cmsModel.fk_AjudaTopico_AjudaTopico1" />
-        <AssociationConnector Association="cmsModel.fk_Album_Categoria1" />
-        <AssociationConnector Association="cmsModel.fk_album_status1" />
-        <AssociationConnector Association="cmsModel.fk_ImagemAlbum_Album1" />
-        <AssociationConnector Association="cmsModel.fk_Cardapio_CardapioCategoria1" />
-        <AssociationConnector Association="cmsModel.fk_Cardapio_Status1" />
-        <AssociationConnector Association="cmsModel.fk_CardapioCategoria_Status1" />
-        <AssociationConnector Association="cmsModel.fk_categoria_has_publicacao_categoria1" />
-        <AssociationConnector Association="cmsModel.fk_Categoria_Status1" />
-        <AssociationConnector Association="cmsModel.fk_Portifolio_Categoria1" />
-        <AssociationConnector Association="cmsModel.fk_Produto_Categoria1" />
-        <AssociationConnector Association="cmsModel.fk_categoria_has_publicacao_publicacao1" />
-        <AssociationConnector Association="cmsModel.fk_cliente_pessoa1" />
-        <AssociationConnector Association="cmsModel.fk_Telefone_Pessoa1" />
-        <AssociationConnector Association="cmsModel.fk_Telefone_TipoTelefone1" />
-        <AssociationConnector Association="cmsModel.fk_CupomDesconto_Status1" />
-        <AssociationConnector Association="cmsModel.fk_depoimento_status1" />
-        <AssociationConnector Association="cmsModel.fk_Download_Status1" />
-        <AssociationConnector Association="cmsModel.fk_empresa_pessoa1" />
-        <AssociationConnector Association="cmsModel.fk_equipe_pessoa1" />
-        <AssociationConnector Association="cmsModel.fk_ImagemPropriedade_Propriedade" />
-        <AssociationConnector Association="cmsModel.fk_ImagemPortifolio_Portifolio1" />
-        <AssociationConnector Association="cmsModel.fk_ImagemProduto_Produto1" />
-        <AssociationConnector Association="cmsModel.fk_ImagemPublicacao_Publicacao1" />
-        <AssociationConnector Association="cmsModel.fk_Imovel_TipoContrato1" />
-        <AssociationConnector Association="cmsModel.fk_Imovel_TipoImovel1" />
-        <AssociationConnector Association="cmsModel.fk_Propriedade_Status1" />
-        <AssociationConnector Association="cmsModel.fk_link_status1" />
-        <AssociationConnector Association="cmsModel.fk_Usuario_Perfil1" />
-        <AssociationConnector Association="cmsModel.fk_Pessoa_status1" />
-        <AssociationConnector Association="cmsModel.fk_rede_social_pessoa1" />
-        <AssociationConnector Association="cmsModel.fk_usuario_pessoa1" />
-        <AssociationConnector Association="cmsModel.fk_Portifolio_Status1" />
-        <AssociationConnector Association="cmsModel.fk_Produto_Status1" />
-        <AssociationConnector Association="cmsModel.fk_Promocao_Status1" />
-        <AssociationConnector Association="cmsModel.fk_publicacao_status1" />
-        <AssociationConnector Association="cmsModel.fk_rede_social_rede1" />
-        <AssociationConnector Association="cmsModel.fk_servico_status1" />
-        <AssociationConnector Association="cmsModel.fk_servico_tipo1" />
-        <AssociationConnector Association="cmsModel.ClienteParceiroCupomDesconto" />
-        <EntityTypeShape EntityType="cmsModel.VwCidade" Width="1.5" PointX="10.375" PointY="0.75" />
-        <EntityTypeShape EntityType="cmsModel.VwBairro" Width="1.5" PointX="8.375" PointY="8.75" />
-      </Diagram>
+      <Diagram DiagramId="4a85f18af6374db6a48e758efbfb207a" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="snweb10Model.Agenda" Width="1.5" PointX="9.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Ajuda" Width="1.5" PointX="8" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.AjudaTopico" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Album" Width="1.5" PointX="12.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.AlbumPorCategoria" Width="1.5" PointX="15" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Bairro" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Cardapio" Width="1.5" PointX="20" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.CardapioCategoria" Width="1.5" PointX="17.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.CategoriaAlbum" Width="1.5" PointX="12.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.CategoriaPortifolio" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.CategoriaProduto" Width="1.5" PointX="7.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.CategoriaPublicacao" Width="1.5" PointX="9.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Cidade" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Contador" Width="1.5" PointX="7.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Depoimento" Width="1.5" PointX="9.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.DetalhePorImovel" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Download" Width="1.5" PointX="19.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Empresa" Width="1.5" PointX="19.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Estado" Width="1.5" PointX="14.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImagemAlbum" Width="1.5" PointX="15" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImagemImovel" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImagemPortifolio" Width="1.5" PointX="15" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImagemProduto" Width="1.5" PointX="10" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImagemPublicacao" Width="1.5" PointX="6.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImoveInformacao" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Imovel" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ImovelDetalhe" Width="1.5" PointX="5.375" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Link" Width="1.5" PointX="16.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Log" Width="1.5" PointX="7.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Mensagem" Width="1.5" PointX="9.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.PerfilPessoa" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Pessoa" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Portifolio" Width="1.5" PointX="12.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.PortifolioPorCategoria" Width="1.5" PointX="15" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Produto" Width="1.5" PointX="7.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.ProdutoPorCategoria" Width="1.5" PointX="10" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Publicacao" Width="1.5" PointX="3.875" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.PublicacaoPorCategoria" Width="1.5" PointX="6" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Regiao" Width="1.5" PointX="11.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Servico" Width="1.5" PointX="17" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Slide" Width="1.5" PointX="18.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Status" Width="1.5" PointX="0.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.TipoContrato" Width="1.5" PointX="0.75" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.TipoImovel" Width="1.5" PointX="0.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.TipoServico" Width="1.5" PointX="14.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="snweb10Model.Video" Width="1.5" PointX="19.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="snweb10Model.fk_Ajuda_AjudaTopico1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_AjudaTopico_AjudaTopico1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Album_has_CategoriaAlbum_Album1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_ImagemAlbum_Album1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Album_has_CategoriaAlbum_CategoriaAlbum1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_Bairro1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Cardapio_CardapioCategoria1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Portifolio_has_CategoriaPortifolio_CategoriaPortifolio1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Produto_has_CategoriaProduto_CategoriaProduto1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_categoria_has_publicacao_categoria1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_Cidade1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_has_ImovelDetalhe_Imovel1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_has_ImovelDetalhe_ImovelDetalhe1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_ImagemPropriedade_Propriedade" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_ImagemPortifolio_Portifolio1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_ImagemProduto_Produto1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_ImagemPublicacao_Publicacao1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_ImovelPrivativo_Imovel" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_Pessoa1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_Pessoa2" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_TipoContrato1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Imovel_TipoImovel1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Propriedade_Status1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Pessoa_PerfilPessoa1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Portifolio_has_CategoriaPortifolio_Portifolio1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_Produto_has_CategoriaProduto_Produto1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_categoria_has_publicacao_publicacao1" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.875" PointY="24.627307029234721" />
+          <ConnectorPoint PointX="3.575" PointY="24.627307029234721" />
+          <ConnectorPoint PointX="3.575" PointY="22.575" />
+          <ConnectorPoint PointX="5.7" PointY="22.575" />
+          <ConnectorPoint PointX="5.7" PointY="24.615143229166669" />
+          <ConnectorPoint PointX="6" PointY="24.615143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="snweb10Model.fk_publicacao_status1" ManuallyRouted="false" />
+        <AssociationConnector Association="snweb10Model.fk_servico_tipo1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="snweb10Model.Roles" Width="1.5" PointX="23.625" PointY="16.125" />
+        <EntityTypeShape EntityType="snweb10Model.UserLogins" Width="1.5" PointX="23.625" PointY="21.25" />
+        <EntityTypeShape EntityType="snweb10Model.Users" Width="1.5" PointX="21.375" PointY="17.625" />
+        <AssociationConnector Association="snweb10Model.ApplicationUser_Logins" />
+        <AssociationConnector Association="snweb10Model.UserRoles" />
+        <EntityTypeShape EntityType="snweb10Model.UserClaims" Width="1.5" PointX="23.875" PointY="18.75" />
+        <AssociationConnector Association="snweb10Model.ApplicationUser_Claims" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

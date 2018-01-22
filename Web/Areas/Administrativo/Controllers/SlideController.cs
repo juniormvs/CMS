@@ -9,7 +9,7 @@ using Util;
 
 namespace Web.Areas.Administrativo.Controllers
 {
-    [Authorize]
+
     public class SlideController : Controller
     {
         private readonly ISlideBll _slideBll;
@@ -107,7 +107,7 @@ namespace Web.Areas.Administrativo.Controllers
                 System.Diagnostics.Debug.WriteLine(e);
                 //log.Error("Error message: " + e.Message + " - " + e.StackTrace);
                 ExibirMensagem(Mensagens.ERRO_AO_ATUALIZAR, Constants.DANGER);
-                return View();
+                return View(slide);
             }
         }
 
@@ -146,7 +146,7 @@ namespace Web.Areas.Administrativo.Controllers
                 System.Diagnostics.Debug.WriteLine(e);
                 //log.Error("Error message: " + e.Message + " - " + e.StackTrace);
                 ExibirMensagem(Mensagens.ERRO_AO_EXCLUIR, Constants.DANGER);
-                return View();
+                return View(slide);
             }
         }
         #endregion

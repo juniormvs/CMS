@@ -1,5 +1,6 @@
 ﻿using Model;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BLL.Interface
 {
@@ -9,6 +10,7 @@ namespace BLL.Interface
         IQueryable<Empresa> Listar();
         void Excluir(Empresa empresa);
         void Salvar(Empresa empresa);
-        void Atualizar(Empresa empresa);
+        Task Atualizar(Empresa empresa);
+        void AtualizarSkin(Empresa empresa);
     }
 }

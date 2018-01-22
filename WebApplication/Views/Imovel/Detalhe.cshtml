@@ -1,0 +1,220 @@
+﻿@model Model.Imovel
+
+@{
+    ViewBag.Title = Model.Titulo;
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+@section css{
+
+    <link href="~/Content/fancybox/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/Content/css/galeria.css" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    var imovelLongitude = "@Model.Longitude";
+    var imovelLatitude = "@Model.Latitude";
+    var imovelId = "@Model.Id";
+    var imovelTitulo = "@Model.Titulo";
+    var imovelUrl = window.location.href;
+    var zoomMaps = 15;
+</script>
+
+
+
+<div class="divide20"></div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+            <h3>@Html.DisplayFor(model => model.Titulo)</h3>
+            <span style="font-size: 1.4rem"><strong>Código:</strong> @Html.DisplayFor(model => model.Id)</span><br>
+            @if (Model.Valor > 0)
+            {
+                <h4><strong style="font-size: 1.4rem">Valor:</strong> @Html.DisplayFor(model => model.Valor)</h4><br>
+            }
+            @if (Model.ValorCondominio > 0)
+            {
+                <h4><strong>Condomínio:</strong> @Html.DisplayFor(model => model.ValorCondominio)</h4><br>
+            }
+            <p>
+                @if (Model.Endereco != null)
+                {
+                    @(Model.Endereco + ",")
+                }
+                @if (Model.Bairro != null)
+                {
+                    @(Model.Bairro + ",");
+                }
+                @if(Model.Cidade != null)
+                {
+                    @(Model.Cidade + "/")  @Html.DisplayFor(model => model.Uf);
+                }
+            </p>
+
+            <div class="galeria">
+                @Html.Action("ListarImagens", "ImagemImovel", new { imovelId = Model.Id })
+            </div>
+
+            <div class="property-meta clearfix margin20">
+                <span>@Html.DisplayFor(model => model.TipoContrato.Nome)</span>
+                @if (Model.AreaTotal != null)
+                {
+                    <span>@Html.DisplayFor(model => model.AreaTotal)m² Área Total</span>
+                }
+                @if (Model.AreaConstruida != null)
+                {
+                    <span>@Html.DisplayFor(model => model.AreaConstruida)m² Área Construida</span>
+                }
+                @if (Model.Dormitorio != null)
+                {
+                    <span>@Html.DisplayFor(model => model.Dormitorio) Dormitório(s)</span>
+                }
+                @if (Model.Suite != null)
+                {
+                    <span>@Html.DisplayFor(model => model.Suite) Suite(s)</span>
+                }
+                @if (Model.Banheiro != null)
+                {
+                    <span>@Html.DisplayFor(model => model.Banheiro) Banheiro(s)</span>
+                }
+                @if (Model.Garagem != null)
+                {
+                    <span>@Html.DisplayFor(model => model.Garagem) Vaga(s) de Garagem</span>
+                }
+            </div><!--property meta-->
+            <div class="property-description margin20">
+                @Html.Raw(Model.Descricao)
+            </div><!--description-->
+
+            <div class="divide30"></div>
+
+            @if (!string.IsNullOrEmpty(Model.Latitude))
+            {
+                string enderecoCompleto = Model.Endereco;
+                enderecoCompleto = enderecoCompleto.Replace(" ", "+");
+
+                <hr />
+                <h3>Localização</h3>
+                <p>@Html.DisplayFor(model => model.Endereco), @Html.DisplayFor(model => model.Bairro), @Html.DisplayFor(model => model.Cidade) / @Html.DisplayFor(model => model.Uf)</p>
+                
+                <p><a class="btn btn-red link-arrow" href="https://www.google.com.br/maps/place/@enderecoCompleto" target="_blank">Ver no Googlemaps</a></p>
+                <div id="property-map" style="width:100%; height:400px;">
+                </div>
+                <div class="divide60"></div>
+            }
+
+            <div class="row">
+                <h3>Central de negócio</h3>
+                @Html.Raw(Model.CentralNegocio)
+            </div>
+            <hr />
+            <div class="row">
+                <h3>Proposta / Informações</h3>
+                <p>Preencha os dados abaixo para enviar uma proposta ou solicitar mais informações.</p>
+
+                <div class="alert hidden" id="msgProposta">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="ace-icon fa fa-times"></i>
+                    </button>
+                    <p id="txtProposta"></p>
+                    <br />
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    <input type="hidden" id="ImovelId" name="ImovelId" value="@Model.Id" />
+                    <input type="hidden" id="ImovelTitulo" name="ImovelTitulo" value="@Model.Titulo" />
+                    <input type="hidden" id="UrlAmigavel" name="UrlAmigavel" value="@Model.UrlAmigavel" />
+                    <input type="hidden" id="ImovelUrl" name="ImovelUrl" value="" />
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 controls">
+                                    <label>Nome<span>*</span></label>
+                                    <input type="text" class="form-control"
+                                           placeholder="Seu Nome" id="Remetente" name="Remetente"
+                                           required data-validation-required-message="Por favor, informe seu nome.">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 controls">
+                                    <label>Endereço de Email<span>*</span></label>
+                                    <input type="email" class="form-control"
+                                           placeholder="Seu e-mail" id="Email" name="Email"
+                                           required data-validation-required-message="Por favor, informe seu e-mail.">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 controls">
+                                    <label>Telefone<span>*</span></label>
+                                    <input type="tel" class="form-control"
+                                           placeholder="Seu Telefone" id="Telefone" name="Telefone"
+                                           required data-validation-required-message="Por favor, informe seu telefone.">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 controls">
+                            <label>Mensagem<span>*</span></label>
+                            <textarea rows="2" class="form-control"
+                                      id="Mensagem" name="Mensagem"
+                                      placeholder="Olá! Achei esse imóvel através do site www.imobiliariaprudente.com.br. Por favor, gostaria de mais informações sobre o mesmo. Aguardo contato. Grato."
+                                      required data-validation-required-message="Por favor, escreva sua mensagem."></textarea>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <input type="button" id="btnEnviar" name="command" value="Enviar" class="btn btn-red btn-lg" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+        </div><!--content col-->
+
+        <div class="col-md-3">
+            <div class="sidebar-box">
+                <h3>Categorias</h3>
+                <ul class="list-unstyled cat-list">
+                    @Html.Action("ListaDeCategorias", "Imovel", null)
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h3>Propriedades Recentes</h3>
+                @Html.Action("PropriedadesRecentes", "Imovel", new { quantidade = 3 })
+            </div>
+
+            <div class="sidebar-box">
+                <h3>Nossos Corretores</h3>
+                @Html.Action("NossosCorretores", "Equipe")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+    <script src="~/Content/fancybox/jquery.fancybox.min.js"></script>
+
+    <script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?key=@Util.KeyIntregracao.GOOGLE_MAPS&v=3&#038;sensor=true&#038;ver=3.6'></script>
+    <script type='text/javascript' src='~/Content/js/gmap3.infobox.min.js'></script>
+
+    @if (!string.IsNullOrEmpty(Model.Latitude))
+    {
+        <script src="~/Scripts/app/Geolocalizacao.js"></script>
+    }
+    <script src="~/Scripts/app/ImovelSite .js"></script>
+
+}

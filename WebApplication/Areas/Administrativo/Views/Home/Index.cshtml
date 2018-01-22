@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section breadcrumb{
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="@Url.Action("Index","Home", null)">Home</a>
+    </li>
+
+    <li class="active">Dashboard</li>
+}
+
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Equipe
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                Listagem
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            <div class="alert alert-block alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="ace-icon fa fa-times"></i>
+                </button>
+
+                <i class="ace-icon fa fa-check green"></i>
+
+                Bem vindo ao
+                <strong class="green">
+                    painel administrativo
+                </strong>,
+                do site <a href="http://imobiliariaprudente.com.br/" target="_blank">Prudente Consultoria Imobiliária</a> Utilize o menu a esquerda, ou alguns dos botões abaixo para gerênciar o conteudo do site.
+            </div>
+
+            <div class="row">
+                <a href="@Url.Action("Edit","Empresa", new { id = 1 })" class="btn btn-lg btn-success">
+                    <i class="ace-icon fa fa-check"></i>
+                    Sobre a Imobiliária
+                </a>
+                <a href="@Url.Action("Create","Imovel")" class="btn btn-lg btn-primary">
+                    <i class="ace-icon fa fa-plus"></i>
+                    Novo Imóvel
+                </a>
+                <a href="@Url.Action("Index","Imovel")" class="btn btn-lg btn-purple">
+                    <i class="ace-icon fa fa-check"></i>
+                    Gerenciar Imóveis
+                </a>
+                <a href="@Url.Action("Index","Slide")" class="btn btn-lg btn-warning">
+                    <i class="ace-icon fa fa-desktop"></i>
+                    Slide
+                </a>
+                
+                <a href="@Url.Action("Index","Equipe")" class="btn btn-lg btn-info">
+                    <i class="ace-icon fa fa-user-plus"></i>
+                    Equipe
+                </a>
+            </div><!-- /.row -->
+            <!-- #section:custom/extra.hr -->
+            <div class="hr hr32 hr-dotted"></div>
+
+        </div>
+    </div>
+
+
+</div>

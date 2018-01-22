@@ -16,35 +16,35 @@ namespace Model
     {
         public Pessoa()
         {
-            this.ClienteParceiro = new HashSet<ClienteParceiro>();
-            this.Contato = new HashSet<Contato>();
-            this.Empresa = new HashSet<Empresa>();
-            this.Equipe = new HashSet<Equipe>();
-            this.RedeSocial = new HashSet<RedeSocial>();
-            this.Usuario = new HashSet<Usuario>();
+            this.Imovel = new HashSet<Imovel>();
+            this.Imovel1 = new HashSet<Imovel>();
         }
     
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Bio { get; set; }
-        public string Imagem { get; set; }
-        public string Observacao { get; set; }
         public string CpfCnpj { get; set; }
-        public string Tipo { get; set; }
         public System.DateTime DataCadastro { get; set; }
         public Nullable<System.DateTime> DataNascimento { get; set; }
+        public string Imagem { get; set; }
+        public string Bio { get; set; }
+        public string Observacao { get; set; }
+        public string Interesse { get; set; }
+        public string Oferecido { get; set; }
+        public string Informacao { get; set; }
+        public string DocumentoProfissional { get; set; }
         public string Telefone { get; set; }
         public string Celular { get; set; }
-        public string Whatsapp { get; set; }
         public string Email { get; set; }
-        public int StatusId { get; set; }
+        public string Whatsapp { get; set; }
+        public string Skype { get; set; }
+        public bool Ativo { get; set; }
+        public string ObservacaoTipoCadastro { get; set; }
+        public string Url { get; set; }
+        public int PerfilPessoaId { get; set; }
+        public string Tipo { get; set; }
     
-        public virtual ICollection<ClienteParceiro> ClienteParceiro { get; set; }
-        public virtual ICollection<Contato> Contato { get; set; }
-        public virtual ICollection<Empresa> Empresa { get; set; }
-        public virtual ICollection<Equipe> Equipe { get; set; }
-        public virtual Status Status { get; set; }
-        public virtual ICollection<RedeSocial> RedeSocial { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Imovel> Imovel { get; set; }
+        public virtual ICollection<Imovel> Imovel1 { get; set; }
+        public virtual PerfilPessoa PerfilPessoa { get; set; }
     }
 }

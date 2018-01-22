@@ -14,8 +14,6 @@ namespace Model
         [Display(Name = "URL / Site / Link")]
         public string Url { get; set; }
         public string Target { get; set; }
-        public int StatusId { get; set; }
-
-        public virtual Status Status { get; set; }
+        public bool Ativo { get; set; }
     }
 }

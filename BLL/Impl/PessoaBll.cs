@@ -2,6 +2,7 @@
 using DAL;
 using DAL.Interface;
 using Model;
+using System.Data.Entity;
 using System.Linq;
 
 namespace BLL
@@ -36,6 +37,16 @@ namespace BLL
         public IQueryable<Pessoa> Listar()
         {
             return _pessoaDal.GetAll();
+        }
+
+        public IQueryable<Pessoa> ListarAtivos()
+        {
+            return _pessoaDal.Get(p => p.Ativo == true).OrderBy(p => p.Nome);
+        }
+
+        public IQueryable<Pessoa> ListarPorPerfil(int idPerfil)
+        {
+            return _pessoaDal.Get(p => p.Ativo == true).Include(p => p.PerfilPessoa).Where(p => p.PerfilPessoaId == idPerfil).OrderBy(p => p.Nome);
         }
 
         public Pessoa Obter(int id)

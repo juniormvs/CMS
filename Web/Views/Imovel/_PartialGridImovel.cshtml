@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Model.Imovel>
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-6 col-md-4 margin30" style="min-height: 335px">
+        <div class="property clearfix">
+            <div class="image">
+                <div class="content grid-galeria">
+                    <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})">
+                        <i class="fa fa-search-plus"></i>
+                    </a>
+                    <img src="@Url.Action("Imovel","Img", new { id = item.Id})" class="img-responsive" style="margin: 0 auto" alt="Prudente Consultoria Imobiliária">
+                    <span class="label-property" style="font-size: 12px">
+                        @Html.DisplayFor(modelItem => item.TipoImovel.Nome)
+                    </span>
+                    <span class="label-price">
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </span>
+                </div><!--content-->
+            </div><!--image-->
+            <div class="property-detail">
+                <h5 class="title">
+                    <a href="@Url.Action("Detalhe","Imovel",new { id = item.Id, urlAmigavel = item.UrlAmigavel})">
+                        @*@(item.Titulo.Count() > 70 ? item.Titulo.Substring(0, 67) +"..." : item.Titulo)*@
+                        @(item.Valor)
+                    </a>
+                </h5>
+                <span class="location">
+                    @Html.DisplayFor(modelItem => item.EnderecoGoogle)
+                </span>
+                <span class="location">
+                    @Html.DisplayFor(modelItem => item.Cidade.Nome) - @Html.DisplayFor(modelItem => item.Cidade.Uf)
+                </span>
+                <div class="pull-left">
+                    @if (item.AreaTotal > 0)
+                    {
+                        <p><b>Area:</b> @Html.DisplayFor(modelItem => item.AreaTotal)m<sup>2</sup></p>
+                    }
+                </div>
+                <div class="pull-right">
+                    @if (item.Dormitorio > 0)
+                    {
+                        <span><img src="~/Content/img/estate/bedrooms.png" alt=""> @Html.DisplayFor(modelItem => item.Dormitorio)</span>
+                    }
+                    @if (item.Banheiro > 0)
+                    {
+                        <span><img src="~/Content/img/estate/bathrooms.png" alt=""> @Html.DisplayFor(modelItem => item.Banheiro)</span>
+                    }
+                </div>
+            </div><!--property details-->
+        </div><!--property-->
+    </div><!--property columns-->
+}

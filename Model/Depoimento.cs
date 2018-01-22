@@ -18,8 +18,6 @@ namespace Model
         public string Autor { get; set; }
         public string Texto { get; set; }
         public string Imagem { get; set; }
-        public int StatusId { get; set; }
-    
-        public virtual Status Status { get; set; }
+        public bool Ativo { get; set; }
     }
 }

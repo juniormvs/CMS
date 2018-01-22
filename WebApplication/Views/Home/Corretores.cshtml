@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Model.Pessoa>
+
+<div class="center-title">
+    <h3>Nossos Corretores</h3>
+    <p>
+        Entre em contato com algum de nossos corretores
+    </p>
+</div>
+<div class="row">
+
+    @foreach(var item in Model)
+    {
+        <div class="col-md-3 col-sm-6 margin30">
+            <div class="agent-box">
+                <img src="@Url.Action("Pessoa","Img", new { id = item.Id})" class="img-circle img-responsive" width="200" alt="@Html.DisplayFor(modelItem => item.Nome)">
+                <h3>@Html.DisplayFor(modelItem => item.Nome)</h3>
+                <p>Creci @Html.DisplayFor(modelItem => item.DocumentoProfissional)</p>
+                <p>@Html.DisplayFor(modelItem => item.Celular)</p>
+                <p>@Html.DisplayFor(modelItem => item.Email)</p>
+            </div>
+        </div>
+    }
+
+   
+
+</div>

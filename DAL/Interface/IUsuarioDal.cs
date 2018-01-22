@@ -3,8 +3,8 @@ using Model;
 
 namespace DAL.Interface
 {
-    public interface IUsuarioDal : IRepositorio<Usuario>
+    public interface IUsuarioDal : IRepositorio<Users>
     {
-        bool Autenticar(Usuario usuario);
+        
     }
 }

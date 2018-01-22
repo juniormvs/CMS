@@ -6,12 +6,13 @@ namespace BLL.Interface
 {
     public interface ICategoriaPublicacaoBll
     {
-        IQueryable<CategoriaPublicacao> ListarPorPublicacao(int publicacaoId);
-        IQueryable<CategoriaPublicacao> ListarPorCategoria(int categoriaId);
-        void Salvar(CategoriaPublicacao categoriaPublicacao);
-        void Salvar(List<CategoriaPublicacao> categorias);
+        CategoriaPublicacao Obter(int id);
+        CategoriaPublicacao ObterPorUrl(string categoriaPublicacao);
+        IQueryable<CategoriaPublicacao> ListarTodos();
+        IQueryable<CategoriaPublicacao> Listar(List<int> ids);
         void Excluir(CategoriaPublicacao categoriaPublicacao);
-        void Excluir(ICollection<CategoriaPublicacao> categoriasPublicaccoes);
-        void ExcluirPorPublicacao(int id);
+        void Salvar(CategoriaPublicacao categoriaPublicacao);
+        void Atualizar(CategoriaPublicacao categoriaPublicacao);
+        
     }
 }

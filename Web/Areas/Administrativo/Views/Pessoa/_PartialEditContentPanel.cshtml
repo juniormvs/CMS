@@ -1,0 +1,277 @@
+﻿@model Model.Pessoa
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @* PERFIL DE CADASTRO - INICIO *@
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Perfil de Cadastro</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PerfilPessoaId, "Tipo", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-2">
+                        @Html.DropDownList("PerfilPessoaId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilPessoaId, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(model => model.Ativo, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <label class="control-label">
+                            @Html.CheckBoxFor(model => model.Ativo, new { @checked = "checked" }) Cadastro Ativo
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* PERFIL DE CADASTRO - FIM *@
+    <div class="space-10"></div>
+
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Cadastro</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-1">Tipo</label>
+                        <div class="col-md-1">
+                            @{
+                                List<SelectListItem> listItems = new List<SelectListItem>();
+                                listItems.Add(new SelectListItem
+                                {
+                                    Text = "Física",
+                                    Value = "true",
+                                    Selected = true
+                                });
+                                listItems.Add(new SelectListItem
+                                {
+                                    Text = "Jurídica",
+                                    Value = "false"
+                                });
+                            }
+                            @Html.DropDownList("Tipo", listItems)
+                        </div>
+                        @Html.LabelFor(model => model.CpfCnpj, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.CpfCnpj, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.CpfCnpj, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.DocumentoProfissional, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.DocumentoProfissional, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DocumentoProfissional, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Informações de Contato</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.Celular, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Celular, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Whatsapp, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Whatsapp, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Whatsapp, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.Skype, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Skype, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Skype, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-globe bigger-110"></i>
+                                </span>
+                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+
+    <div class="widget-box" id="widget-box-1">
+        <div class="widget-header">
+            <h5 class="widget-title">Descrição e Informações Gerais</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="fullscreen" class="orange2">
+                    <i class="ace-icon fa fa-expand"></i>
+                </a>
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-12", style = "text-align: left" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Bio, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observacao, htmlAttributes: new { @class = "control-label col-md-12", style = "text-align: left" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Observacao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Interesse, htmlAttributes: new { @class = "control-label col-md-12", style = "text-align: left" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Interesse, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Interesse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Oferecido, htmlAttributes: new { @class = "control-label col-md-12", style = "text-align: left" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Oferecido, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Oferecido, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Informacao, htmlAttributes: new { @class = "control-label col-md-12", style = "text-align: left" })
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Informacao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Informacao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="Salvar" class="btn btn-success" />
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
