@@ -10,13 +10,13 @@ namespace DAL
     public class Repositorio<T> : IRepositorio<T>, IDisposable where T : class
     {
 
-        private cmsEntities _contexto;
+        private Contexto _contexto;
 
         private DbSet<T> _entidade;
 
         public Repositorio()
         {
-            _contexto = new cmsEntities();
+            _contexto = new Contexto();
             _contexto.Configuration.LazyLoadingEnabled = true;
             _entidade = _contexto.Set<T>();
         }

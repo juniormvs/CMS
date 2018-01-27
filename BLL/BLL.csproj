@@ -92,8 +92,6 @@
     <Compile Include="Interface\IPessoaBll.cs" />
     <Compile Include="Interface\IPublicacaoBll.cs" />
     <Compile Include="Interface\IPublicacaoPorCategoriaBll.cs" />
-    <Compile Include="Interface\IRedeBll.cs" />
-    <Compile Include="Interface\IRedeSocialBll.cs" />
     <Compile Include="Interface\IRegiaoBll.cs" />
     <Compile Include="Interface\IServicoBll.cs" />
     <Compile Include="Interface\ISlideBll.cs" />
@@ -110,7 +108,7 @@
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{751cf4e2-96a8-4590-84d4-70a31dfc8521}</Project>
+      <Project>{85aea2ae-22f2-4597-8196-f854acef77de}</Project>
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Servico\Servicos.csproj">
