@@ -5,6 +5,7 @@ namespace Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.Pessoa")]
     public partial class Pessoa
@@ -39,6 +40,7 @@ namespace Model
 
         [Column(TypeName = "text")]
         [StringLength(65535)]
+        [AllowHtml]
         public string Bio { get; set; }
 
         [Column(TypeName = "text")]
