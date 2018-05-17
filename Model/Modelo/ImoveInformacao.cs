@@ -1,10 +1,9 @@
 namespace Model
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.ImoveInformacao")]
     public partial class ImoveInformacao
@@ -31,6 +30,7 @@ namespace Model
         [StringLength(256)]
         public string LocalChave { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Informacao { get; set; }

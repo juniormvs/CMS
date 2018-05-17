@@ -1,10 +1,8 @@
 namespace Model
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.Servico")]
     public partial class Servico
@@ -18,6 +16,7 @@ namespace Model
         [StringLength(120)]
         public string Resumo { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Descricao { get; set; }

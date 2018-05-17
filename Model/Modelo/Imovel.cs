@@ -4,7 +4,7 @@ namespace Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.Imovel")]
     public partial class Imovel
@@ -22,18 +22,22 @@ namespace Model
         [StringLength(45)]
         public string Codigo { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Descricao { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string CentralNegocio { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string PontosFortes { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Observacao { get; set; }
@@ -203,5 +207,7 @@ namespace Model
         public virtual TipoImovel TipoImovel { get; set; }
 
         public virtual Status Status { get; set; }
+
+        
     }
 }

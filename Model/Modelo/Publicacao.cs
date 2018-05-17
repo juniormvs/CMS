@@ -5,6 +5,7 @@ namespace Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.Publicacao")]
     public partial class Publicacao
@@ -25,6 +26,7 @@ namespace Model
         [StringLength(200)]
         public string Resumo { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [Required]
         [StringLength(65535)]

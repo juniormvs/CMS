@@ -5,6 +5,7 @@ namespace Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.ImovelDetalhe")]
     public partial class ImovelDetalhe
@@ -21,6 +22,7 @@ namespace Model
         [StringLength(45)]
         public string Grupo { get; set; }
 
+        [AllowHtml]
         [Required]
         [StringLength(256)]
         public string Descricao { get; set; }

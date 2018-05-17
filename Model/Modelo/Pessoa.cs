@@ -38,15 +38,17 @@ namespace Model
         [StringLength(145)]
         public string Imagem { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
-        [AllowHtml]
         public string Bio { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Observacao { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Interesse { get; set; }

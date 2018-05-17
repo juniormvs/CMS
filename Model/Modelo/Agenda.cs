@@ -5,6 +5,7 @@ namespace Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.Agenda")]
     public partial class Agenda
@@ -18,6 +19,7 @@ namespace Model
         [StringLength(145)]
         public string Titulo { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Descricao { get; set; }

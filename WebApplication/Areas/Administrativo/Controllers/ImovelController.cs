@@ -545,11 +545,13 @@ namespace WebApplication.Areas.Administrativo.Controllers
                 CidadeId = cidade.Id,
                 CorretorPessoaId = imovelViewModel.CorretorPessoaId,
                 ProprietarioPessoaId = imovelViewModel.ProprietarioPessoaId,
-                UserId = imovelViewModel.UserId,
+                UserId = imovelViewModel.UserId
             };
 
             return imovel;
         }
+
+        
 
         private ImovelViewModel ConveterParaViewModel(Imovel imovel)
         {

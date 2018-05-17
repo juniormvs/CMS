@@ -5,16 +5,20 @@ namespace Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("cms-mainsoftware.Empresa")]
     public partial class Empresa
     {
+
         public int Id { get; set; }
 
+        
         [Required]
         [StringLength(145)]
         public string Nome { get; set; }
 
+        [AllowHtml]
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Descricao { get; set; }
@@ -51,5 +55,6 @@ namespace Model
 
         [StringLength(45)]
         public string Longitude { get; set; }
+
     }
 }

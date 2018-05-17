@@ -19,6 +19,7 @@ namespace Model
         [StringLength(45)]
         public string MimeType { get; set; }
 
+
         [Column(TypeName = "text")]
         [StringLength(65535)]
         public string Descricao { get; set; }
